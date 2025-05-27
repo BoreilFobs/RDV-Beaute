@@ -1,0 +1,475 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    background-color: #1c1c1c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-container {
+    background: #212529;
+    padding: 40px;
+    border-radius: 15px 0 15px 0;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #e1bb87;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h2 {
+    color: #e1bb87;
+    font-family: "Aclonica", sans-serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.login-header p {
+    color: #999;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    color: #e1bb87;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: transparent;
+    border: 2px solid #e1bb87;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ba9c72;
+    box-shadow: 0 0 0 2px rgba(225, 187, 135, 0.3);
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-me input {
+    margin-right: 10px;
+    accent-color: #e1bb87;
+}
+
+.remember-me label {
+    color: #e1bb87;
+    font-size: 14px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: #e1bb87;
+    border: none;
+    border-radius: 15px 0 15px 0;
+    color: #1c1c1c;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.login-btn:hover {
+    background: #ba9c72;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.forgot-password a {
+    color: #e1bb87;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+    color: #ba9c72;
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.session-status {
+    color: #4caf50;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+body {
+    background-color: #1c1c1c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.register-container {
+    background: #212529;
+    padding: 40px;
+    border-radius: 15px 0 15px 0;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.register-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #e1bb87;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.register-header h2 {
+    color: #e1bb87;
+    font-family: "Aclonica", sans-serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.register-header p {
+    color: #999;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    color: #e1bb87;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: transparent;
+    border: 2px solid #e1bb87;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ba9c72;
+    box-shadow: 0 0 0 2px rgba(225, 187, 135, 0.3);
+}
+
+.register-btn {
+    width: 100%;
+    padding: 15px;
+    background: #e1bb87;
+    border: none;
+    border-radius: 15px 0 15px 0;
+    color: #1c1c1c;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.register-btn:hover {
+    background: #ba9c72;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-link a {
+    color: #e1bb87;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.login-link a:hover {
+    color: #ba9c72;
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.session-status {
+    color: #4caf50;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 270px;
+    margin: 0 auto;
+    background: #fff;
+    font-size: 20px;
+    line-height: 35px;
+    color: #1c1c1c;
+    border-radius: 15px 0px 15px 0px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+    .action-btn {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px !important; /* Smaller gap on mobile */
+    }
+
+    .sec-btn {
+        width: 100%; /* Full width buttons on mobile */
+        max-width: 270px; /* But not wider than original size */
+    }
+}
+
+/* user dashboard */
+:root {
+    --primary: #e1bb87;
+    --dark: #1c1c1c;
+    --gray: #212529;
+    --light: #f8f9fa;
+}
+
+body {
+    background-color: var(--dark);
+    color: white;
+    font-family: "Roboto", sans-serif;
+}
+
+.dashboard-header {
+    background: var(--gray);
+    padding: 1.5rem;
+    border-bottom: 3px solid var(--primary);
+    position: relative;
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+    object-fit: cover;
+}
+
+.welcome-text h3 {
+    font-family: "Aclonica", sans-serif;
+    color: var(--primary);
+}
+
+.dashboard-nav {
+    background: var(--gray);
+    border-radius: 15px 0 15px 0;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.nav-item {
+    margin: 0.5rem 0;
+}
+
+.nav-link {
+    color: white;
+    border-left: 3px solid transparent;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+    border-left: 3px solid var(--primary);
+    background: rgba(225, 187, 135, 0.1);
+}
+
+.nav-link i {
+    width: 25px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.card-service {
+    background: var(--gray);
+    border-radius: 15px 0 15px 0;
+    border: none;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s;
+    overflow: hidden;
+}
+
+.card-service:hover {
+    transform: translateY(-5px);
+}
+
+.service-img {
+    height: 150px;
+    object-fit: cover;
+}
+
+.service-title {
+    font-family: "Aclonica", sans-serif;
+    color: var(--primary);
+}
+
+.btn-booking {
+    background: var(--primary);
+    color: var(--dark);
+    border-radius: 15px 0 15px 0;
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    transition: all 0.3s;
+}
+
+.btn-booking:hover {
+    background: #ba9c72;
+}
+
+.order-card {
+    background: var(--gray);
+    border-radius: 15px 0 15px 0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--primary);
+}
+
+.order-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-confirmed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.action-btn {
+    color: var(--primary);
+    background: none;
+    border: none;
+    margin: 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard-nav {
+        margin-bottom: 1rem;
+    }
+
+    .service-img {
+        height: 120px;
+    }
+}
+
+.order-card .action-btn {
+    color: var(--primary);
+    background: none;
+    border: none;
+    padding: 0.25rem 0.5rem; /* Reduced padding */
+    font-size: 0.8rem; /* Smaller font size */
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+.order-card .action-btn i {
+    font-size: 0.8em; /* Slightly smaller icon relative to button font size */
+    margin-right: 0.25rem; /* Reduced margin for icon */
+}
+
+/* Optional: Add hover effect for better UX */
+.order-card .action-btn:hover {
+    background-color: rgba(225, 187, 135, 0.1); /* Subtle background on hover */
+    border-radius: 5px; /* Slight rounding on hover */
+}
