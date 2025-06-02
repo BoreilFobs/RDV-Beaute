@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Appointments extends Model
+class Message extends Model
 {
     protected $fillable = [
         "user_id",
-        "offer_id",
-        "date",
+        "message",
         "status",
     ];
 }

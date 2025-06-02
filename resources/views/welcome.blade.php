@@ -115,8 +115,8 @@
                                     <h3 class="number">01</h3>
                                 </div>
                                 <div class="service-btn">
-                                    <a href="javascript:void(0)" class="service-tag">Professional Makeup</a>
-                                    <a href="javascript:void(0)" class="explore">explore
+                                    <a href={{ url('/prestations') }} class="service-tag">Professional Makeup</a>
+                                    <a href={{ url('/prestations') }} class="explore">explore
                                         <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                     </a>
                                 </div>
@@ -135,8 +135,8 @@
                                     <h3 class="number">03</h3>
                                 </div>
                                 <div class="service-btn">
-                                    <a href="javascript:void(0)" class="service-tag">Body Spa</a>
-                                    <a href="javascript:void(0)" class="explore">explore
+                                    <a href={{ url('/prestations') }}" class="service-tag">Body Spa</a>
+                                    <a href={{ url('/prestations') }}" class="explore">explore
                                         <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                     </a>
                                 </div>
@@ -150,8 +150,8 @@
                                     <h3 class="number">04</h3>
                                 </div>
                                 <div class="service-btn">
-                                    <a href="javascript:void(0)" class="service-tag">Haircut & Coloring</a>
-                                    <a href="javascript:void(0)" class="explore">explore
+                                    <a href={{ url('/prestations') }}" class="service-tag">Haircut & Coloring</a>
+                                    <a href={{ url('/prestations') }}" class="explore">explore
                                         <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                     </a>
                                 </div>
@@ -172,8 +172,8 @@
                                         <h3 class="number">01</h3>
                                     </div>
                                     <div class="service-btn">
-                                        <a href="javascript:void(0)" class="service-tag">Professional Makeup</a>
-                                        <a href="javascript:void(0)" class="explore">explore
+                                        <a href={{ url('/prestations') }}" class="service-tag">Professional Makeup</a>
+                                        <a href={{ url('/prestations') }}" class="explore">explore
                                             <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                         </a>
                                     </div>
@@ -189,8 +189,8 @@
                                         <h3 class="number">03</h3>
                                     </div>
                                     <div class="service-btn">
-                                        <a href="javascript:void(0)" class="service-tag">Body Spa</a>
-                                        <a href="javascript:void(0)" class="explore">explore
+                                        <a href={{ url('/prestations') }}" class="service-tag">Body Spa</a>
+                                        <a href={{ url('/prestations') }}" class="explore">explore
                                             <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                         </a>
                                     </div>

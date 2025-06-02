@@ -9,6 +9,9 @@ Route::get('/', function () {
 Route::get('/prestations', function () {
     return view('prestations');
 });
+Route::get('/reservation', function () {
+    return view('reservation');
+});
 
 
 Route::get('/dashboard', function () {

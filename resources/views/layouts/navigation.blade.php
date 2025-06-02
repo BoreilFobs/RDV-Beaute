@@ -62,16 +62,20 @@
                             <ul class="menu nav-menu" id="primary-menu">
                                 <li class="menu-item {{ request()->is('/') ? 'active' : '' }}"><a
                                         href="/">Home</a></li>
-                                <li class="menu-item {{ request()->is('about*') ? 'active' : '' }}"><a
-                                        href="#about-us">about</a></li>
-                                <li class="menu-item {{ request()->is('gallery*') ? 'active' : '' }}"><a
-                                        href="#gallery">Gallery</a></li>
-                                <li class="menu-item {{ request()->is('services*') ? 'active' : '' }}"><a
-                                        href="#services">Services</a></li>
-                                <li class="menu-item {{ request()->is('shop*') ? 'active' : '' }}"><a
-                                        href="#price">shop</a></li>
-                                <li class="menu-item {{ request()->is('contact*') ? 'active' : '' }}"><a
-                                        href="#contact">contact</a></li>
+                                @if (request()->is('/'))
+                                    <li class="menu-item {{ request()->is('#about*') ? 'active' : '' }}"><a
+                                            href="#about-us">about</a></li>
+                                    <li class="menu-item {{ request()->is('#gallery*') ? 'active' : '' }}"><a
+                                            href="#gallery">Gallery</a></li>
+                                    <li class="menu-item {{ request()->is('#services*') ? 'active' : '' }}"><a
+                                            href="#services">Services</a></li>
+                                    <li class="menu-item {{ request()->is('#shop*') ? 'active' : '' }}"><a
+                                            href="#price">shop</a></li>
+                                    <li class="menu-item {{ request()->is('#contact*') ? 'active' : '' }}"><a
+                                            href="#contact">contact</a></li>
+                                @endif
+                                <li class="menu-item {{ request()->is('login*') ? 'active' : '' }}"><a
+                                        href={{ route('login') }}>login</a></li>
                             </ul>
                         </div>
 

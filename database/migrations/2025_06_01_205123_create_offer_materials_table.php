@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('offer_materials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->on("users");
-            $table->foreignId("offer_id")->on("offers");
-            $table->date("date");
-            $table->enum("status", ['pending', 'confirmed', 'rejected']);
+            $table->foreignid("offer_id")->on("offers");
+            $table->foreignid("material_id")->on("materials");
+            $table->float("quantity");
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('offer_materials');
     }
 };

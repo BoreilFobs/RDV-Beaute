@@ -4,388 +4,380 @@
     <style>
         :root {
             --primary: #e1bb87;
-            /* Warm Gold/Bronze */
-            --dark: #1c1c1c;
-            /* Deep Charcoal */
-            --gray: #212529;
-            /* Darker Gray */
+            --dark: #121212;
+            --gray: #1e1e1e;
             --light: #f8f9fa;
-            /* Off-white/Light Gray */
-            --text-muted: #adb5bd;
-            /* Bootstrap's text-muted */
+            --accent: #6bd1e3;
+            --text-muted: #a0a0a0;
         }
 
         body {
             background-color: var(--dark);
             color: white;
             font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
         }
 
-        /* --- NAVIGATION STYLES (Example - adjust based on your actual navbar) --- */
-        .navbar {
-            background-color: var(--gray);
-            border-bottom: 2px solid var(--primary);
-            position: sticky;
-            /* Or fixed-top if you want it always visible */
-            top: 0;
-            z-index: 1020;
-            /* Ensure it's above other content */
-        }
-
-        .navbar-brand,
-        .nav-link {
-            color: white !important;
-        }
-
-        .navbar-brand:hover,
-        .nav-link:hover {
-            color: var(--primary) !important;
-        }
-
-        .nav-link.active {
-            color: var(--primary) !important;
-            border-bottom: 2px solid var(--primary);
-        }
-
-        /* --- END NAVIGATION STYLES --- */
-
-        /* --- Layout Adjustments for Content Below Navbar --- */
-        /* Add padding to body or main content area if navbar is fixed */
-        body {
-            padding-top: 0;
-            /* Adjust if your navbar is fixed-top to avoid overlap */
-        }
-
-        @media (min-width: 768px) {
-
-            /* Adjust based on your navbar breakpoint */
-            body {
-                /* If your navbar is fixed-top and has a height, add padding-top to body */
-                /* padding-top: 70px; */
-                /* Example height, measure your actual navbar height */
-            }
-        }
-
-
-        /* General Dashboard/Content styles */
-        .dashboard-header {
-            /* Adjust or remove if not needed for this page */
-            background: var(--gray);
-            padding: 1.5rem;
-            border-bottom: 3px solid var(--primary);
-            position: relative;
-        }
-
-        .service-title {
-            font-family: 'Aclonica', sans-serif;
-            color: var(--primary);
-        }
-
-        /* --- Card Specific Styles --- */
-        .services-box {
-            height: 100%;
-            /* Ensures cards in a row have equal height */
-            background: var(--gray);
-            /* Darker gray for cards */
-            border-radius: 15px 0 15px 0;
-            /* Modern, asymmetric border radius */
+        /* Modern Card Styles */
+        .service-card {
+            background: linear-gradient(145deg, #252525, #1a1a1a);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            /* Smooth transitions */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            /* Subtle shadow for depth */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.36);
+            height: 100%;
             display: flex;
-            /* Flexbox for internal content layout */
             flex-direction: column;
-            /* Stack image and content vertically */
+            margin-bottom: 30px;
         }
 
-        .services-box:hover {
+        .service-card:hover {
             transform: translateY(-8px);
-            /* More pronounced lift on hover */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            /* Enhanced shadow on hover */
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border-color: rgba(225, 187, 135, 0.2);
+        }
+
+        .service-image-container {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
         }
 
         .service-image {
-            height: 180px;
-            /* Consistent image height */
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            border-bottom: 3px solid var(--primary);
-            /* Separator for image */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        .service-image .number {
+        .service-card:hover .service-image {
+            transform: scale(1.05);
+        }
+
+        .service-badge {
             position: absolute;
-            bottom: 15px;
-            left: 15px;
-            font-size: 2.8rem;
-            /* Slightly larger number */
-            color: white;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-            /* Stronger shadow for readability */
-            font-family: 'Aclonica', sans-serif;
-            /* Apply special font */
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
         .service-content {
+            padding: 24px;
+            flex: 1;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
-            /* Allows content to expand and take available space */
         }
 
-        .service-btn-area {
-            /* Renamed from .service-btn to be more descriptive */
-            padding: 1rem;
-            /* Padding for the entire content area below the image */
-            flex-grow: 1;
-            /* Allows this section to grow */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            /* Pushes buttons to bottom */
-        }
-
-        .service-tag {
-            color: var(--primary);
-            font-family: 'Aclonica', sans-serif;
+        .service-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
             font-size: 1.25rem;
-            /* Larger and more prominent service title */
-            margin-bottom: 0.5rem;
-            /* Reduce margin to make space */
         }
 
-        .service-price-info {
+        .service-meta {
             display: flex;
             justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .service-meta-item {
+            display: flex;
             align-items: center;
-            margin-bottom: 1rem;
-            /* More space before description */
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
-        .service-price-info .text-light {
-            color: var(--light) !important;
-            /* Ensure light color for duration */
-            font-weight: 500;
+        .service-meta-item i {
+            margin-right: 6px;
+            color: var(--accent);
         }
 
-        .service-price-info .h6 {
+        .service-price {
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--primary);
-            font-size: 1.2rem;
-            /* Larger price font */
-            font-weight: bold;
+            margin-bottom: 16px;
         }
 
         .service-description {
             color: var(--text-muted);
-            /* Softer color for description */
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-            /* More space before buttons */
+            font-size: 0.95rem;
+            margin-bottom: 24px;
             flex-grow: 1;
-            /* Allows description to take available height */
         }
 
-        .btn-booking {
-            background: var(--primary);
-            color: var(--dark) !important;
-            border-radius: 8px 0 8px 0;
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-primary-accent {
+            background-color: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
             font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            /* Larger tap target */
-            transition: background-color 0.2s ease-in-out;
+            padding: 10px;
+            transition: all 0.3s;
         }
 
-        .btn-booking:hover {
-            background: #cc9955;
-            /* Darker primary on hover */
+        .btn-primary-accent:hover {
+            background-color: #d4a76a;
+            transform: translateY(-2px);
         }
 
-        .btn-outline-primary {
+        .btn-outline-accent {
+            background-color: transparent;
             color: var(--primary);
-            border-color: var(--primary);
-            border-radius: 8px 0 8px 0;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
             font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            /* Larger tap target */
-            transition: all 0.2s ease-in-out;
+            padding: 10px;
+            transition: all 0.3s;
         }
 
-        .btn-outline-primary:hover {
+        .btn-outline-accent:hover {
+            background-color: rgba(225, 187, 135, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Section Header */
+        .section-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
             background: var(--primary);
             color: var(--dark);
         }
 
-        /* Dropdown styles */
-        .dropdown-menu {
-            background-color: var(--gray);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Modern Layout Spacing */
+        .service-section {
+            padding: 80px 0;
         }
 
-        .dropdown-item {
-            color: white;
-        }
-
-        .dropdown-item:hover {
-            background-color: var(--dark);
-            color: var(--primary);
-        }
-
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 991.98px) {
-
-            /* Medium devices (tablet landscape) */
-            .col-lg-3 {
-                /* Change from 4 columns to 2 on tablets */
-                width: 50%;
-                /* Make them take half width */
-            }
-        }
-
-        @media (max-width: 767.98px) {
-
-            /* Small devices (mobile) */
-            .col-md-6 {
-                /* Change from 2 columns to 1 on mobile */
-                width: 100%;
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.8rem;
             }
 
-            .service-image {
-                height: 250px;
-                /* Taller images on mobile for impact */
+            .service-card {
+                max-width: 400px;
+                margin: 0 auto;
             }
 
-            .services-box {
-                margin-left: auto;
-                margin-right: auto;
-                max-width: 350px;
-                /* Constrain width on very small screens for better appearance */
+            .action-buttons {
+                grid-template-columns: 1fr;
             }
         }
     </style>
-    <div style="padding-top: 130px;" class="d-flex justify-content-between align-items-center mb-4">
-        {{-- <h2 class="service-title mb-0">
-            <i class="fas fa-cut me-2"></i>Hair Services
-        </h2>
-        <div class="dropdown">
-            <button class="btn btn-booking dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <i class="fas fa-sort me-1"></i> Sort
-            </button> --}}
-        <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-            <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
-            <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
-            <li><a class="dropdown-item" href="#">Duration</a></li>
-        </ul>
+
+    <!-- Add Poppins font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <div class="service-section">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h1 class="section-title">Premium Hair Services</h1>
+                <p class="section-subtitle">Experience luxury hair treatments with our expert stylists using top-quality
+                    products</p>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="filter-controls">
+                <button class="filter-btn active">All Services</button>
+                <button class="filter-btn">Cutting</button>
+                <button class="filter-btn">Coloring</button>
+                <button class="filter-btn">Treatments</button>
+                <button class="filter-btn">Styling</button>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="row g-4">
+                <!-- Service 1 -->
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="service-card">
+                        <div class="service-image-container">
+                            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" class="service-image"
+                                alt="Premium Haircut">
+                            <span class="service-badge">Most Popular</span>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Signature Haircut</h3>
+                            <div class="service-meta">
+                                <span class="service-meta-item"><i class="fas fa-clock"></i> 45 min</span>
+                                <span class="service-meta-item"><i class="fas fa-user-tie"></i> Expert</span>
+                            </div>
+                            <div class="service-price">$45+</div>
+                            <p class="service-description">Our master stylists will give you a precision haircut tailored to
+                                your face shape and lifestyle.</p>
+                            <div class="action-buttons">
+                                <a href={{ url('/reservation') }} class="btn btn-primary-accent">
+                                    <i class="fas fa-calendar-plus me-2"></i> Book Now
+                                </a>
+                                <button class="btn btn-outline-accent">
+                                    <i class="far fa-heart me-2"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="service-card">
+                        <div class="service-image-container">
+                            <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1" class="service-image"
+                                alt="Hair Coloring">
+                            <span class="service-badge">New</span>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Vibrant Color</h3>
+                            <div class="service-meta">
+                                <span class="service-meta-item"><i class="fas fa-clock"></i> 2 hrs</span>
+                                <span class="service-meta-item"><i class="fas fa-user-tie"></i> Senior</span>
+                            </div>
+                            <div class="service-price">$85+</div>
+                            <p class="service-description">Transform your look with our ammonia-free coloring that leaves
+                                hair shiny and healthy.</p>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary-accent">
+                                    <i class="fas fa-calendar-plus me-2"></i> Book Now
+                                </button>
+                                <button class="btn btn-outline-accent">
+                                    <i class="far fa-heart me-2"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="service-card">
+                        <div class="service-image-container">
+                            <img src="https://images.unsplash.com/photo-1549465220-1a92b217e716" class="service-image"
+                                alt="Keratin Treatment">
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Keratin Smoothing</h3>
+                            <div class="service-meta">
+                                <span class="service-meta-item"><i class="fas fa-clock"></i> 3 hrs</span>
+                                <span class="service-meta-item"><i class="fas fa-user-tie"></i> Master</span>
+                            </div>
+                            <div class="service-price">$120+</div>
+                            <p class="service-description">Our advanced keratin treatment eliminates frizz and reduces
+                                styling time by up to 70%.</p>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary-accent">
+                                    <i class="fas fa-calendar-plus me-2"></i> Book Now
+                                </button>
+                                <button class="btn btn-outline-accent">
+                                    <i class="far fa-heart me-2"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="service-card">
+                        <div class="service-image-container">
+                            <img src="https://images.unsplash.com/photo-1546743126-78b17849e4fe" class="service-image"
+                                alt="Braids & Extensions">
+                            <span class="service-badge">Popular</span>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Designer Braids</h3>
+                            <div class="service-meta">
+                                <span class="service-meta-item"><i class="fas fa-clock"></i> 4 hrs</span>
+                                <span class="service-meta-item"><i class="fas fa-user-tie"></i> Expert</span>
+                            </div>
+                            <div class="service-price">$150+</div>
+                            <p class="service-description">Custom braiding with premium extensions that protect your natural
+                                hair while making a statement.</p>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary-accent">
+                                    <i class="fas fa-calendar-plus me-2"></i> Book Now
+                                </button>
+                                <button class="btn btn-outline-accent">
+                                    <i class="far fa-heart me-2"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="services-box wow fadeInRightBig">
-                <div class="service-image"
-                    style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80');">
-                    <h3 class="number">01</h3>
-                </div>
-                <div class="service-btn-area"> {{-- Updated class name here --}}
-                    <h5 class="service-tag">Premium Haircut</h5>
-                    <div class="service-price-info">
-                        <span class="text-light small"><i class="fas fa-clock me-1"></i> 45 min</span>
-                        <span class="h6 mb-0 text-primary">$45</span>
-                    </div>
-                    <p class="service-description mb-3">Precision haircut with styling and finishing for a fresh look.</p>
-                    <div class="d-grid gap-2 mt-auto"> {{-- mt-auto pushes buttons to bottom --}}
-                        <button class="btn btn-booking">
-                            <i class="fas fa-calendar-plus me-1"></i> Book Now
-                        </button>
-                        <button class="btn btn-outline-primary">
-                            <i class="far fa-heart me-1"></i> Wishlist
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="services-box wow fadeInRightBig">
-                <div class="service-image"
-                    style="background-image: url('https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=800&q=80');">
-                    <h3 class="number">02</h3>
-                </div>
-                <div class="service-btn-area">
-                    <h5 class="service-tag">Hair Coloring</h5>
-                    <div class="service-price-info">
-                        <span class="text-light small"><i class="fas fa-clock me-1"></i> 2 hrs</span>
-                        <span class="h6 mb-0 text-primary">$85</span>
-                    </div>
-                    <p class="service-description mb-3">Professional hair coloring using high-quality, long-lasting dyes.
-                    </p>
-                    <div class="d-grid gap-2 mt-auto">
-                        <button class="btn btn-booking">
-                            <i class="fas fa-calendar-plus me-1"></i> Book Now
-                        </button>
-                        <button class="btn btn-outline-primary">
-                            <i class="far fa-heart me-1"></i> Wishlist
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="services-box wow fadeInRightBig">
-                <div class="service-image"
-                    style="background-image: url('https://images.unsplash.com/photo-1549465220-1a92b217e716?auto=format&fit=crop&w=800&q=80');">
-                    <h3 class="number">03</h3>
-                </div>
-                <div class="service-btn-area">
-                    <h5 class="service-tag">Keratin Treatment</h5>
-                    <div class="service-price-info">
-                        <span class="text-light small"><i class="fas fa-clock me-1"></i> 3 hrs</span>
-                        <span class="h6 mb-0 text-primary">$120</span>
-                    </div>
-                    <p class="service-description mb-3">Transform frizzy hair into smooth, shiny locks with our keratin.</p>
-                    <div class="d-grid gap-2 mt-auto">
-                        <button class="btn btn-booking">
-                            <i class="fas fa-calendar-plus me-1"></i> Book Now
-                        </button>
-                        <button class="btn btn-outline-primary">
-                            <i class="far fa-heart me-1"></i> Wishlist
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="services-box wow fadeInRightBig">
-                <div class="service-image"
-                    style="background-image: url('https://images.unsplash.com/photo-1546743126-78b17849e4fe?auto=format&fit=crop&w=800&q=80');">
-                    <h3 class="number">04</h3>
-                </div>
-                <div class="service-btn-area">
-                    <h5 class="service-tag">Braids & Extensions</h5>
-                    <div class="service-price-info">
-                        <span class="text-light small"><i class="fas fa-clock me-1"></i> 4 hrs</span>
-                        <span class="h6 mb-0 text-primary">$150+</span>
-                    </div>
-                    <p class="service-description mb-3">Custom braiding and high-quality extensions for versatile styles.
-                    </p>
-                    <div class="d-grid gap-2 mt-auto">
-                        <button class="btn btn-booking">
-                            <i class="fas fa-calendar-plus me-1"></i> Book Now
-                        </button>
-                        <button class="btn btn-outline-primary">
-                            <i class="far fa-heart me-1"></i> Wishlist
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>
+        // Add active class to filter buttons
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 @endsection

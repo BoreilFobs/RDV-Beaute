@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->on("users");
-            $table->foreignId("offer_id")->on("offers");
-            $table->date("date");
-            $table->enum("status", ['pending', 'confirmed', 'rejected']);
+            $table->text("message");
+            $table->enum("status", ['sent', 'recieved']);
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('messages');
     }
 };
