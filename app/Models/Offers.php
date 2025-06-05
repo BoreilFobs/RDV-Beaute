@@ -9,6 +9,7 @@ class Offers extends Model
     protected $fillable = [
         "name",
         "cost",
+        "description",
         "duration",
         "category",
         "img_path",

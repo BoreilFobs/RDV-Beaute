@@ -151,22 +151,50 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('userDashboard') ? 'active' : '' }}"
                                 href="{{ route('userDashboard') }}">
-                                <i class="fas fa-home"></i>
+                                <i class="fas fa-tachometer-alt"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
                                 href="{{ route('appointments.index') }}">
-                                <i class="fas fa-calendar-alt"></i>
+                                <i class="fas fa-users"></i>
+                                <span>Users</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
+                                href="{{ route('appointments.index') }}">
+                                <i class="fas fa-calendar-check"></i>
                                 <span>Appointments</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                                href="{{ route('offers.index') }}">
+                                <i class="fas fa-spa"></i>
+                                <span>Prestations</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
                                 href="{{ route('favourite.index') }}">
-                                <i class="fas fa-heart"></i>
-                                <span>Favorites</span>
+                                <i class="fas fa-boxes"></i>
+                                <span>Stock</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                                href="{{ route('favourite.index') }}">
+                                <i class="fas fa-comments"></i>
+                                <span>Message</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                                href="{{ route('favourite.index') }}">
+                                <i class="fas fa-photo-video"></i>
+                                <span>Gallery</span>
                             </a>
                         </li>
                         <li class="nav-item mt-4">
@@ -198,22 +226,50 @@
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('userDashboard') ? 'active' : '' }}"
                     href="{{ route('userDashboard') }}">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-tachometer-alt"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
                     href="{{ route('appointments.index') }}">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>Bookings</span>
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
+                    href="{{ route('appointments.index') }}">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Appointments</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
                     href="{{ route('favourite.index') }}">
-                    <i class="fas fa-heart"></i>
-                    <span>Favorites</span>
+                    <i class="fas fa-spa"></i>
+                    <span>Pretations</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                    href="{{ route('favourite.index') }}">
+                    <i class="fas fa-boxes"></i>
+                    <span>Stock</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                    href="{{ route('favourite.index') }}">
+                    <i class="fas fa-comments"></i>
+                    <span>Message</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                    href="{{ route('favourite.index') }}">
+                    <i class="fas fa-photo-video"></i>
+                    <span>Gallery</span>
                 </a>
             </li>
             <li class="nav-item">

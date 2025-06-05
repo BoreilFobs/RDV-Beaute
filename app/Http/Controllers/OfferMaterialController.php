@@ -4,7 +4,4 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class OfferMaterialController extends Controller
-{
-    //
-}
+class OfferMaterialController extends Controller {}

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("name");
             $table->float("cost");
             $table->string("category")->nullable();
+            $table->text("description")->nullable();
             $table->string("img_path");
             $table->float("duration");
             $table->timestamps();
