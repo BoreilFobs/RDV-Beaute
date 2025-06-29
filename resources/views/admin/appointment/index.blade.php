@@ -1,91 +1,101 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container-fluid"> {{-- Use container-fluid for full width --}}
+    <div class="container-fluid">
         <div class="offers-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-tags me-3"></i> Service Offers
+                    <i class="fas fa-calendar-check me-3"></i> Appointments
                 </h2>
-                <a href="{{ route('offers.create') }}" class="btn btn-booking">
-                    <i class="fas fa-plus me-1"></i> New Offer
-                </a>
+                <div class="mb-4 w-50">
+                    <form method="GET" action="{{ route('DashAppointment.index') }}" class="d-flex flex- gap-2 align-items-center">
+                        <label class="me-2 fw-bold text-light" for="status_filter">Filter by Status:</label>
+                        <select name="status" id="status_filter" class="form-select" style="max-width: 220px; background: #18171c; color: #fff; border: 1.5px solid var(--primary); border-radius: 30px;">
+                            <option value="">All</option>
+                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="confirmed" {{ request('status') == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
+                            <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                            <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary ms-2" style="border-radius:30px; background:var(--primary); color:var(--dark); border:none;">
+                            <i class="fas fa-filter me-1"></i> Filter
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <div class="table-responsive offers-table-wrapper"> {{-- Add a wrapper class for specific styling --}}
+            <div class="table-responsive offers-table-wrapper">
                 <table class="table table-offers">
                     <thead>
                         <tr>
-                            <th class="text-center">Image</th>
-                            <th>Service Name</th>
-                            <th>Category</th>
-                            <th>Duration</th>
-                            <th>Price</th>
+                            <th>User</th>
+                            <th>Service</th>
+                            <th>Date&time</th>
+                            <th>Status</th>
                             <th class="text-end">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($offers as $offer)
-                            <tr>
-                                <td class="text-center" data-label="Image">
-                                    <div class="offer-image"
-                                        style="background-image: url('{{ asset($offer->img_path) }}');"></div>
+                        @forelse ($appointments as $appointment)
+                            <tr class="clickable-row" style="cursor:pointer;" onclick="window.location='{{ route('DashAppointment.show', $appointment->id) }}'">
+                                <td data-label="User">
+                                    {{ optional(App\Models\User::find($appointment->user_id))->name ?? 'N/A' }}
                                 </td>
-                                <td data-label="Service Name">
-                                    <strong>{{ $offer->name }}</strong>
+                                <td data-label="Service">
+                                    {{ optional(App\Models\Offers::find($appointment->offer_id))->name ?? 'N/A' }}
                                 </td>
-                                <td data-label="Category">
-                                    <span class="badge bg-category">{{ $offer->category }}</span>
+                                <td data-label="Date & Time">
+                                    {{ $appointment->date }}
+                                    <span class="t">{{ $appointment->time }}</span>
                                 </td>
-                                <td data-label="Duration">{{ $offer->duration }} min</td>
-                                <td data-label="Price">${{ number_format($offer->cost, 2) }}</td>
+                                <td data-label="Status">
+                                    @php
+                                        $statusColors = [
+                                            'pending'   => 'bg-warning text-dark',    // yellow
+                                            'confirmed' => 'bg-success text-white',   // green
+                                            'cancelled' => 'bg-danger text-white',    // red
+                                            'rejected'  => 'bg-secondary text-white', // gray
+                                            'completed' => 'bg-info text-dark',       // blue
+                                        ];
+                                    @endphp
+
+                                    <span class="order-status badge {{ $statusColors[$appointment->status] ?? 'bg-light text-dark' }}">
+                                        {{ ucfirst($appointment->status) }}
+                                    </span>
+                                </td>
                                 <td class="text-end" data-label="Actions">
                                     <div class="d-flex flex-wrap justify-content-end action-buttons-group">
-                                        <a href="{{ route('offers.show', $offer->id) }}" class="btn btn-sm btn-view"
-                                            title="View Details">
+                                        @if($appointment->status == 'pending')
+                                            <form action="{{ route('DashAppointment.accept', $appointment->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-view" title="confirm" onclick="event.stopPropagation();">
+                                                    <i class="fas fa-check"></i> <span class="d-md-none">Accept</span>
+                                                </button>
+                                            </form>
+                                        @endif
+                                        <a href="{{ route('DashAppointment.show', $appointment->id) }}" class="btn btn-sm btn-view" title="View Details" onclick="event.stopPropagation();">
                                             <i class="fas fa-eye"></i> <span class="d-md-none">View</span>
                                         </a>
-                                        <a href="{{ route('offers.edit', $offer->id) }}" class="btn btn-sm btn-edit"
-                                            title="Edit">
-                                            <i class="fas fa-edit"></i> <span class="d-md-none">Edit</span>
-                                        </a>
-                                        <form action="{{ route('offers.destroy', $offer->id) }}" method="POST"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-delete" title="Delete"
-                                                onclick="return confirm('Are you sure you want to delete this offer?')">
-                                                <i class="fas fa-trash-alt"></i> <span class="d-md-none">Delete</span>
-                                            </button>
-                                        </form>
+                                        @if($appointment->status === 'canceled')
+                                            <form action="{{ route('DashAppointment.destroy', $appointment->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-delete" title="Delete"
+                                                    onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this appointment?')">
+                                                    <i class="fas fa-trash-alt"></i> <span class="d-md-none">Delete</span>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
-                            <style>
-                                .table-offers tbody tr.offer-row {
-                                    background: rgba(26, 26, 26, 0.6);
-                                    border-left: 3px solid var(--primary);
-                                }
-
-                                .table-offers tbody tr.offer-row:hover {
-                                    background: rgba(225, 187, 135, 0.1);
-                                    transform: translateX(2px);
-                                }
-
-                                .table-offers tbody tr.offer-row td {
-                                    color: var(--text-light);
-                                }
-                            </style>
-                            </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center py-4">
+                                <td colspan="9" class="text-center py-4">
                                     <div class="empty-state-content">
-                                        <i class="fas fa-tags fa-3x mb-3" style="color: var(--primary);"></i>
-                                        <h4 class="service-title" style="color: var(--primary);">No Service Offers Found
-                                        </h4>
-                                        <p class="text-light">It looks like you haven't created any offers yet. Click the
-                                            button above to add one!</p>
+                                        <i class="fas fa-calendar-check fa-3x mb-3" style="color: var(--primary);"></i>
+                                        <h4 class="service-title" style="color: var(--primary);">No Appointments Found</h4>
+                                        <p class="text-light">There are no appointments yet.</p>
                                     </div>
                                 </td>
                             </tr>
@@ -94,9 +104,9 @@
                 </table>
             </div>
 
-            @if ($offers instanceof \Illuminate\Pagination\LengthAwarePaginator)
+            @if ($appointments instanceof \Illuminate\Pagination\LengthAwarePaginator)
                 <div class="d-flex justify-content-center mt-4">
-                    {{ $offers->links() }}
+                    {{ $appointments->links() }}
                 </div>
             @endif
         </div>
@@ -187,8 +197,18 @@
         }
 
         .table-offers tbody tr {
+            background: #18171c !important; /* deep black */
+            color: #fff !important;
             transition: all 0.2s ease;
-            background: var(--dark) !important;
+        }
+
+        .table-offers tbody td {
+            color: #fff !important;
+            background: transparent !important;
+        }
+
+        .table-offers tbody td strong {
+            color: #fff !important;
         }
 
         .table-offers tbody tr:hover {

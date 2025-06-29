@@ -22,7 +22,8 @@ class RoleMiddleware
 
         if (!$user || $user->role !== $role) {
             // Optionally redirect or return a 403
-            abort(403, 'Unauthorized');
+            // abort(403, 'Unauthorized');
+            return redirect()->back();
         }
 
         return $next($request);

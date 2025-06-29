@@ -37,6 +37,13 @@
                 <x-input-error :messages="$errors->get('email')" class="error-message" />
             </div>
 
+            <!-- Phone Number -->
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input id="phone" type="tel" name="phone" :value="old('phone')" required autocomplete="tel" />
+                <x-input-error :messages="$errors->get('phone')" class="error-message" />
+            </div>
+
             <!-- Password -->
             <div class="form-group">
                 <label for="password">Password</label>

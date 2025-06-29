@@ -16,7 +16,11 @@ return new class extends Migration
             $table->foreignId("user_id")->on("users");
             $table->foreignId("offer_id")->on("offers");
             $table->date("date");
-            $table->enum("status", ['pending', 'confirmed', 'rejected']);
+            $table->time("time");
+            $table->string("name");
+            $table->string("phone");
+            $table->text("special_requests")->nullable();
+            $table->enum("status", ['pending', 'confirmed', 'cancelled', 'rejected', 'completed'])->default('pending');
             $table->timestamps();
         });
     }

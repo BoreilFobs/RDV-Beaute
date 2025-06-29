@@ -142,7 +142,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Desktop Sidebar -->
-            <div class="col-md-3 d-none d-md-block p-0">
+            <div class="col-md-2 d-none d-md-block p-0">
                 <div class="dashboard-nav sticky-top" style="top: 0; height: 100vh;">
                     <div class="text-center mb-4">
                         <img src="{{ asset('assets/images/logo-light.png') }}" alt="Logo" style="height: 40px;">
@@ -162,11 +162,18 @@
                                 <span>Appointments</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
                                 href="{{ route('favourite.index') }}">
                                 <i class="fas fa-heart"></i>
                                 <span>Favorites</span>
+                            </a>
+                        </li> --}}
+                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                                href="{{ route('prestations') }}">
+                                <i class="fas fa-list"></i>
+                                <span>view prestations</span>
                             </a>
                         </li>
                         <li class="nav-item mt-4">
@@ -184,7 +191,7 @@
             </div>
 
             <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto p-0">
+            <main class="col-md-10 ms-sm-auto p-0">
                 <div class="main-content">
                     @yield('content')
                 </div>
@@ -206,14 +213,21 @@
                 <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
                     href="{{ route('appointments.index') }}">
                     <i class="fas fa-calendar-alt"></i>
-                    <span>Bookings</span>
+                    <span>Appointments</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
                     href="{{ route('favourite.index') }}">
                     <i class="fas fa-heart"></i>
                     <span>Favorites</span>
+                </a>
+            </li> --}}
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                    href="{{ route('prestations') }}">
+                    <i class="fas fa-list"></i>
+                    <span>view prestations</span>
                 </a>
             </li>
             <li class="nav-item">

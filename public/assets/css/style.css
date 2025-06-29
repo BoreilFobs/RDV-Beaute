@@ -32,6 +32,7 @@ Theme Version: 1.0
 * {
     /* margin: 0; */
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -42,6 +43,7 @@ html {
 
 body {
     overflow-x: hidden !important;
+    padding: 0 !important;
     font-family: "Pacifico", cursive !important;
 }
 
@@ -257,6 +259,7 @@ div.wpcf7-acceptance-missing {
 
 body {
     font-family: "Pacifico", cursive;
+    min-height: 100vh !important;
     background-color: #1c1c1c !important;
 }
 

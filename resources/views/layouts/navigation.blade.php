@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-    <title>Beauty & Salon</title>
+    <title>Glow & Chic</title>
     <meta charset="utf-8">
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="GeekBuzz, HTML5 Template" />
@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="site-branding">
-                        <a href="index.html">
+                        <a href="{{url("/")}}">
                             <img class="desktop-logo" src="{{ asset('assets/images/icons/logo.png') }}" alt="logo">
                             <img class="mobile-logo" src="{{ asset('assets/images/icons/mobile-logo.png') }}"
                                 alt="mobile logo">
@@ -62,20 +62,21 @@
                             <ul class="menu nav-menu" id="primary-menu">
                                 <li class="menu-item {{ request()->is('/') ? 'active' : '' }}"><a
                                         href="/">Home</a></li>
+                                <li class="menu-item {{ request()->is('prestations*') ? 'active' : '' }}"><a
+                                        href="{{route("prestations")}}">Services</a></li>
                                 @if (request()->is('/'))
-                                    <li class="menu-item {{ request()->is('#about*') ? 'active' : '' }}"><a
-                                            href="#about-us">about</a></li>
-                                    <li class="menu-item {{ request()->is('#gallery*') ? 'active' : '' }}"><a
-                                            href="#gallery">Gallery</a></li>
-                                    <li class="menu-item {{ request()->is('#services*') ? 'active' : '' }}"><a
-                                            href="#services">Services</a></li>
-                                    <li class="menu-item {{ request()->is('#shop*') ? 'active' : '' }}"><a
-                                            href="#price">shop</a></li>
                                     <li class="menu-item {{ request()->is('#contact*') ? 'active' : '' }}"><a
                                             href="#contact">contact</a></li>
                                 @endif
-                                <li class="menu-item {{ request()->is('login*') ? 'active' : '' }}"><a
-                                        href={{ route('login') }}>login</a></li>
+                                @if(Auth::check())
+                                    <li class="menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">
+                                        <a href="{{ Auth::user()->role == 'admin' ? route('dashboard') : route('userDashboard') }}">Dashboard</a>
+                                    </li>
+                                @else
+                                    <li class="menu-item {{ request()->is('login*') ? 'active' : '' }}">
+                                        <a href="{{ route('login') }}">login</a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
 
@@ -98,71 +99,73 @@
     <footer class="site-footer">
         <div class="footer-top">
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="map wow fadeInLeftBig" style="background-image: url(./assets/images/map.png);">
+            @if (request()->is('/'))
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="map wow fadeInLeftBig" style="background-image: url(./assets/images/map.png);">
 
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-
-                        <div class="contact-form wow fadeInRightBig" id="contact">
-                            <div class="title">
-                                <h2 class="h2-title">Contact</h2>
-                                <h3 class="h3-title">Get in Touch</h3>
                             </div>
-                            <div role="form" class="wpcf7" id="wpcf7-f22-o1" lang="en-US" dir="ltr">
-                                <div class="screen-reader-response"></div>
-                                <form method="post" class="wpcf7-form" novalidate="novalidate">
-                                    <div style="display: none;">
-                                        <input type="hidden" name="_wpcf7" value="22">
-                                        <input type="hidden" name="_wpcf7_version" value="5.1.7">
-                                        <input type="hidden" name="_wpcf7_locale" value="en_US">
-                                        <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f22-o1">
-                                        <input type="hidden" name="_wpcf7_container_post" value="0">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <span class="wpcf7-form-control-wrap full-name">
-                                                <input type="text" name="full-name" value="" size="40"
-                                                    class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-input"
-                                                    aria-required="true" aria-invalid="false"
-                                                    placeholder="Your Name*">
-                                            </span>
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="contact-form wow fadeInRightBig" id="contact">
+                                <div class="title">
+                                    <h2 class="h2-title">Contact</h2>
+                                    <h3 class="h3-title">Get in Touch</h3>
+                                </div>
+                                <div role="form" class="wpcf7" id="wpcf7-f22-o1" lang="en-US" dir="ltr">
+                                    <div class="screen-reader-response"></div>
+                                    <form method="post" class="wpcf7-form" novalidate="novalidate">
+                                        <div style="display: none;">
+                                            <input type="hidden" name="_wpcf7" value="22">
+                                            <input type="hidden" name="_wpcf7_version" value="5.1.7">
+                                            <input type="hidden" name="_wpcf7_locale" value="en_US">
+                                            <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f22-o1">
+                                            <input type="hidden" name="_wpcf7_container_post" value="0">
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <span class="wpcf7-form-control-wrap your-email">
-                                                <input type="email" name="your-email" value=""
-                                                    size="40"
-                                                    class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-input"
-                                                    aria-required="true" aria-invalid="false"
-                                                    placeholder="Your Email*">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12"><span class="wpcf7-form-control-wrap your-message">
-                                                <textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea form-input"
-                                                    aria-invalid="false" placeholder="Your Message"></textarea>
-                                            </span></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="submit-btn">
-                                                <button type="submit" class="sec-btn sm-btn">Send Message</button>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="wpcf7-form-control-wrap full-name">
+                                                    <input type="text" name="full-name" value="" size="40"
+                                                        class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-input"
+                                                        aria-required="true" aria-invalid="false"
+                                                        placeholder="Your Name*">
+                                                </span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="wpcf7-response-output wpcf7-display-none"></div>
-                                </form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="wpcf7-form-control-wrap your-email">
+                                                    <input type="email" name="your-email" value=""
+                                                        size="40"
+                                                        class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-input"
+                                                        aria-required="true" aria-invalid="false"
+                                                        placeholder="Your Email*">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12"><span class="wpcf7-form-control-wrap your-message">
+                                                    <textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea form-input"
+                                                        aria-invalid="false" placeholder="Your Message"></textarea>
+                                                </span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="submit-btn">
+                                                    <button type="submit" class="sec-btn sm-btn">Send Message</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <div class="footer-bottom">

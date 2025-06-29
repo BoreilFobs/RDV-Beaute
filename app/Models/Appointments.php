@@ -10,6 +10,10 @@ class Appointments extends Model
         "user_id",
         "offer_id",
         "date",
+        "time",
+        "name",
+        "phone",
+        "special_requests",
         "status",
     ];
 }

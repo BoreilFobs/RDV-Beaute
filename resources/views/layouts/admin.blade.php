@@ -27,6 +27,7 @@
             color: white;
             font-family: 'Poppins', sans-serif;
             padding-bottom: 80px;
+            width: 100%;
         }
 
         /* Modern Sidebar */
@@ -102,7 +103,8 @@
 
         /* Main Content Area */
         .main-content {
-            padding: 2rem;
+            padding: 0 !important;
+            width: 100% !important;
             background-color: var(--dark);
             min-height: calc(100vh - 80px);
         }
@@ -142,7 +144,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Desktop Sidebar -->
-            <div class="col-md-3 d-none d-md-block p-0">
+            <div class="col-md-2 d-none d-md-block p-0">
                 <div class="dashboard-nav sticky-top" style="top: 0; height: 100vh;">
                     <div class="text-center mb-4">
                         <img src="{{ asset('assets/images/logo-light.png') }}" alt="Logo" style="height: 40px;">
@@ -150,27 +152,35 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('userDashboard') ? 'active' : '' }}"
-                                href="{{ route('userDashboard') }}">
+                                href="{{ route('dashboard') }}">
                                 <i class="fas fa-tachometer-alt"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
-                                href="{{ route('appointments.index') }}">
+                            <a class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}"
+                                href="{{ route('categories.index') }}">
+                                <i class="fas fa-th-large"></i>
+                                <span>Categories
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}"
+                                href="{{ route('users.index') }}">
                                 <i class="fas fa-users"></i>
                                 <span>Users</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
-                                href="{{ route('appointments.index') }}">
+                            <a class="nav-link {{ request()->routeIs('DashAppointment.*') ? 'active' : '' }}"
+                                href="{{ route('DashAppointment.index') }}">
                                 <i class="fas fa-calendar-check"></i>
                                 <span>Appointments</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('offers.*') ? 'active' : '' }}"
                                 href="{{ route('offers.index') }}">
                                 <i class="fas fa-spa"></i>
                                 <span>Prestations</span>
@@ -212,7 +222,7 @@
             </div>
 
             <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto p-0">
+            <main class="col-md-10 ms-sm-auto p-0">
                 <div class="main-content">
                     @yield('content')
                 </div>
@@ -225,28 +235,28 @@
         <ul class="nav justify-content-around">
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('userDashboard') ? 'active' : '' }}"
-                    href="{{ route('userDashboard') }}">
+                    href="{{ route('dashboard') }}">
                     <i class="fas fa-tachometer-alt"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
-                    href="{{ route('appointments.index') }}">
+                <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}"
+                    href="{{ route('users.index') }}">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
-                    href="{{ route('appointments.index') }}">
+                <a class="nav-link {{ request()->routeIs('DashAppointment.*') ? 'active' : '' }}"
+                    href="{{ route('DashAppointment.index') }}">
                     <i class="fas fa-calendar-check"></i>
                     <span>Appointments</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
-                    href="{{ route('favourite.index') }}">
+                <a class="nav-link {{ request()->routeIs('offers.*') ? 'active' : '' }}"
+                    href="{{ route('offers.index') }}">
                     <i class="fas fa-spa"></i>
                     <span>Pretations</span>
                 </a>

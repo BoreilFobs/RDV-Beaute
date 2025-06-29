@@ -17,11 +17,15 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
         }
-
+         .container{
+            min-width: 85vw;
+            /* height: 540px */
+        }
         /* Modern Card Styles */
         .service-card {
             background: linear-gradient(145deg, #252525, #1a1a1a);
             border-radius: 16px;
+            /* min-width: 20vw; */
             border: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -132,7 +136,8 @@
 
         .btn-primary-accent:hover {
             background-color: #d4a76a;
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 4px 16px 0 rgba(231, 84, 128, 0.18);
         }
 
         .btn-outline-accent {
@@ -211,6 +216,8 @@
         /* Modern Layout Spacing */
         .service-section {
             padding: 80px 0;
+            min-width: 80vw;
+            margin-top: 100px;
         }
 
         /* Responsive Adjustments */
@@ -228,6 +235,7 @@
                 grid-template-columns: 1fr;
             }
         }
+       
     </style>
 
     <!-- Add Poppins font from Google Fonts -->
@@ -244,139 +252,109 @@
 
             <!-- Filter Controls -->
             <div class="filter-controls">
-                <button class="filter-btn active">All Services</button>
-                <button class="filter-btn">Cutting</button>
-                <button class="filter-btn">Coloring</button>
-                <button class="filter-btn">Treatments</button>
-                <button class="filter-btn">Styling</button>
+                <button class="filter-btn active" data-category="all">All Services</button>
+                @foreach($categories as $category)
+                    <button class="filter-btn" data-category="{{ $category->id }}">{{ $category->name }}</button>
+                @endforeach
             </div>
 
             <!-- Services Grid -->
-            <div class="row g-4">
+            <div class="row  g-4">
                 <!-- Service 1 -->
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                    <div class="service-card">
-                        <div class="service-image-container">
-                            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" class="service-image"
-                                alt="Premium Haircut">
-                            <span class="service-badge">Most Popular</span>
+                @if($offers->isEmpty())
+                    <div class="col-12">
+                        <div class="alert alert-warning text-center" role="alert" style="background:rgba(225,187,135,0.1);color:var(--primary);border:none;">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            No offers available at the moment. Please check back later!
                         </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Signature Haircut</h3>
-                            <div class="service-meta">
-                                <span class="service-meta-item"><i class="fas fa-clock"></i> 45 min</span>
-                                <span class="service-meta-item"><i class="fas fa-user-tie"></i> Expert</span>
+                    </div>
+                @endif
+                @foreach($offers as $offer)
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4 service-item" data-category="{{ $offer->category_id }}">
+                        <div class="service-card">
+                            <div class="service-image-container">
+                                @if(!empty($offer->img_path))
+                                    <img src="{{ asset('storage/' . $offer->img_path)}}" class="service-image" alt="{{ $offer->title ?? 'Service Image' }}">
+                                @else
+                                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" class="service-image" alt="{{ $offer->title ?? 'Service Image' }}">
+                                @endif
+                                @if(!empty($offer->category_id))
+                                    <span class="service-badge">{{ App\Models\Category::findOrFail($offer->category_id)->name }}</span>
+                                @endif
                             </div>
-                            <div class="service-price">$45+</div>
-                            <p class="service-description">Our master stylists will give you a precision haircut tailored to
-                                your face shape and lifestyle.</p>
-                            <div class="action-buttons">
-                                <a href={{ url('/reservation') }} class="btn btn-primary-accent">
-                                    <i class="fas fa-calendar-plus me-2"></i> Book Now
-                                </a>
-                                <button class="btn btn-outline-accent">
-                                    <i class="far fa-heart me-2"></i> Save
-                                </button>
+                            <div class="service-content">
+                                <h3 class="service-title">{{ $offer->name }}</h3>
+                                <div class="service-meta">
+                                    <span class="service-meta-item"><i class="fas fa-clock"></i> {{ $offer->duration ?? 'N/A' }}min</span>
+                                    <span class="service-meta-item"><i class="fas fa-user-tie"></i> </span>
+                                </div>
+                                <div class="service-price">{{ $offer->cost ?? '0' }} FCFA</div>
+                                <p class="service-description">{{ $offer->description }}</p>
+                                <div class="action-buttons">
+                                    <a href="{{ url('/appointments/create', ['offer' => $offer->id]) }}" class="btn btn-primary-accent">
+                                        <i class="fas fa-calendar-plus me-2"></i> Book Now
+                                    </a>
+                                    {{-- <button class="btn btn-outline-accent">
+                                        <i class="fa-solid fa-heart me-2"></i> Save
+                                    </button> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                    <div class="service-card">
-                        <div class="service-image-container">
-                            <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1" class="service-image"
-                                alt="Hair Coloring">
-                            <span class="service-badge">New</span>
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Vibrant Color</h3>
-                            <div class="service-meta">
-                                <span class="service-meta-item"><i class="fas fa-clock"></i> 2 hrs</span>
-                                <span class="service-meta-item"><i class="fas fa-user-tie"></i> Senior</span>
-                            </div>
-                            <div class="service-price">$85+</div>
-                            <p class="service-description">Transform your look with our ammonia-free coloring that leaves
-                                hair shiny and healthy.</p>
-                            <div class="action-buttons">
-                                <button class="btn btn-primary-accent">
-                                    <i class="fas fa-calendar-plus me-2"></i> Book Now
-                                </button>
-                                <button class="btn btn-outline-accent">
-                                    <i class="far fa-heart me-2"></i> Save
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                    <div class="service-card">
-                        <div class="service-image-container">
-                            <img src="https://images.unsplash.com/photo-1549465220-1a92b217e716" class="service-image"
-                                alt="Keratin Treatment">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Keratin Smoothing</h3>
-                            <div class="service-meta">
-                                <span class="service-meta-item"><i class="fas fa-clock"></i> 3 hrs</span>
-                                <span class="service-meta-item"><i class="fas fa-user-tie"></i> Master</span>
-                            </div>
-                            <div class="service-price">$120+</div>
-                            <p class="service-description">Our advanced keratin treatment eliminates frizz and reduces
-                                styling time by up to 70%.</p>
-                            <div class="action-buttons">
-                                <button class="btn btn-primary-accent">
-                                    <i class="fas fa-calendar-plus me-2"></i> Book Now
-                                </button>
-                                <button class="btn btn-outline-accent">
-                                    <i class="far fa-heart me-2"></i> Save
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                    <div class="service-card">
-                        <div class="service-image-container">
-                            <img src="https://images.unsplash.com/photo-1546743126-78b17849e4fe" class="service-image"
-                                alt="Braids & Extensions">
-                            <span class="service-badge">Popular</span>
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Designer Braids</h3>
-                            <div class="service-meta">
-                                <span class="service-meta-item"><i class="fas fa-clock"></i> 4 hrs</span>
-                                <span class="service-meta-item"><i class="fas fa-user-tie"></i> Expert</span>
-                            </div>
-                            <div class="service-price">$150+</div>
-                            <p class="service-description">Custom braiding with premium extensions that protect your natural
-                                hair while making a statement.</p>
-                            <div class="action-buttons">
-                                <button class="btn btn-primary-accent">
-                                    <i class="fas fa-calendar-plus me-2"></i> Book Now
-                                </button>
-                                <button class="btn btn-outline-accent">
-                                    <i class="far fa-heart me-2"></i> Save
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
 
     <script>
-        // Add active class to filter buttons
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
+        // Helper to get query param
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Filter functionality
+        function filterByCategory(categoryId) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (
+                    (categoryId === 'all' && btn.getAttribute('data-category') === 'all') ||
+                    btn.getAttribute('data-category') === categoryId
+                ) {
+                    btn.classList.add('active');
+                }
+            });
+            document.querySelectorAll('.service-item').forEach(card => {
+                if (categoryId === 'all' || card.getAttribute('data-category') === categoryId) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // On page load, check for ?category= in URL
+        document.addEventListener('DOMContentLoaded', function() {
+            let cat = getQueryParam('category');
+            if (cat && cat !== 'all') {
+                filterByCategory(cat);
+            }
+
+            // Filter button click
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    filterByCategory(category);
+
+                    // Update URL without reloading
+                    const url = new URL(window.location);
+                    if (category === 'all') {
+                        url.searchParams.delete('category');
+                    } else {
+                        url.searchParams.set('category', category);
+                    }
+                    window.history.replaceState({}, '', url);
+                });
             });
         });
     </script>

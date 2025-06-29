@@ -8,16 +8,18 @@
                     <div class="banner-content text-center">
                         <h1 class="h1-title wow zoomIn" data-wow-duration="800ms ">
                             <span class="text-wrapper">
-                                <span class="letters">Boreil Fobs</span>
+                                <span class="letters">Glow & Chic</span>
                             </span>
                         </h1>
                         <div class="action-btn d-flex  align-items-center justify-content-center flex-wrap"
                             style="gap: 15px;">
                             <div class="d-flex align-items-center justify-content-center flex-wrap" style="gap: 15px;">
-                                <a href="#" class="sec-btn wow slideInRight" data-wow-duration="800ms">Book an
+                                <a href={{route("prestations")}} class="sec-btn wow slideInRight" data-wow-duration="800ms">Book an
                                     Appointment</a>
-                                <a href="{{ route('login') }}" class="sec-btn wow slideInRight"
-                                    data-wow-duration="800ms">Login</a>
+                                @guest
+                                    <a href="{{ route('login') }}" class="sec-btn wow slideInRight"
+                                        data-wow-duration="800ms">Login</a>
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -91,128 +93,63 @@
 
             </div>
             <div class="for-desk">
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="services-box wow fadeInLeftBig">
-                            <div class="service-content">
-                                <div class="service-image" style="background-image: url(./assets/images/banner.jpg);">
-                                    <h3 class="number">02</h3>
-                                </div>
-                                <div class="service-btn">
-                                    <a href="javascript:void(0)" class="service-tag">Manicure & Pedicure</a>
-                                    <a href="javascript:void(0)" class="explore">explore
-                                        <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                    </a>
+                <div class="row d-flex flex-wrap" style="gap: 24px;">
+                    @if($categories->isEmpty())
+                        <div class="col-12 text-center">
+                            <div class="alert alert-warning" role="alert">
+                                No categories registered yet.
+                            </div>
+                        </div>
+                    @endif
+                    @foreach($categories as $category)
+                        <div class="col-lg-6" style="flex: 1 1 45%; min-width: 320px; max-width: 48%;">
+                            <div class="services-box wow fadeInLeftBig">
+                                <div class="service-content">
+                                    <div class="service-image"
+                                         style="background-image: url({{ asset($category->image_url ?? 'assets/images/default.jpg') }});">
+                                        <h3 class="number">{{ $loop->iteration < 10 ? '0'.$loop->iteration : $loop->iteration }}</h3>
+                                    </div>
+                                    <div class="service-btn">
+                                        <a href="{{ url('/prestations?category=' . $category->id) }}" class="service-tag">{{ $category->name }}</a>
+                                        <a href="{{ url('/prestations?category=' . $category->id) }}" class="explore">explore
+                                            <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="services-box box-1 wow fadeInRightBig">
-                            <div class="service-content">
-                                <div class="service-image" style="background-image: url(./assets/images/services-3.jpg);">
-                                    <h3 class="number">01</h3>
-                                </div>
-                                <div class="service-btn">
-                                    <a href={{ url('/prestations') }} class="service-tag">Professional Makeup</a>
-                                    <a href={{ url('/prestations') }} class="explore">explore
-                                        <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="for-desk">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="services-box wow fadeInLeftBig">
-                            <div class="service-content">
-                                <div class="service-image" style="background-image: url(./assets/images/gallery-img.jpg);">
-                                    <h3 class="number">03</h3>
-                                </div>
-                                <div class="service-btn">
-                                    <a href={{ url('/prestations') }}" class="service-tag">Body Spa</a>
-                                    <a href={{ url('/prestations') }}" class="explore">explore
-                                        <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="services-box box-4 wow fadeInRightBig">
-                            <div class="service-content">
-                                <div class="service-image" style="background-image: url(./assets/images/about.jpg);">
-                                    <h3 class="number">04</h3>
-                                </div>
-                                <div class="service-btn">
-                                    <a href={{ url('/prestations') }}" class="service-tag">Haircut & Coloring</a>
-                                    <a href={{ url('/prestations') }}" class="explore">explore
-                                        <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="for-mobile">
                 <div class="row">
                     <div class="mobile-services-scroll"
                         style="display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; gap: 15px; padding: 10px 0;">
-                        <div class="col-auto" style="flex: 0 0 auto; width: auto; scroll-snap-align: start;">
-                            <div class="services-box box-1 wow fadeInRightBig">
-                                <div class="service-content">
-                                    <div class="service-image"
-                                        style="background-image: url(./assets/images/services-3.jpg);">
-                                        <h3 class="number">01</h3>
-                                    </div>
-                                    <div class="service-btn">
-                                        <a href={{ url('/prestations') }}" class="service-tag">Professional Makeup</a>
-                                        <a href={{ url('/prestations') }}" class="explore">explore
-                                            <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        </a>
-                                    </div>
-                                </div>
+                        @if($categories->isEmpty())
+                        <div class="col-12 text-center">
+                            <div class="alert alert-warning" role="alert">
+                                No categories registered yet.
                             </div>
                         </div>
-
+                    @endif
+                        @foreach($categories as $category)
                         <div class="col-auto" style="flex: 0 0 auto; width: auto; scroll-snap-align: start;">
                             <div class="services-box wow fadeInLeftBig">
                                 <div class="service-content">
                                     <div class="service-image"
-                                        style="background-image: url(./assets/images/gallery-img.jpg);">
-                                        <h3 class="number">03</h3>
+                                        style="background-image: url({{ asset($category->image_url ?? 'assets/images/default.jpg') }});">
+                                        <h3 class="number">{{ $loop->iteration < 10 ? '0'.$loop->iteration : $loop->iteration }}</h3>
                                     </div>
                                     <div class="service-btn">
-                                        <a href={{ url('/prestations') }}" class="service-tag">Body Spa</a>
-                                        <a href={{ url('/prestations') }}" class="explore">explore
+                                        <a href="{{ url('/prestations?category=' . $category->id) }}" class="service-tag">{{ $category->name }}</a>
+                                        <a href="{{ url('/prestations?category=' . $category->id) }}" class="explore">explore
                                             <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-auto" style="flex: 0 0 auto; width: auto; scroll-snap-align: start;">
-                            <div class="services-box box-4 wow fadeInRightBig">
-                                <div class="service-content">
-                                    <div class="service-image" style="background-image: url(./assets/images/about.jpg);">
-                                        <h3 class="number">04</h3>
-                                    </div>
-                                    <div class="service-btn">
-                                        <a href="javascript:void(0)" class="service-tag">Haircut & Coloring</a>
-                                        <a href="javascript:void(0)" class="explore">explore
-                                            <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

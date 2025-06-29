@@ -11,7 +11,7 @@ class Offers extends Model
         "cost",
         "description",
         "duration",
-        "category",
+        "category_id",
         "img_path",
     ];
 }

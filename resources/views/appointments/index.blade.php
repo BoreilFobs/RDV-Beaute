@@ -262,6 +262,31 @@
             background: rgba(225, 187, 135, 0.1);
             border-color: var(--primary);
         }
+
+        .action-btn .action-text {
+            margin-left: 6px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 767.98px) {
+            .action-btn {
+                flex: 0 0 auto;
+                max-width: none;
+                min-width: 70px;
+                padding: 0.7rem 0.5rem !important;
+                font-size: 0.95rem !important;
+                justify-content: center;
+                width: auto;
+            }
+
+            .action-btn .action-text {
+                display: none !important;
+            }
+
+            .d-flex.flex-wrap.justify-content-start.justify-content-md-end.gap-2 {
+                gap: 0.5rem !important;
+            }
+        }
     </style>
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -276,130 +301,211 @@
         </div>
 
         <div class="filter-controls">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Comppleted</button>
-            <button class="filter-btn">Pending</button>
-            <button class="filter-btn">Canceled</button>
-            {{-- <button class="filter-btn">Styling</button> --}}
+            <button class="filter-btn active" data-status="all">All</button>
+            <button class="filter-btn" data-status="completed">Completed</button>
+            <button class="filter-btn" data-status="pending">Pending</button>
+            <button class="filter-btn" data-status="cancelled">Cancelled</button>
+            <button class="filter-btn" data-status="confirmed">Confirmed</button>
         </div>
 
         <div class="appointments-list">
-            <div class="order-card mb-3"
-                style="background-color: var(--gray); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease;">
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-                    <div class="mb-3 mb-md-0">
-                        <div class="d-flex align-items-center mb-2 flex-wrap">
-                            <h5 class="service-title mb-0 me-3" style="color: var(--primary); font-size: 1.35rem;">Premium
-                                Haircut & Styling</h5>
-                            <span class="order-status"
-                                style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; background: rgba(40, 167, 69, 0.2); color: #28a745;">Confirmed</span>
+            @forelse($appointments as $appointment)
+                <div class="order-card mb-3"
+                    data-appointment-id="{{ $appointment->id }}"
+                    data-status="{{ strtolower($appointment->status) }}"
+                    style="background-color: var(--gray); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease;">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+                        <div class="mb-3 mb-md-0">
+                            <div class="d-flex align-items-center mb-2 flex-wrap">
+                                <h5 class="service-title mb-0 me-3" style="color: var(--primary); font-size: 1.35rem;">
+                                    {{ App\Models\Offers::findOrFail($appointment->offer_id)->name ?? 'Service' }}
+                                </h5>
+                                @php
+                                    $status = strtolower($appointment->status ?? 'pending');
+                                    $statusColors = [
+                                        'confirmed' => ['bg' => 'rgba(40, 167, 69, 0.2)', 'color' => '#28a745', 'label' => 'Confirmed'],
+                                        'completed' => ['bg' => 'rgba(13, 110, 253, 0.2)', 'color' => '#0d6efd', 'label' => 'Completed'],
+                                        'cancelled' => ['bg' => 'rgba(220, 53, 69, 0.2)', 'color' => '#dc3545', 'label' => 'Cancelled'],
+                                        'pending' => ['bg' => 'rgba(255, 193, 7, 0.2)', 'color' => '#ffc107', 'label' => 'Pending'],
+                                    ];
+                                    $color = $statusColors[$status]['color'] ?? '#ffc107';
+                                    $bg = $statusColors[$status]['bg'] ?? 'rgba(255, 193, 7, 0.2)';
+                                    $label = $statusColors[$status]['label'] ?? ucfirst($status);
+                                @endphp
+                                <span class="order-status"
+                                    style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; background: {{ $bg }}; color: {{ $color }};">
+                                    {{ $label }}
+                                </span>
+                            </div>
+                            <p class="mb-1 text-light-emphasis small"
+                                style="font-size: 0.95rem; color: var(--text-muted) !important;">
+                                <i class="far fa-calendar me-2" style="color: var(--primary); font-size: 1.1em;"></i>
+                                {{ \Carbon\Carbon::parse($appointment->date)->format('F d, Y') }}
+                                at {{ \Carbon\Carbon::parse($appointment->time)->format('h:i A') }}
+                            </p>
+                            <p class="mb-0 text-light-emphasis small"
+                                style="font-size: 0.95rem; color: var(--text-muted) !important;">
+                                <i class="fas fa-dollar-sign me-2" style="color: var(--primary); font-size: 1.1em;"></i>
+                                {{ number_format(App\Models\Offers::findOrFail($appointment->offer_id)->cost) }} FCFA
+                            </p>
+                            @php
+                                $appointmentDateTime = \Carbon\Carbon::parse($appointment->date . ' ' . $appointment->time);
+                                $now = \Carbon\Carbon::now();
+                                $diffForHumans = $appointmentDateTime->isFuture()
+                                    ? $now->diffForHumans($appointmentDateTime, [
+                                        'parts' => 3,
+                                        'short' => true,
+                                        'syntax' => \Carbon\CarbonInterface::DIFF_ABSOLUTE,
+                                    ]) . ' left'
+                                    : 'Started ' . $appointmentDateTime->diffForHumans($now, [
+                                        'parts' => 3,
+                                        'short' => true,
+                                        'syntax' => \Carbon\CarbonInterface::DIFF_ABSOLUTE,
+                                    ]) . ' ago';
+                            @endphp
+                            <p class="mb-0 fw-bold text-light-emphasis small"
+                                style="font-size: 0.95rem; color: var(--text-muted) !important;">
+                                <i class="fas fa-clock me-2" style="color: var(--primary); font-size: 1.1em;"></i>
+                                {{ $diffForHumans }}
+                            </p>
                         </div>
-                        <p class="mb-1 text-light-emphasis small"
-                            style="font-size: 0.95rem; color: var(--text-muted) !important;"><i class="far fa-calendar me-2"
-                                style="color: var(--primary); font-size: 1.1em;"></i> Today, {{ date('F d, Y') }} at 2:00 PM
-                        </p>
-                        <p class="mb-1 text-light-emphasis small"
-                            style="font-size: 0.95rem; color: var(--text-muted) !important;"><i class="fas fa-user me-2"
-                                style="color: var(--primary); font-size: 1.1em;"></i> Stylist: Sarah Johnson</p>
-                        <p class="mb-0 text-light-emphasis small"
-                            style="font-size: 0.95rem; color: var(--text-muted) !important;"><i
-                                class="fas fa-dollar-sign me-2" style="color: var(--primary); font-size: 1.1em;"></i> $65.00
-                        </p>
-                    </div>
-                    <div class="d-flex flex-wrap justify-content-start justify-content-md-end gap-2">
-                        <button class="action-btn" title="View Details"
-                            style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-muted); padding: 0.6rem 1rem; border-radius: 0.5rem; font-size: 0.9rem; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 5px;"><i
-                                class="fas fa-eye"></i> View</button>
-                        <button class="action-btn" title="Reschedule Appointment"
-                            style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-muted); padding: 0.6rem 1rem; border-radius: 0.5rem; font-size: 0.9rem; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 5px;"><i
-                                class="fas fa-calendar-days"></i> Reschedule</button>
-                        <button class="action-btn" title="Cancel Appointment"
-                            style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: #ff6b6b; padding: 0.6rem 1rem; border-radius: 0.5rem; font-size: 0.9rem; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 5px;"><i
-                                class="fas fa-times"></i> Cancel</button>
+                        <div class="d-flex flex-wrap justify-content-start justify-content-md-end gap-2">
+                            {{-- <button class="action-btn" title="View Details">
+                                <i class="fas fa-eye"></i>
+                                <span class="action-text d-none d-md-inline">View</span>
+                            </button> --}}
+                            @if($status === 'pending')
+                                <button class="action-btn" title="Reschedule">
+                                    <i class="fas fa-calendar-days"></i>
+                                    <span class="action-text d-none d-md-inline">Reschedule</span>
+                                </button>
+                                <form method="POST" action="{{ route('appointments.cancel', $appointment->id) }}" onsubmit="return confirm('Are you sure you want to cancel this appointment?');" style="display: inline;">
+                                    @csrf
+                                    <button type="submit" class="action-btn" title="Cancel">
+                                        <i class="fas fa-times"></i>
+                                        <span class="action-text d-none d-md-inline">Cancel</span>
+                                    </button>
+                                </form>
+                            @elseif($status === 'cancelled')
+                                <form method="POST" action="{{ route('appointments.destroy', $appointment->id) }}" onsubmit="return confirm('Are you sure you want to delete this appointment?');" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="action-btn" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                        <span class="action-text d-none d-md-inline">Delete</span>
+                                    </button>
+                                </form>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="order-card mb-3"
-                style="background-color: var(--gray); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease;">
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-                    <div class="mb-3 mb-md-0">
-                        <div class="d-flex align-items-center mb-2 flex-wrap">
-                            <h5 class="service-title mb-0 me-3" style="color: var(--primary); font-size: 1.35rem;">Luxury
-                                Facial Treatment</h5>
-                            <span class="order-status"
-                                style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; background: rgba(13, 110, 253, 0.2); color: #0d6efd;">Completed</span>
-                        </div>
-                        <p class="mb-1 text-light-emphasis small" styeclass="far=fa-calendar"me-2" font-size: 0.95rem;
-                            color: vaut><i class="far fa-calendar me-2"
-                                style="color: var(--primary); font-size: 1.1em;"></i> June
-                            15, 2023 at 11:00 AM</p>
-                        <p class="mb-1 text-light-emphasis small"
-                            style="font-size: 0.95rem; color: var(--text-muted) !important;"><i class="fas fa-user me-2"
-                                style="color: var(--primary); font-size: 1.1em;"></i> Therapist: Maria Garcia</p>
-                        <p class="mb-0 text-light-emphasis small"
-                            style="font-size: 0.95rem; color: var(--text-muted) !important;"><i
-                                class="fas fa-dollar-sign me-2" style="color: var(--primary); font-size: 1.1em;"></i>
-                            $85.00
-                        </p>
-                    </div>
-                    <div class="d-flex flex-wrap justify-content-start justify-content-md-end gap-2">
-                        <button class="action-btn" title="View Details"
-                            style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-muted); padding: 0.6rem 1rem; border-radius: 0.5rem; font-size: 0.9rem; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 5px;"><i
-                                class="fas fa-eye"></i> View</button>
-                        <button class="action-btn" title="Rate Service"
-                            style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: var(--primary); padding: 0.6rem 1rem; border-radius: 0.5rem; font-size: 0.9rem; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 5px;"><i
-                                class="fas fa-star-half-stroke"></i> Rate</button>
-                        <button class="action-btn" title="Rebook Service"
-                            style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: var(--accent); padding: 0.6rem 1rem; border-radius: 0.5rem; font-size: 0.9rem; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 5px;"><i
-                                class="fas fa-repeat"></i> Rebook</button>
-                    </div>
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Attach click event to all reschedule buttons
+                    document.querySelectorAll('.action-btn[title="Reschedule"]').forEach(function(btn, idx) {
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            // Find the appointment id (assuming it's available as a data attribute or in the DOM)
+                            // You can add data-appointment-id="{{ $appointment->id }}" to the button in your blade
+                            let card = btn.closest('.order-card');
+                            let appointmentId = card?.getAttribute('data-appointment-id');
+                            if (!appointmentId) {
+                                // fallback: try to get from a hidden input or similar
+                                appointmentId = btn.getAttribute('data-appointment-id');
+                            }
+                            if (appointmentId) {
+                                document.getElementById('reschedule_appointment_id').value = appointmentId;
+                                var modal = new bootstrap.Modal(document.getElementById('rescheduleModal'));
+                                modal.show();
+                            }
+                        });
+                    });
+                });
+                </script>
+            @empty
+                <div class="text-center py-5" style="background-color: var(--gray); border-radius: 1rem; padding: 2rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08);">
+                    <i class="far fa-calendar-check fa-3x mb-3" style="color: var(--primary);"></i>
+                    <h4 class="service-title" style="color: var(--primary);">No Appointments Found</h4>
+                    <p class="mb-4 text-light">There are no appointments matching your filter. Try another status or book a new service!</p>
+                    <a href="{{ route('prestations') }}" class="btn btn-booking" style="background: var(--primary); color: var(--dark) !important; border: none; border-radius: 50px; padding: 0.8rem 2.5rem; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">
+                        <i class="fas fa-spa me-1"></i> Browse Services
+                    </a>
                 </div>
-            </div>
-
-            <div class="order-card mb-3"
-                style="background-color: var(--gray); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease;">
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-                    <div class="mb-3 mb-md-0">
-                        <div class="d-flex align-items-center mb-2 flex-wrap">
-                            <h5 class="service-title mb-0 me-3" style="color: var(--primary); font-size: 1.35rem;">Deep
-                                Tissue Massage</h5>
-                            <span class="order-status"
-                                style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; background: rgba(220, 53, 69, 0.2); color: #dc3545;">Cancelled</span>
-                        </div>
-                        <p class="mb-1 text-light-emphasis small"
-                            style="font-size: 0.95rem; color: var(--text-muted) !important;"><i
-                                class="far fa-calendar me-2" style="color: var(--primary); font-size: 1.1em;"></i> May 20,
-                            2023 at 10:00 AM</p>
-                        <p class="mb-1 text-light-emphasis small"
-                            style="font-size: 0.95rem; color: var(--text-muted) !important;"><i class="fas fa-user me-2"
-                                style="color: var(--primary); font-size: 1.1em;"></i> Therapist: Emily White</p>
-                        <p class="mb-0 text-light-emphasis small"
-                            style="font-size: 0.95rem; color: var(--text-muted) !important;"><i
-                                class="fas fa-dollar-sign me-2" style="color: var(--primary); font-size: 1.1em;"></i>
-                            $100.00</p>
-                    </div>
-                    <div class="d-flex flex-wrap justify-content-start justify-content-md-end gap-2">
-                        <button class="action-btn" title="View Details"
-                            style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-muted); padding: 0.6rem 1rem; border-radius: 0.5rem; font-size: 0.9rem; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 5px;"><i
-                                class="fas fa-eye"></i> View</button>
-                        <button class="action-btn" title="Contact Support"
-                            style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-muted); padding: 0.6rem 1rem; border-radius: 0.5rem; font-size: 0.9rem; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 5px;"><i
-                                class="fas fa-headset"></i> Support</button>
-                    </div>
-                </div>
-            </div>
-
-            {{--
-            <div class="text-center py-5" style="background-color: var(--gray); border-radius: 1rem; padding: 2rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08);">
-                <i class="far fa-calendar-check fa-3x mb-3" style="color: var(--primary);"></i>
-                <h4 class="service-title" style="color: var(--primary);">No Appointments Yet</h4>
-                <p class="mb-4 text-light">You haven't booked any services yet. Start your beauty journey now!</p>
-                <a href="#" class="btn btn-booking" style="background: var(--primary); color: var(--dark) !important; border: none; border-radius: 50px; padding: 0.8rem 2.5rem; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">
-                    <i class="fas fa-spa me-1"></i> Browse Services
-                </a>
-            </div>
-            --}}
+            @endforelse
         </div>
     </div>
+
+    <!-- Add this modal at the end of your content section -->
+    <div class="modal fade" id="rescheduleModal" tabindex="-1" aria-labelledby="rescheduleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <form id="rescheduleForm" method="POST" action="{{ route('appointments.reschedule', ['appointment' => 'APPOINTMENT_ID']) }}">
+          @csrf
+          <input type="hidden" name="appointment_id" id="reschedule_appointment_id">
+          <div class="modal-content" style="background: var(--gray); color: #fff;">
+            <div class="modal-header border-0">
+              <h5 class="modal-title" id="rescheduleModalLabel"><i class="fas fa-calendar-days me-2"></i>Reschedule Appointment</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+            <label for="new_date" class="form-label">New Date</label>
+            <input type="date" class="form-control" name="new_date" id="new_date" required>
+              </div>
+              <div class="mb-3">
+            <label for="new_time" class="form-label">New Time</label>
+            <input type="time" class="form-control" name="new_time" id="new_time" required>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" style="background: var(--primary); color: var(--dark); border: none;">Reschedule</button>
+            </div>
+          </div>
+        </form>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.action-btn[title="Reschedule"]').forEach(function(btn, idx) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let card = btn.closest('.order-card');
+                    let appointmentId = card?.getAttribute('data-appointment-id');
+                    if (!appointmentId) {
+                        appointmentId = btn.getAttribute('data-appointment-id');
+                    }
+                    if (appointmentId) {
+                        document.getElementById('reschedule_appointment_id').value = appointmentId;
+                        // Update the form action with the appointment id
+                        let form = document.getElementById('rescheduleForm');
+                        let baseAction = "{{ route('appointments.reschedule', ['appointment' => 'APPOINTMENT_ID']) }}";
+                        form.action = baseAction.replace('APPOINTMENT_ID', appointmentId);
+                        var modal = new bootstrap.Modal(document.getElementById('rescheduleModal'));
+                        modal.show();
+                    }
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+            document.querySelectorAll('.filter-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Remove active from all
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const status = btn.getAttribute('data-status');
+                    document.querySelectorAll('.order-card').forEach(card => {
+                        if (status === 'all' || card.getAttribute('data-status') === status) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+        </script>
+      </div>
+    </div>
+
+    
 @endsection
