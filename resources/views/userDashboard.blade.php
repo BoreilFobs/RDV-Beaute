@@ -61,8 +61,8 @@
                             <i class="fas fa-calendar-alt" style="color: var(--primary); font-size: 1.5rem;"></i>
                         </span>
                         <h5 class="service-title mb-1"
-                            style="font-size: 2.1rem; font-weight: 700; color: var(--primary); text-shadow: 0 0 6px #e1bb87a0;">
-                            3
+                            style="color: #6c757d !important; font-size: 2.1rem; font-weight: 700; color: var(--primary); text-shadow: 0 0 6px #e1bb87a0;">
+                            {{ $upcomingAppointments }}
                         </h5>
                         <span class="small text-uppercase fw-semibold" style="color: #6c757d; letter-spacing: 0.5px;">
                             Upcoming
@@ -76,14 +76,14 @@
                     <div class="d-flex flex-column align-items-center">
                         <span class="rounded-circle mb-2 d-flex align-items-center justify-content-center"
                             style="background: rgba(255,255,255,0.7); width: 48px; height: 48px;">
-                            <i class="fas fa-check-circle" style="color: #e1bb87; font-size: 1.5rem;"></i>
+                            <i class="fas fa-hourglass-half" style="color: #e1bb87; font-size: 1.5rem;"></i>
                         </span>
                         <h5 class="service-title mb-1"
-                            style="font-size: 2.1rem; font-weight: 700; color: #e1bb87; text-shadow: 0 0 6px #e1bb87a0;">
-                            12
+                            style="color: #6c757d !important;  font-size: 2.1rem; font-weight: 700; color: #e1bb87; text-shadow: 0 0 6px #e1bb87a0;">
+                            {{ $pendingAppointment }}
                         </h5>
                         <span class="small text-uppercase fw-semibold" style="color: #6c757d; letter-spacing: 0.5px;">
-                            Completed
+                            Pending
                         </span>
                     </div>
                 </div>
@@ -94,14 +94,14 @@
                     <div class="d-flex flex-column align-items-center">
                         <span class="rounded-circle mb-2 d-flex align-items-center justify-content-center"
                             style="background: rgba(255,255,255,0.7); width: 48px; height: 48px;">
-                            <i class="fas fa-heart" style="color: #f06292; font-size: 1.5rem;"></i>
+                            <i class="fas fa-hourglass-half" style="color: #f06292; font-size: 1.5rem;"></i>
                         </span>
                         <h5 class="service-title mb-1"
                             style="font-size: 2.1rem; font-weight: 700; color: #f06292; text-shadow: 0 0 6px #e1bb87a0;">
-                            2
+                            {{ $completedAppointments }}
                         </h5>
                         <span class="small text-uppercase fw-semibold" style="color: #6c757d; letter-spacing: 0.5px;">
-                            Favorites
+                            Completed
                         </span>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                         </span>
                         <h5 class="service-title mb-1"
                             style="font-size: 2.1rem; font-weight: 700; color: #dc3545; text-shadow: 0 0 6px #e1bb87a0;">
-                            1
+                            {{ $canceledAppointments }}
                         </h5>
                         <span class="small text-uppercase fw-semibold" style="color: #6c757d; letter-spacing: 0.5px;">
                             Cancelled
