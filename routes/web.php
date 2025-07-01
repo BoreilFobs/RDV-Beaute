@@ -11,9 +11,8 @@ Route::get('/prestations', [\App\Http\Controllers\PresentationController::class,
 
 // special routes for the administrator
 Route::middleware([RoleMiddleware::class . ':admin', 'auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name("dashboard");
+    // dashboard route
+    Route::get('/dashboard', [\App\Http\Controllers\AdminDashboardController::class, 'index'])->name("dashboard");
 
     // Users route
     Route::get('/dashboard/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
@@ -35,6 +34,7 @@ Route::middleware([RoleMiddleware::class . ':admin', 'auth'])->group(function ()
     Route::put('/categories/{category}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{category}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');
 
+    // offers route
     Route::get('/offers', [\App\Http\Controllers\OffersController::class, 'index'])->name('offers.index');
     Route::get('/offers/create', [\App\Http\Controllers\OffersController::class, 'create'])->name('offers.create');
     Route::post('/offers/store', [\App\Http\Controllers\OffersController::class, 'store'])->name('offers.store');
@@ -42,6 +42,29 @@ Route::middleware([RoleMiddleware::class . ':admin', 'auth'])->group(function ()
     Route::get('/offers/{offer}/edit', [\App\Http\Controllers\OffersController::class, 'edit'])->name('offers.edit');
     Route::put('/offers/{offer}', [\App\Http\Controllers\OffersController::class, 'update'])->name('offers.update');
     Route::delete('/offers/{offer}', [\App\Http\Controllers\OffersController::class, 'destroy'])->name('offers.destroy');
+
+    // stock routes
+    Route::get('/stock', [\App\Http\Controllers\StockController::class, 'index'])->name('stock.index');
+    Route::get('/stock/create', [\App\Http\Controllers\StockController::class, 'create'])->name('stock.create');
+    Route::post('/stock/store', [\App\Http\Controllers\StockController::class, 'store'])->name('stock.store');
+    Route::get('/stock/{stock}', [\App\Http\Controllers\StockController::class, 'show'])->name('stock.show');
+    Route::get('/stock/{stock}/edit', [\App\Http\Controllers\StockController::class, 'edit'])->name('stock.edit');
+    Route::put('/stock/{stock}', [\App\Http\Controllers\StockController::class, 'update'])->name('stock.update');
+    Route::delete('/stock/{stock}', [\App\Http\Controllers\StockController::class, 'destroy'])->name('stock.destroy');
+    Route::post('admin/stock/{stock}/used', [\App\Http\Controllers\StockController::class, 'used'])->name('stock.used');
+
+    // messages routes
+    Route::get('/messages', [\App\Http\Controllers\MessageController::class, 'index'])->name('messages.index');
+    Route::delete('/messages/{message}', [\App\Http\Controllers\MessageController::class, 'destroy'])->name('messages.destroy');
+
+    // gallery routes
+    Route::get('/gallery', [\App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('/gallery/create', [\App\Http\Controllers\GalleryController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery', [\App\Http\Controllers\GalleryController::class, 'store'])->name('gallery.store');
+    Route::get('/gallery/{gallery}', [\App\Http\Controllers\GalleryController::class, 'show'])->name('gallery.show');
+    Route::get('/gallery/{gallery}/edit', [\App\Http\Controllers\GalleryController::class, 'edit'])->name('gallery.edit');
+    Route::put('/gallery/{gallery}', [\App\Http\Controllers\GalleryController::class, 'update'])->name('gallery.update');
+    Route::delete('/gallery/{gallery}', [\App\Http\Controllers\GalleryController::class, 'destroy'])->name('gallery.destroy');
 });
 
 

@@ -295,10 +295,10 @@
                         </div>
                         <div class="meta-item">
                             <i class="fas fa-dollar-sign"></i>
-                            <span>${{ $offer->cost ?? 'N/A' }} FCFA</span>
+                            <span>{{ $offer->cost ?? 'N/A' }} FCFA</span>
                         </div>
                     </div>
-                    <div class="service-price">${{ $offer->cost ?? 'N/A' }}</div>
+                    <div class="service-price">{{ $offer->cost ?? 'N/A' }} FCFA</div>
                     <p class="service-description">
                         {{ $offer->description ?? '' }}
                     </p>

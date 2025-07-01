@@ -14,4 +14,9 @@ class Offers extends Model
         "category_id",
         "img_path",
     ];
+
+    public function appointments()
+    {
+        return $this->hasMany(\App\Models\Appointments::class, 'offer_id');
+    }
 }

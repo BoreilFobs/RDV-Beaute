@@ -187,24 +187,31 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
-                                href="{{ route('favourite.index') }}">
-                                <i class="fas fa-boxes"></i>
+                            <a class="nav-link {{ request()->routeIs('stock.*') ? 'active' : '' }}"
+                                href="{{ route('stock.index') }}">
+                                <i class="fas fa-warehouse"></i>
                                 <span>Stock</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
-                                href="{{ route('favourite.index') }}">
-                                <i class="fas fa-comments"></i>
+                            <a class="nav-link {{ request()->routeIs('messages.*') ? 'active' : '' }}"
+                                href="{{ route('messages.index') }}">
+                                <i class="fas fa-envelope"></i>
                                 <span>Message</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
-                                href="{{ route('favourite.index') }}">
+                            <a class="nav-link {{ request()->routeIs('gallery.*') ? 'active' : '' }}"
+                                href="{{ route('gallery.index') }}">
                                 <i class="fas fa-photo-video"></i>
                                 <span>Gallery</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                                href="{{ route('home') }}">
+                                <i class="fas fa-home"></i>
+                                <span>Go to site Home</span>
                             </a>
                         </li>
                         <li class="nav-item mt-4">

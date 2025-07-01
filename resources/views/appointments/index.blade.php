@@ -76,6 +76,7 @@
 
             .container-fluid {
                 margin: 0;
+                margin-bottom: 30px;
                 padding: 0;
             }
 
@@ -351,17 +352,21 @@
                             @php
                                 $appointmentDateTime = \Carbon\Carbon::parse($appointment->date . ' ' . $appointment->time);
                                 $now = \Carbon\Carbon::now();
-                                $diffForHumans = $appointmentDateTime->isFuture()
-                                    ? $now->diffForHumans($appointmentDateTime, [
-                                        'parts' => 3,
-                                        'short' => true,
-                                        'syntax' => \Carbon\CarbonInterface::DIFF_ABSOLUTE,
-                                    ]) . ' left'
-                                    : 'Started ' . $appointmentDateTime->diffForHumans($now, [
-                                        'parts' => 3,
-                                        'short' => true,
-                                        'syntax' => \Carbon\CarbonInterface::DIFF_ABSOLUTE,
-                                    ]) . ' ago';
+                                if (!$appointmentDateTime->isFuture() && $appointmentDateTime->diffInMinutes($now) >= 60) {
+                                    $diffForHumans = 'finished';
+                                } else {
+                                    $diffForHumans = $appointmentDateTime->isFuture()
+                                        ? $now->diffForHumans($appointmentDateTime, [
+                                            'parts' => 3,
+                                            'short' => true,
+                                            'syntax' => \Carbon\CarbonInterface::DIFF_ABSOLUTE,
+                                        ]) . ' left'
+                                        : 'Started ' . $appointmentDateTime->diffForHumans($now, [
+                                            'parts' => 3,
+                                            'short' => true,
+                                            'syntax' => \Carbon\CarbonInterface::DIFF_ABSOLUTE,
+                                        ]) . ' ago';
+                                }
                             @endphp
                             <p class="mb-0 fw-bold text-light-emphasis small"
                                 style="font-size: 0.95rem; color: var(--text-muted) !important;">
@@ -435,77 +440,170 @@
         </div>
     </div>
 
-    <!-- Add this modal at the end of your content section -->
+    <!-- Reschedule Modal -->
     <div class="modal fade" id="rescheduleModal" tabindex="-1" aria-labelledby="rescheduleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <form id="rescheduleForm" method="POST" action="{{ route('appointments.reschedule', ['appointment' => 'APPOINTMENT_ID']) }}">
           @csrf
           <input type="hidden" name="appointment_id" id="reschedule_appointment_id">
-          <div class="modal-content" style="background: var(--gray); color: #fff;">
-            <div class="modal-header border-0">
-              <h5 class="modal-title" id="rescheduleModalLabel"><i class="fas fa-calendar-days me-2"></i>Reschedule Appointment</h5>
+          <div class="modal-content custom-modal-content">
+            <div class="modal-header custom-modal-header">
+              <h5 class="modal-title" id="rescheduleModalLabel">
+                <i class="fas fa-calendar-days me-2"></i>Reschedule Appointment
+              </h5>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body custom-modal-body">
+              <p class="mb-3 text-muted-custom">
+                Please select a new date and time for your appointment. Your current booking will be updated.
+              </p>
               <div class="mb-3">
             <label for="new_date" class="form-label">New Date</label>
-            <input type="date" class="form-control" name="new_date" id="new_date" required>
+            <input type="date" class="form-control custom-input" name="new_date" id="new_date" required placeholder="Select new date">
               </div>
               <div class="mb-3">
             <label for="new_time" class="form-label">New Time</label>
-            <input type="time" class="form-control" name="new_time" id="new_time" required>
+            <input type="time" class="form-control custom-input" name="new_time" id="new_time" required placeholder="Select new time">
               </div>
             </div>
-            <div class="modal-footer border-0">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary" style="background: var(--primary); color: var(--dark); border: none;">Reschedule</button>
+            <div class="modal-footer custom-modal-footer">
+              <button type="button" class="btn btn-secondary custom-btn" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary custom-btn">Reschedule</button>
             </div>
           </div>
         </form>
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.action-btn[title="Reschedule"]').forEach(function(btn, idx) {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    let card = btn.closest('.order-card');
-                    let appointmentId = card?.getAttribute('data-appointment-id');
-                    if (!appointmentId) {
-                        appointmentId = btn.getAttribute('data-appointment-id');
-                    }
-                    if (appointmentId) {
-                        document.getElementById('reschedule_appointment_id').value = appointmentId;
-                        // Update the form action with the appointment id
-                        let form = document.getElementById('rescheduleForm');
-                        let baseAction = "{{ route('appointments.reschedule', ['appointment' => 'APPOINTMENT_ID']) }}";
-                        form.action = baseAction.replace('APPOINTMENT_ID', appointmentId);
-                        var modal = new bootstrap.Modal(document.getElementById('rescheduleModal'));
-                        modal.show();
-                    }
-                });
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-    // Filter functionality
-            document.querySelectorAll('.filter-btn').forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Remove active from all
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    const status = btn.getAttribute('data-status');
-                    document.querySelectorAll('.order-card').forEach(card => {
-                        if (status === 'all' || card.getAttribute('data-status') === status) {
-                            card.style.display = '';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-        </script>
       </div>
     </div>
 
-    
+    <style>
+    /* Modal Styling (shared with stock modal) */
+    .custom-modal-content {
+        background: #181818;
+        color: #fff;
+        border-radius: 1rem;
+        border: 1px solid var(--primary);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+    }
+    .custom-modal-header {
+        background: var(--primary);
+        color: #fff;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border-bottom: none;
+    }
+    .custom-modal-header .modal-title {
+        color: #fff;
+        font-weight: 600;
+    }
+    .custom-modal-body {
+        background: #181818;
+        color: #fff;
+    }
+    .custom-modal-footer {
+        background: #181818;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        border-top: none;
+    }
+    .btn-close-white {
+        filter: invert(1);
+    }
+    .text-muted-custom {
+        color: #bbb !important;
+    }
+    .custom-input {
+        background: #232323;
+        color: #fff;
+        border: 1px solid var(--primary);
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        transition: border-color 0.2s;
+    }
+    .custom-input:focus {
+        border-color: var(--primary);
+        background: #222;
+        color: #fff;
+        box-shadow: 0 0 0 0.1rem var(--primary);
+    }
+    .custom-btn {
+        border-radius: 0.5rem;
+        font-weight: 600;
+        padding: 0.6rem 1.5rem;
+        border: none;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .btn-primary.custom-btn {
+        background: var(--primary);
+        color: #fff;
+    }
+    .btn-primary.custom-btn:hover {
+        background: #0a58ca;
+        color: #fff;
+    }
+    .btn-secondary.custom-btn {
+        background: #232323;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+    }
+    .btn-secondary.custom-btn:hover {
+        background: var(--primary);
+        color: #fff;
+    }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Reschedule modal logic
+        document.querySelectorAll('.action-btn[title="Reschedule"]').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                let card = btn.closest('.order-card');
+                let appointmentId = card?.getAttribute('data-appointment-id');
+                if (!appointmentId) {
+                    appointmentId = btn.getAttribute('data-appointment-id');
+                }
+                if (appointmentId) {
+                    document.getElementById('reschedule_appointment_id').value = appointmentId;
+                    // Update the form action with the appointment id
+                    let form = document.getElementById('rescheduleForm');
+                    let baseAction = "{{ route('appointments.reschedule', ['appointment' => 'APPOINTMENT_ID']) }}";
+                    form.action = baseAction.replace('APPOINTMENT_ID', appointmentId);
+                    var modal = new bootstrap.Modal(document.getElementById('rescheduleModal'));
+                    modal.show();
+                }
+            });
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Remove active from all
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const status = btn.getAttribute('data-status');
+                document.querySelectorAll('.order-card').forEach(card => {
+                    if (status === 'all' || card.getAttribute('data-status') === status) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Fix for stuck modal-backdrop
+        document.querySelectorAll('[data-bs-dismiss="modal"]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Remove any lingering modal-backdrop
+                document.querySelectorAll('.modal-backdrop').forEach(function(backdrop) {
+                    backdrop.parentNode.removeChild(backdrop);
+                });
+                document.body.classList.remove('modal-open');
+                document.body.style = '';
+            });
+        });
+    });
+    </script>
 @endsection

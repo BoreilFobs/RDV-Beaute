@@ -133,12 +133,12 @@
             </a>
         </div>
 
-        <h4 class="service-title mb-4" style="color: var(--primary); font-size: 1.75rem;">
+        {{-- <h4 class="service-title mb-4" style="color: var(--primary); font-size: 1.75rem;">
             <i class="fas fa-clock-rotate-left me-2"></i> Recent Appointments
-        </h4>
+        </h4> --}}
 
         <!-- Recent Appointments Cards (copied from appointments/index.blade.php) -->
-        <div class="order-card mb-4"
+        {{-- <div class="order-card mb-4"
             style="background-color: var(--gray); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08);">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
                 <div class="mb-3 mb-md-0">
@@ -175,9 +175,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="order-card mb-4"
+        {{-- <div class="order-card mb-4"
             style="background-color: var(--gray); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08);">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
                 <div class="mb-3 mb-md-0">
@@ -210,9 +210,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="order-card mb-4"
+        {{-- <div class="order-card mb-4"
             style="background-color: var(--gray); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08);">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
                 <div class="mb-3 mb-md-0">
@@ -245,7 +245,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         
     </div>

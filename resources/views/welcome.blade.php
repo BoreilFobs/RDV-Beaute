@@ -224,7 +224,7 @@
                                     <img src="./assets/images/icons/hair-cut&blow-dry.png" alt="Hair Cut">
                                     <h3>Hair Cut With Blow Dry</h3>
                                     <div class="hover">
-                                        <a href="javascript:void(0)" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">$18.9</a>
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@
                                     <img src="./assets/images/icons/blow-dry.png" alt="Blow Dry">
                                     <h3>Blow Dry & Curl</h3>
                                     <div class="hover">
-                                        <a href="javascript:void(0)" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">$18.9</a>
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +242,7 @@
                                     <img src="./assets/images/icons/color-highlights.png" alt="Color Highlights">
                                     <h3>Color & Highlights</h3>
                                     <div class="hover">
-                                        <a href="javascript:void(0)" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">$18.9</a>
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +251,7 @@
                                     <img src="./assets/images/icons/shampoo.png" alt="Shampoo">
                                     <h3>Shampoo & Set</h3>
                                     <div class="hover">
-                                        <a href="javascript:void(0)" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">$18.9</a>
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +264,7 @@
                                     <img src="./assets/images/icons/hair-cut&blow-dry.png" alt="Hair Cut">
                                     <h3>Hair Cut With Blow Dry</h3>
                                     <div class="hover">
-                                        <a href="javascript:void(0)" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">$18.9</a>
                                     </div>
                                 </div>
                             </div>
@@ -399,70 +399,40 @@
                     </div>
                 </div>
             </div>
-            <div class="gallery-slider for-desk wow zoomIn">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="gallery-img">
-                            <a href="{{ asset('assets/images/gallery-img3.jpg') }}" data-fancybox="gallery">
-
-                                <div class="img" style="background-image: url(./assets/images/gallery-img3.jpg);">
-
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="gallery-img sec-img" style="position: absolute; top: 0;left: 0;z-index: 2;">
-                            <a href="{{ asset('assets/images/gallery-img2.jpg') }}" data-fancybox="gallery">
-                                <div class="img" style="background-image: url(./assets/images/gallery-img2.jpg);">
-
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="gallery-img">
-                            <a href="assets/images/gallery-img4.jpg" data-fancybox="gallery">
-                                <div class="img" style="background-image: url(./assets/images/gallery-img4.jpg);">
-
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="gallery-img">
-                            <a href="{{ asset('assets/images/gallery-img5.jpg') }}" data-fancybox="gallery">
-                                <div class="img" style="background-image: url(./assets/images/gallery-img5.jpg);">
-
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        <div class="gallery-img">
-                            <a href="assets/images/gallery-img.jpg" data-fancybox="gallery">
-                                <div class="img" style="background-image: url(./assets/images/gallery-img.jpg);">
-
-                                </div>
-                            </a>
-                        </div>
+            @if($images->isEmpty())
+                <div class="col-12 text-center">
+                    <div class="alert alert-warning" role="alert">
+                        No gallery images available.
                     </div>
                 </div>
-            </div>
-            <div class="for-mobile">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="gallery-img wow zoomIn">
-                            <a href="assets/images/gallery-img3.jpg" data-fancybox="gallery">
-                                <div class="img" style="background-image: url(./assets/images/gallery-img5.jpg);">
-
+            @else
+                <div class="gallery-slider for-desk wow zoomIn">
+                    <div class="row">
+                        @foreach($images as $image)
+                            <div class="col-lg-4">
+                                <div class="gallery-img">
+                                    <a href="{{ asset($image->img_url) }}" data-fancybox="gallery">
+                                        <div class="img" style="background-image: url({{ asset($image->img_url) }});"></div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
+                <div class="for-mobile">
+                    <div class="row">
+                        @foreach($images as $image)
+                            <div class="col-lg-4">
+                                <div class="gallery-img wow zoomIn">
+                                    <a href="{{ asset($image->img_url) }}" data-fancybox="gallery">
+                                        <div class="img" style="background-image: url({{ asset($image->img_url) }});"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
         </div>
     </section>
     <!-- End Gallery -->
@@ -473,7 +443,7 @@
 
                 <div class="row">
                     <div class="col-lg-3">
-                        <a href="javascript:void(0)">
+                        <a href="#">
                             <div class="brand-img brand-hover"
                                 style="background-image: url(./assets/images/brands/brand-4.png);">
 
@@ -484,7 +454,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3">
-                        <a href="javascript:void(0)">
+                        <a href="#">
                             <div class="brand-img brand-hover"
                                 style="background-image: url(./assets/images/brands/brand-3.png);">
 
@@ -495,7 +465,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3">
-                        <a href="javascript:void(0)">
+                        <a href="#">
                             <div class="brand-img brand-hover"
                                 style="background-image: url(./assets/images/brands/brand-2.png);">
 
@@ -506,7 +476,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3">
-                        <a href="javascript:void(0)">
+                        <a href="#">
                             <div class="brand-img brand-hover"
                                 style="background-image: url(./assets/images/brands/brand-1.png);">
 
@@ -521,7 +491,7 @@
             <div class="for-mobile">
                 <div class="row">
                     <div class="col-lg-3">
-                        <a href="javascript:void(0)">
+                        <a href="#">
                             <div class="brand-img" style="background-image: url(./assets/images/brands/brand-4.png);">
 
                             </div>

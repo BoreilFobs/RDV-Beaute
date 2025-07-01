@@ -16,4 +16,9 @@ class Appointments extends Model
         "special_requests",
         "status",
     ];
+
+    public function offer()
+    {
+        return $this->belongsTo(\App\Models\Offers::class, 'offer_id');
+    }
 }
