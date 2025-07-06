@@ -5,10 +5,10 @@
         <div class="products-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-boxes me-3"></i> Product Inventory
+                    <i class="fas fa-boxes me-3"></i> Inventair de produit
                 </h2>
                 <a href="{{ route('stock.create') }}" class="btn btn-booking">
-                    <i class="fas fa-plus-circle me-2"></i> Add New Product
+                    <i class="fas fa-plus-circle me-2"></i> Ajouter un produit
                 </a>
             </div>
 
@@ -19,15 +19,15 @@
                 </div>
                 <div class="col-md-4">
                     <select name="quantity_filter" class="form-select custom-select">
-                        <option value="">All Stock Status</option>
-                        <option value="in-stock" {{ request('quantity_filter') == 'in-stock' ? 'selected' : '' }}>In Stock</option>
-                        <option value="low-stock" {{ request('quantity_filter') == 'low-stock' ? 'selected' : '' }}>Low Stock (&lt; 10)</option>
-                        <option value="out-of-stock" {{ request('quantity_filter') == 'out-of-stock' ? 'selected' : '' }}>Out of Stock</option>
+                        <option value="">Statut</option>
+                        <option value="in-stock" {{ request('quantity_filter') == 'in-stock' ? 'selected' : '' }}>En Stock</option>
+                        <option value="low-stock" {{ request('quantity_filter') == 'low-stock' ? 'selected' : '' }}>Stock Bas (&lt; 10)</option>
+                        <option value="out-of-stock" {{ request('quantity_filter') == 'out-of-stock' ? 'selected' : '' }}>Rupture</option>
                     </select>
                 </div>
                 <div class="col-md-4 d-flex align-items-center gap-2">
-                    <button type="submit" class="btn btn-primary custom-btn">Filter</button>
-                    <a href="{{ route('stock.index') }}" class="btn btn-secondary custom-btn">Reset</a>
+                    <button type="submit" class="btn btn-primary custom-btn">Filtre</button>
+                    <a href="{{ route('stock.index') }}" class="btn btn-secondary custom-btn">reinitialiser</a>
                 </div>
             </form>
 
@@ -37,11 +37,11 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
+                                <th>Nom du Produit</th>
+                                <th>Quantite</th>
                                 <th>Unit Price</th>
-                                <th>Usage Type</th>
-                                <th>Total Value</th>
+                                <th> Type D'usage</th>
+                                <th>Valeur Total</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -50,7 +50,7 @@
                             <tr>
                                 <td colspan="7" class="text-center text-muted-custom py-5">
                                     <i class="fas fa-box-open fa-2x mb-2"></i>
-                                    <div>No products found in inventory.</div>
+                                    <div>Aucun produit dans l'inventaire</div>
                                 </td>
                             </tr>
                             @endif
@@ -99,7 +99,7 @@
                                         <form action="{{ route('stock.destroy', $stock->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-action btn-delete" title="Delete" onclick="return confirm('Are you sure you want to delete this product?')">
+                                            <button type="submit" class="btn-action btn-delete" title="Delete" onclick="return confirm('Etes vous sure de vouloir suprimer ce prduit??')">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
@@ -128,21 +128,21 @@
           @csrf
           <div class="modal-content custom-modal-content">
             <div class="modal-header custom-modal-header">
-              <h5 class="modal-title" id="soldUsedModalLabel">Mark Product as Sold/Used</h5>
+              <h5 class="modal-title" id="soldUsedModalLabel">Marker comme vendu/utilier</h5>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body custom-modal-body">
               <p class="mb-3 text-muted-custom">
-                Please enter the quantity of this product that has been sold or used. This will decrease the available stock.
+                S'il vous plait entrez la quantite de produit vendu ou utiliser ils sera deduit des stock.
               </p>
               <div class="mb-3">
-                <label for="quantity" class="form-label">Quantity Sold/Used</label>
+                <label for="quantity" class="form-label">Quantite vendu/utiliser</label>
                 <input type="number" min="1" class="form-control custom-input" id="quantity" name="quantity" required placeholder="Enter quantity (e.g. 3)">
               </div>
             </div>
             <div class="modal-footer custom-modal-footer">
-              <button type="button" class="btn btn-secondary custom-btn" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary custom-btn">Submit</button>
+              <button type="button" class="btn btn-secondary custom-btn" data-bs-dismiss="modal">Annuler</button>
+              <button type="submit" class="btn btn-primary custom-btn">soummetre</button>
             </div>
           </div>
         </form>

@@ -5,10 +5,10 @@
         <div class="offers-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-plus-circle me-3"></i> Create New Offer
+                    <i class="fas fa-plus-circle me-3"></i> creer une Prestation
                 </h2>
                 <a href="{{ route('offers.index') }}" class="btn btn-booking">
-                    <i class="fas fa-arrow-left me-1"></i> Back to Offers
+                    <i class="fas fa-arrow-left me-1"></i> re
                 </a>
             </div>
 
@@ -19,7 +19,7 @@
                     <div class="row g-4"> {{-- Bootstrap 5 gutter classes for spacing --}}
                         {{-- Offer Name --}}
                         <div class="col-12 col-md-6">
-                            <label for="name" class="form-label-custom mb-2">Prestation Name <span
+                            <label for="name" class="form-label-custom mb-2">Nom de la prestation<span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control-custom @error('name') is-invalid @enderror"
                                 id="name" name="name" value="{{ old('name') }}" required>
@@ -34,7 +34,7 @@
                                     class="text-danger">*</span></label>
                             <select class="form-select-custom @error('category') is-invalid @enderror" id="category"
                                 name="category_id" required>
-                                <option value="">Select Category</option>
+                                <option value="">Choisir la Category</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('category') == $category->name ? 'selected' : '' }}>
                                         {{ $category->name }}
@@ -48,7 +48,7 @@
 
                         {{-- Duration --}}
                         <div class="col-12 col-md-6">
-                            <label for="duration" class="form-label-custom mb-2">Duration (minutes) <span
+                            <label for="duration" class="form-label-custom mb-2">Durée (minutes) <span
                                     class="text-danger">*</span></label>
                             <input type="number" class="form-control-custom @error('duration') is-invalid @enderror"
                                 id="duration" name="duration" value="{{ old('duration') }}" min="5" required>
@@ -59,7 +59,7 @@
 
                         {{-- Price --}}
                         <div class="col-12 col-md-6">
-                            <label for="cost" class="form-label-custom mb-2">Price (FCFA) <span
+                            <label for="cost" class="form-label-custom mb-2">Prix (FCFA) <span
                                     class="text-danger">*</span></label>
                             <input type="number" step="0.01"
                                 class="form-control-custom @error('cost') is-invalid @enderror" id="cost"
@@ -81,10 +81,10 @@
 
                         {{-- Image Upload --}}
                         <div class="col-12">
-                            <label for="img_path" class="form-label-custom mb-2">Offer Image</label>
+                            <label for="img_path" class="form-label-custom mb-2">Image de la prestation</label>
                             <input type="file" class="form-control-file-custom @error('img_path') is-invalid @enderror"
                                 id="img_path" name="img_path" accept="image/*">
-                            <small class="form-text text-muted-custom mt-2">Upload an image for your offer (e.g., JPG,
+                            <small class="form-text text-muted-custom mt-2">Televérser une image pour cette prestation (e.g., JPG,
                                 PNG).</small>
                             @error('img_path')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -94,7 +94,7 @@
                         {{-- Submit Button --}}
                         <div class="col-12 text-center mt-4">
                             <button type="submit" class="btn btn-booking btn-lg">
-                                <i class="fas fa-save me-2"></i> Save Offer
+                                <i class="fas fa-save me-2"></i> Enregistrer
                             </button>
                         </div>
                     </div>

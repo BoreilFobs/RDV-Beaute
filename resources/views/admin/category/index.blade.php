@@ -5,10 +5,10 @@
         <div class="categories-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-list-alt me-3"></i> Service Categories
+                    <i class="fas fa-list-alt me-3"></i>Categories de Service
                 </h2>
                 <a href="{{ route('categories.create') }}" class="btn btn-booking">
-                    <i class="fas fa-plus-circle me-2"></i> Create New Category
+                    <i class="fas fa-plus-circle me-2"></i> Créer une nouvelle Category
                 </a>
             </div>
 
@@ -35,7 +35,7 @@
                             <p class="category-description">{{ Str::limit($category->description, 100) }}</p>
                             <div class="category-meta">
                                 <span class="badge bg-primary">{{ $category->services_count }} Services</span>
-                                <span class="text-muted-custom">Last updated: {{ $category->updated_at->diffForHumans() }}</span>
+                                <span class="text-muted-custom">Dernier mise a jours: {{ $category->updated_at->diffForHumans() }}</span>
                             </div>
                         </div>
                     </div>
@@ -46,10 +46,10 @@
             @if($categories->isEmpty())
             <div class="empty-state">
                 <i class="fas fa-folder-open fa-4x"></i>
-                <h3>No Categories Found</h3>
-                <p>Create your first category to get started</p>
+                <h3>Aucune category trouvé</h3>
+                <p>Créer une category pour vous lancer</p>
                 <a href="{{ route('categories.create') }}" class="btn btn-booking mt-3">
-                    <i class="fas fa-plus-circle me-2"></i> Create Category
+                    <i class="fas fa-plus-circle me-2"></i> Créer une Category
                 </a>
             </div>
             @endif

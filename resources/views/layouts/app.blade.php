@@ -152,37 +152,37 @@
                             <a class="nav-link {{ request()->routeIs('userDashboard') ? 'active' : '' }}"
                                 href="{{ route('userDashboard') }}">
                                 <i class="fas fa-home"></i>
-                                <span>Dashboard</span>
+                                <span>Tableau de Board</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
                                 href="{{ route('appointments.index') }}">
                                 <i class="fas fa-calendar-alt"></i>
-                                <span>Appointments</span>
+                                <span>Rendez Vous</span>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
                                 href="{{ route('favourite.index') }}">
-                                <i class="fas fa-heart"></i>
-                                <span>Favorites</span>
+                                <i class="fas fa-globe-americas"></i>
+                                <span>aller au site</span>
                             </a>
-                        </li> --}}
+                        </li>
                          <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
                                 href="{{ route('prestations') }}">
                                 <i class="fas fa-list"></i>
-                                <span>view prestations</span>
+                                <span>Voir les prestations</span>
                             </a>
                         </li>
                         <li class="nav-item mt-4">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <a class="nav-link logout-btn" href="#"
-                                    onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) this.closest('form').submit();">
+                                    onclick="event.preventDefault(); if(confirm('etes vous sure de vouloir vous deconnecter?')) this.closest('form').submit();">
                                     <i class="fas fa-sign-out-alt"></i>
-                                    <span>Logout</span>
+                                    <span>Deconnexion</span>
                                 </a>
                             </form>
                         </li>
@@ -206,14 +206,14 @@
                 <a class="nav-link {{ request()->routeIs('userDashboard') ? 'active' : '' }}"
                     href="{{ route('userDashboard') }}">
                     <i class="fas fa-home"></i>
-                    <span>Home</span>
+                    <span>Accueil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('appointments.*') ? 'active' : '' }}"
                     href="{{ route('appointments.index') }}">
                     <i class="fas fa-calendar-alt"></i>
-                    <span>Appointments</span>
+                    <span>Rendez vous</span>
                 </a>
             </li>
             {{-- <li class="nav-item">
@@ -224,19 +224,19 @@
                 </a>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('prestations') ? 'active' : '' }}"
                     href="{{ route('prestations') }}">
                     <i class="fas fa-list"></i>
-                    <span>view prestations</span>
+                    <span>Voir les prestations</span>
                 </a>
             </li>
             <li class="nav-item">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a class="nav-link logout-btn" href="#"
-                        onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) this.closest('form').submit();">
+                        onclick="event.preventDefault(); if(confirm('etes vous sure de vouloir vous deconnecter?')) this.closest('form').submit();">
                         <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
+                        <span>Deconnexion</span>
                     </a>
                 </form>
             </li>

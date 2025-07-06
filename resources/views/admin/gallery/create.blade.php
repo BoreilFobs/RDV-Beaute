@@ -5,10 +5,10 @@
         <div class="gallery-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-plus-circle me-3"></i> Upload Image
+                    <i class="fas fa-plus-circle me-3"></i> Téléverser Image
                 </h2>
                 <a href="{{ route('gallery.index') }}" class="btn btn-booking">
-                    <i class="fas fa-arrow-left me-2"></i> Back to Gallery
+                    <i class="fas fa-arrow-left me-2"></i> Retour a Gallery
                 </a>
             </div>
 
@@ -22,11 +22,11 @@
                             <div class="dropzone" id="imageDropzone">
                                 <div class="dropzone-content">
                                     <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
-                                    <h4>Drag & Drop your image here</h4>
-                                    <p class="text-muted-custom">or click to browse files</p>
+                                    <h4>Deposer votre image ici</h4>
+                                    <p class="text-muted-custom">ou cliquer Pour parcourir les fichier</p>
                                     <input type="file" name="image" id="imageInput" accept="image/*" class="d-none">
                                     <button type="button" class="btn btn-booking mt-3" id="browseBtn">
-                                        <i class="fas fa-folder-open me-2"></i> Select Image
+                                        <i class="fas fa-folder-open me-2"></i> Hoisire une image
                                     </button>
                                 </div>
                                 <div class="preview-container mt-4" id="previewContainer" style="display: none;">
@@ -47,7 +47,7 @@
                         <!-- Submit Button -->
                         <div class="col-12 text-center mt-4">
                             <button type="submit" class="btn btn-booking btn-lg" id="submitBtn" disabled>
-                                <i class="fas fa-upload me-2"></i> Upload Image
+                                <i class="fas fa-upload me-2"></i> Téléverser
                             </button>
                         </div>
                     </div>

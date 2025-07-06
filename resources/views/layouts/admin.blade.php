@@ -154,7 +154,7 @@
                             <a class="nav-link {{ request()->routeIs('userDashboard') ? 'active' : '' }}"
                                 href="{{ route('dashboard') }}">
                                 <i class="fas fa-tachometer-alt"></i>
-                                <span>Dashboard</span>
+                                <span>Tableau de board</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -169,14 +169,14 @@
                             <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}"
                                 href="{{ route('users.index') }}">
                                 <i class="fas fa-users"></i>
-                                <span>Users</span>
+                                <span>Utilisateur</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('DashAppointment.*') ? 'active' : '' }}"
                                 href="{{ route('DashAppointment.index') }}">
                                 <i class="fas fa-calendar-check"></i>
-                                <span>Appointments</span>
+                                <span>Rendez vous</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -211,7 +211,7 @@
                             <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
                                 href="{{ route('home') }}">
                                 <i class="fas fa-home"></i>
-                                <span>Go to site Home</span>
+                                <span>Aller au site</span>
                             </a>
                         </li>
                         <li class="nav-item mt-4">
@@ -244,21 +244,21 @@
                 <a class="nav-link {{ request()->routeIs('userDashboard') ? 'active' : '' }}"
                     href="{{ route('dashboard') }}">
                     <i class="fas fa-tachometer-alt"></i>
-                    <span>Home</span>
+                    <span>Accueil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}"
                     href="{{ route('users.index') }}">
                     <i class="fas fa-users"></i>
-                    <span>Users</span>
+                    <span>Utilisateur</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('DashAppointment.*') ? 'active' : '' }}"
                     href="{{ route('DashAppointment.index') }}">
                     <i class="fas fa-calendar-check"></i>
-                    <span>Appointments</span>
+                    <span>Rendez vous</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -295,7 +295,7 @@
                     <a class="nav-link logout-btn" href="#"
                         onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) this.closest('form').submit();">
                         <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
+                        <span>Deconnexion</span>
                     </a>
                 </form>
             </li>

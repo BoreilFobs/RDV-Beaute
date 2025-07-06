@@ -34,10 +34,10 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
+                                <th>Nom</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th class="text-center"> Completed Appointments</th>
+                                <th>Telephone</th>
+                                <th class="text-center"> Rendez-vous terminer</th>
                                 {{-- <th>Actions</th> --}}
                             </tr>
                         </thead>

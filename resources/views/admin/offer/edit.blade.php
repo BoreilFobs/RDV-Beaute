@@ -5,10 +5,10 @@
         <div class="offers-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-edit me-3"></i> Edit Offer
+                    <i class="fas fa-edit me-3"></i> Metre a jour la preatation
                 </h2>
                 <a href="{{ route('offers.index') }}" class="btn btn-booking">
-                    <i class="fas fa-arrow-left me-1"></i> Back to Offers
+                    <i class="fas fa-arrow-left me-1"></i> Retours au prestation
                 </a>
             </div>
 
@@ -20,7 +20,7 @@
                     <div class="row g-4">
                         {{-- Offer Name --}}
                         <div class="col-12 col-md-6">
-                            <label for="name" class="form-label-custom mb-2">Prestation Name <span
+                            <label for="name" class="form-label-custom mb-2">Nom de la prestation <span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control-custom @error('name') is-invalid @enderror"
                                 id="name" name="name" value="{{ old('name', $offer->name) }}" required>
@@ -35,7 +35,7 @@
                                     class="text-danger">*</span></label>
                             <select class="form-select-custom @error('category_id') is-invalid @enderror" id="category"
                                 name="category_id" required>
-                                <option value="">Select Category</option>
+                                <option value="">Coisir une Category</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('category_id', $offer->category_id) == $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
@@ -49,7 +49,7 @@
 
                         {{-- Duration --}}
                         <div class="col-12 col-md-6">
-                            <label for="duration" class="form-label-custom mb-2">Duration (minutes) <span
+                            <label for="duration" class="form-label-custom mb-2">Durée (minutes) <span
                                     class="text-danger">*</span></label>
                             <input type="number" class="form-control-custom @error('duration') is-invalid @enderror"
                                 id="duration" name="duration" value="{{ old('duration', $offer->duration) }}" min="5" required>
@@ -60,7 +60,7 @@
 
                         {{-- Price --}}
                         <div class="col-12 col-md-6">
-                            <label for="cost" class="form-label-custom mb-2">Price (FCFA) <span
+                            <label for="cost" class="form-label-custom mb-2">Prix (FCFA) <span
                                     class="text-danger">*</span></label>
                             <input type="number" step="0.01"
                                 class="form-control-custom @error('cost') is-invalid @enderror" id="cost"
@@ -82,10 +82,10 @@
 
                         {{-- Image Upload --}}
                         <div class="col-12">
-                            <label for="img_path" class="form-label-custom mb-2">Offer Image</label>
+                            <label for="img_path" class="form-label-custom mb-2">Image de la Prestation</label>
                             <input type="file" class="form-control-file-custom @error('img_path') is-invalid @enderror"
                                 id="img_path" name="img_path" accept="image/*">
-                            <small class="form-text text-muted-custom mt-2">Upload a new image to replace the current one (e.g., JPG, PNG).</small>
+                            <small class="form-text text-muted-custom mt-2">Televerser une image pour remplacer celle existante (e.g., JPG, PNG).</small>
                             @if($offer->img_path)
                                 <div class="mt-2">
                                     <img src="{{ asset('storage/' . $offer->img_path) }}" alt="Current Offer Image" style="max-width: 180px; border-radius: 0.5rem;">
@@ -99,7 +99,7 @@
                         {{-- Submit Button --}}
                         <div class="col-12 text-center mt-4">
                             <button type="submit" class="btn btn-booking btn-lg">
-                                <i class="fas fa-save me-2"></i> Update Offer
+                                <i class="fas fa-save me-2"></i> Metre a jours
                             </button>
                         </div>
                     </div>

@@ -302,11 +302,11 @@
         </div>
 
         <div class="filter-controls">
-            <button class="filter-btn active" data-status="all">All</button>
-            <button class="filter-btn" data-status="completed">Completed</button>
-            <button class="filter-btn" data-status="pending">Pending</button>
-            <button class="filter-btn" data-status="cancelled">Cancelled</button>
-            <button class="filter-btn" data-status="confirmed">Confirmed</button>
+            <button class="filter-btn active" data-status="all">Tout</button>
+            <button class="filter-btn" data-status="completed">Terminé</button>
+            <button class="filter-btn" data-status="pending">En attente</button>
+            <button class="filter-btn" data-status="cancelled">annulé</button>
+            <button class="filter-btn" data-status="confirmed">Confirmé</button>
         </div>
 
         <div class="appointments-list">
@@ -324,10 +324,11 @@
                                 @php
                                     $status = strtolower($appointment->status ?? 'pending');
                                     $statusColors = [
-                                        'confirmed' => ['bg' => 'rgba(40, 167, 69, 0.2)', 'color' => '#28a745', 'label' => 'Confirmed'],
-                                        'completed' => ['bg' => 'rgba(13, 110, 253, 0.2)', 'color' => '#0d6efd', 'label' => 'Completed'],
-                                        'cancelled' => ['bg' => 'rgba(220, 53, 69, 0.2)', 'color' => '#dc3545', 'label' => 'Cancelled'],
-                                        'pending' => ['bg' => 'rgba(255, 193, 7, 0.2)', 'color' => '#ffc107', 'label' => 'Pending'],
+                                        'confirmed' => ['bg' => 'rgba(40, 167, 69, 0.2)', 'color' => '#28a745', 'label' => 'Confirmé'],
+                                        'completed' => ['bg' => 'rgba(13, 110, 253, 0.2)', 'color' => '#0d6efd', 'label' => 'Terminé'],
+                                        'cancelled' => ['bg' => 'rgba(220, 53, 69, 0.2)', 'color' => '#dc3545', 'label' => 'annulé'],
+                                        'rejected' => ['bg' => 'rgba(220, 53, 69, 0.2)', 'color' => '#dc3545', 'label' => 'rejeté'],
+                                        'pending' => ['bg' => 'rgba(255, 193, 7, 0.2)', 'color' => '#ffc107', 'label' => 'En attente'],
                                     ];
                                     $color = $statusColors[$status]['color'] ?? '#ffc107';
                                     $bg = $statusColors[$status]['bg'] ?? 'rgba(255, 193, 7, 0.2)';
@@ -382,13 +383,13 @@
                             @if($status === 'pending')
                                 <button class="action-btn" title="Reschedule">
                                     <i class="fas fa-calendar-days"></i>
-                                    <span class="action-text d-none d-md-inline">Reschedule</span>
+                                    <span class="action-text d-none d-md-inline">Reprogremmer</span>
                                 </button>
                                 <form method="POST" action="{{ route('appointments.cancel', $appointment->id) }}" onsubmit="return confirm('Are you sure you want to cancel this appointment?');" style="display: inline;">
                                     @csrf
                                     <button type="submit" class="action-btn" title="Cancel">
                                         <i class="fas fa-times"></i>
-                                        <span class="action-text d-none d-md-inline">Cancel</span>
+                                        <span class="action-text d-none d-md-inline">Annuler</span>
                                     </button>
                                 </form>
                             @elseif($status === 'cancelled')
@@ -397,7 +398,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="action-btn" title="Delete">
                                         <i class="fas fa-trash"></i>
-                                        <span class="action-text d-none d-md-inline">Delete</span>
+                                        <span class="action-text d-none d-md-inline">Suprimer</span>
                                     </button>
                                 </form>
                             @endif
@@ -430,10 +431,10 @@
             @empty
                 <div class="text-center py-5" style="background-color: var(--gray); border-radius: 1rem; padding: 2rem; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08);">
                     <i class="far fa-calendar-check fa-3x mb-3" style="color: var(--primary);"></i>
-                    <h4 class="service-title" style="color: var(--primary);">No Appointments Found</h4>
-                    <p class="mb-4 text-light">There are no appointments matching your filter. Try another status or book a new service!</p>
+                    <h4 class="service-title" style="color: var(--primary);">Aucun rendez-vous trouvé</h4>
+                    <p class="mb-4 text-light">Aucun rendez-vous ne correspond a votre filtre. créer en un!</p>
                     <a href="{{ route('prestations') }}" class="btn btn-booking" style="background: var(--primary); color: var(--dark) !important; border: none; border-radius: 50px; padding: 0.8rem 2.5rem; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">
-                        <i class="fas fa-spa me-1"></i> Browse Services
+                        <i class="fas fa-spa me-1"></i> Voir les Prestation
                     </a>
                 </div>
             @endforelse
@@ -449,26 +450,26 @@
           <div class="modal-content custom-modal-content">
             <div class="modal-header custom-modal-header">
               <h5 class="modal-title" id="rescheduleModalLabel">
-                <i class="fas fa-calendar-days me-2"></i>Reschedule Appointment
+                <i class="fas fa-calendar-days me-2"></i>Reprogrammer le rendez-vous
               </h5>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body custom-modal-body">
               <p class="mb-3 text-muted-custom">
-                Please select a new date and time for your appointment. Your current booking will be updated.
+                S'il vous plait selectioner une nouvelle date et heur pour votre rendez vous. Les donnée seront mise a jours
               </p>
               <div class="mb-3">
-            <label for="new_date" class="form-label">New Date</label>
+            <label for="new_date" class="form-label">Nouveau jours</label>
             <input type="date" class="form-control custom-input" name="new_date" id="new_date" required placeholder="Select new date">
               </div>
               <div class="mb-3">
-            <label for="new_time" class="form-label">New Time</label>
+            <label for="new_time" class="form-label">Nouvelle heur</label>
             <input type="time" class="form-control custom-input" name="new_time" id="new_time" required placeholder="Select new time">
               </div>
             </div>
             <div class="modal-footer custom-modal-footer">
-              <button type="button" class="btn btn-secondary custom-btn" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary custom-btn">Reschedule</button>
+              <button type="button" class="btn btn-secondary custom-btn" data-bs-dismiss="modal">Annuler</button>
+              <button type="submit" class="btn btn-primary custom-btn">Reprogrammer</button>
             </div>
           </div>
         </form>

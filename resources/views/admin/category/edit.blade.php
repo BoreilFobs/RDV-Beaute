@@ -5,10 +5,10 @@
         <div class="categories-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-edit me-3"></i> Update {{ $category->name }} Category
+                    <i class="fas fa-edit me-3"></i> Mise a jours de {{ $category->name }}
                 </h2>
                 <a href="{{ route('categories.index') }}" class="btn btn-booking">
-                    <i class="fas fa-arrow-left me-2"></i> Back to Categories
+                    <i class="fas fa-arrow-left me-2"></i> Retour au Categories
                 </a>
             </div>
 
@@ -20,7 +20,7 @@
                     <div class="row g-4">
                         <!-- Category Name -->
                         <div class="col-12 col-md-6">
-                            <label for="name" class="form-label-custom mb-2">Category Name <span class="text-danger">*</span></label>
+                            <label for="name" class="form-label-custom mb-2">Nom de la Category<span class="text-danger">*</span></label>
                             <input type="text" class="form-control-custom @error('name') is-invalid @enderror" 
                                    id="name" name="name" value="{{ old('name', $category->name) }}" required>
                             @error('name')
@@ -30,7 +30,7 @@
 
                         <!-- Image Upload with Preview -->
                         <div class="col-12 col-md-6">
-                            <label for="image" class="form-label-custom mb-2">Category Image</label>
+                            <label for="image" class="form-label-custom mb-2">Image de la Category</label>
                             <div class="image-upload-wrapper">
                                 <input type="file" class="form-control-file-custom @error('image') is-invalid @enderror" 
                                        id="image" name="image" accept="image/*" onchange="previewImage(this)">
@@ -43,7 +43,7 @@
                                         src="{{ $category->image_url ? asset($category->image_url) : 'https://via.placeholder.com/800x600?text=Upload+Image' }}" 
                                         alt="Image Preview" class="img-thumbnail" id="previewImage"
                                         style="display: block; max-width: 100%; height: auto;">
-                                    <div class="image-preview-text" style="display: none;">No image selected</div>
+                                    <div class="image-preview-text" style="display: none;">Aucune image selectioné</div>
                                 </div>
                             </div>
                         </div>

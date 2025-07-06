@@ -277,8 +277,8 @@
 
     <div class="booking-container">
         <div class="booking-header">
-            <h1 class="booking-title">Book Your Appointment</h1>
-            <p class="text-muted">Complete your reservation in just a few steps</p>
+            <h1 class="booking-title">Prendre Rendez-vous</h1>
+            <p class="text-muted">Prenez votre rendez-vous en quelques étapes seulement</p>
         </div>
 
         <div class="booking-card">
@@ -308,39 +308,29 @@
             <!-- Booking Form -->
             <form action="{{ route('appointments.store', ['offer' => $offer->id]) }}" method="POST" class="booking-form-section">
                 @csrf
-                <h3 class="section-title">Select Date & Time</h3>
+                <h3 class="section-title">Votre jours, Votre Heur</h3>
 
                 <div class="calendar-container">
                     <!-- Date Picker -->
                     <div class="mb-4">
-                        <label for="appointmentDate" class="form-label">Choose a date</label>
+                        <label for="appointmentDate" class="form-label">Votre jour</label>
                         <input type="date" class="form-control" id="appointmentDate" name="date" min="{{ date('Y-m-d') }}" required>
                     </div>
 
                     <!-- Time Slots -->
                     <div>
-                        <label class="form-label">Choose Start Time</label>
+                        <label class="form-label">Votre heur</label>
                         <input type="time" class="form-control" id="time" name="time" step="900" required>
                     </div>
                 </div>
 
                 <!-- Customer Information -->
                 <div class="mt-5">
-                    <h3 class="section-title">Your Information</h3>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="Alex" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="phone" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" value="" required>
-                        </div>
+                   
                         <div class="col-12">
-                            <label for="special_requests" class="form-label">Special Requests (Optional)</label>
+                            <label for="special_requests" class="form-label">Demande Special </label>
                             <textarea class="form-control" id="special_requests" name="special_requests" rows="3"></textarea>
                         </div>
-                    </div>
                 </div>
 
                 <!-- Hidden field for offer/service id -->
@@ -348,7 +338,7 @@
 
                 <!-- Confirmation Button -->
                 <button type="submit" class="btn btn-confirm">
-                    <i class="fas fa-calendar-check me-2"></i> Confirm Appointment
+                    <i class="fas fa-calendar-check me-2"></i> Confirmer le Rendez-vous
                 </button>
             </form>
         </div>

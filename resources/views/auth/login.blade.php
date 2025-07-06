@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Beauty & Salon</title>
+    <title>Login | Glow & Chic</title>
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 </head>
 
@@ -17,8 +17,8 @@
             @csrf
 
             <div class="login-header">
-                <h2>Welcome Back</h2>
-                <p>Sign in to your account</p>
+                <h2>Bienvenue</h2>
+                <p>Connectez vous a votre compte</p>
             </div>
 
             <!-- Email Address -->
@@ -31,25 +31,25 @@
 
             <!-- Password -->
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Mot de Passe</label>
                 <input id="password" type="password" name="password" required autocomplete="current-password" />
                 <x-input-error :messages="$errors->get('password')" class="error-message" />
             </div>
 
             <!-- Remember Me -->
-            <div class="remember-me">
+            {{-- <div class="remember-me">
                 <input id="remember_me" type="checkbox" name="remember">
                 <label for="remember_me">Remember me</label>
-            </div>
+            </div> --}}
 
-            <button type="submit" class="login-btn">Log In</button>
+            <button type="submit" class="login-btn">Se Connecter</button>
             <div class="signup-link forgot-password">
-                <p class="light">Don't have an account? <a href="{{ route('register') }}">Sign up</a></p>
+                <p class="light">Vous n'avez pas de compte? <a href="{{ route('register') }}">créer un compte</a></p>
             </div>
             @if (Route::has('password.request'))
-                <div class="forgot-password">
+                {{-- <div class="forgot-password">
                     <a href="{{ route('password.request') }}">Forgot your password?</a>
-                </div>
+                </div> --}}
             @endif
         </form>
     </div>

@@ -5,10 +5,10 @@
         <div class="offers-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-tags me-3"></i> Service Offers
+                    <i class="fas fa-tags me-3"></i> Prestation offert
                 </h2>
                 <a href="{{ route('offers.create') }}" class="btn btn-booking">
-                    <i class="fas fa-plus me-1"></i> New Prestation
+                    <i class="fas fa-plus me-1"></i> Nouvelle Prestation
                 </a>
             </div>
 
@@ -17,10 +17,10 @@
                     <thead>
                         <tr>
                             <th class="text-center">Image</th>
-                            <th>Service Name</th>
+                            <th>Nom du Service</th>
                             <th>Category</th>
-                            <th>Duration</th>
-                            <th>Price</th>
+                            <th>Durée</th>
+                            <th>Prix</th>
                             <th class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -43,11 +43,11 @@
                                     <div class="d-flex flex-wrap justify-content-end action-buttons-group">
                                         <a href="{{ route('offers.show', $offer->id) }}" class="btn btn-sm btn-view"
                                             title="View Details">
-                                            <i class="fas fa-eye"></i> <span class="d-md-none">View</span>
+                                            <i class="fas fa-eye"></i> <span class="d-md-none">Voir</span>
                                         </a>
                                         <a href="{{ route('offers.edit', $offer->id) }}" class="btn btn-sm btn-edit"
                                             title="Edit">
-                                            <i class="fas fa-edit"></i> <span class="d-md-none">Edit</span>
+                                            <i class="fas fa-edit"></i> <span class="d-md-none">Metre a jours</span>
                                         </a>
                                         <form action="{{ route('offers.destroy', $offer->id) }}" method="POST"
                                             class="d-inline">
@@ -55,7 +55,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-delete" title="Delete"
                                                 onclick="return confirm('Are you sure you want to delete this offer?')">
-                                                <i class="fas fa-trash-alt"></i> <span class="d-md-none">Delete</span>
+                                                <i class="fas fa-trash-alt"></i> <span class="d-md-none">Supprimer</span>
                                             </button>
                                         </form>
                                     </div>
@@ -133,8 +133,7 @@
                                         <i class="fas fa-tags fa-3x mb-3" style="color: var(--primary);"></i>
                                         <h4 class="service-title" style="color: var(--primary);">No Service Offers Found
                                         </h4>
-                                        <p class="text-light">It looks like you haven't created any offers yet. Click the
-                                            button above to add one!</p>
+                                        <p class="text-dark">Ils semble que vous n'avez pas encore créer de prestation. Cliquer sur le bouton ci-dessus pour en créer un </P>
                                     </div>
                                 </td>
                             </tr>

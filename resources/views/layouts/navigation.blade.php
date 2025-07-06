@@ -61,7 +61,7 @@
                         <div class="menu-menu-1-container">
                             <ul class="menu nav-menu" id="primary-menu">
                                 <li class="menu-item {{ request()->is('/') ? 'active' : '' }}"><a
-                                        href="/">Home</a></li>
+                                        href="/">Accueil</a></li>
                                 <li class="menu-item {{ request()->is('prestations*') ? 'active' : '' }}"><a
                                         href="{{route("prestations")}}">Services</a></li>
                                 @if (request()->is('/'))
@@ -70,11 +70,11 @@
                                 @endif
                                 @if(Auth::check())
                                     <li class="menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">
-                                        <a href="{{ Auth::user()->role == 'admin' ? route('dashboard') : route('userDashboard') }}">Dashboard</a>
+                                        <a href="{{ Auth::user()->role == 'admin' ? route('dashboard') : route('userDashboard') }}">Tableau de board</a>
                                     </li>
                                 @else
                                     <li class="menu-item {{ request()->is('login*') ? 'active' : '' }}">
-                                        <a href="{{ route('login') }}">login</a>
+                                        <a href="{{ route('login') }}">Connexion</a>
                                     </li>
                                 @endif
                             </ul>
@@ -112,7 +112,7 @@
                             <div class="contact-form wow fadeInRightBig" id="contact">
                                 <div class="title">
                                     <h2 class="h2-title">Contact</h2>
-                                    <h3 class="h3-title">Get in Touch</h3>
+                                    <h3 class="h3-title">Un Mot...</h3>
                                 </div>
                                 <div role="form" class="wpcf7" id="wpcf7-f22-o1" lang="en-US" dir="ltr">
                                     <div class="screen-reader-response"></div>
@@ -172,7 +172,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <p class="copyright">Copyright © 2020 Salon & Beauty. All Rights Reserved.</p>
+                        <p class="copyright">Copyright © 2020 Salon & Beauty. Tout Droit Reserve.</p>
                     </div>
                 </div>
             </div>

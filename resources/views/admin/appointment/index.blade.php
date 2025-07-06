@@ -5,20 +5,20 @@
         <div class="offers-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-calendar-check me-3"></i> Appointments
+                    <i class="fas fa-calendar-check me-3"></i> Rendez-Vous
                 </h2>
                 <div class="mb-4 w-50">
                     <form method="GET" action="{{ route('DashAppointment.index') }}" class="d-flex flex- gap-2 align-items-center">
-                        <label class="me-2 fw-bold text-light" for="status_filter">Filter by Status:</label>
+                        <label class="me-2 fw-bold text-light" for="status_filter">Filtrer par Statut:</label>
                         <select name="status" id="status_filter" class="form-select" style="max-width: 220px; background: #18171c; color: #fff; border: 1.5px solid var(--primary); border-radius: 30px;">
-                            <option value="">All</option>
-                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                            <option value="confirmed" {{ request('status') == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
-                            <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
-                            <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+                            <option value="">Tout</option>
+                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>En attente</option>
+                            <option value="confirmed" {{ request('status') == 'confirmed' ? 'selected' : '' }}>Confirmer</option>
+                            <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Annulé</option>
+                            <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Terminé</option>
                         </select>
                         <button type="submit" class="btn btn-primary ms-2" style="border-radius:30px; background:var(--primary); color:var(--dark); border:none;">
-                            <i class="fas fa-filter me-1"></i> Filter
+                            <i class="fas fa-filter me-1"></i> Filtrer
                         </button>
                     </form>
                 </div>
@@ -28,10 +28,10 @@
                 <table class="table table-offers">
                     <thead>
                         <tr>
-                            <th>User</th>
+                            <th>Utilisateur</th>
                             <th>Service</th>
-                            <th>Date&time</th>
-                            <th>Status</th>
+                            <th>Jour&Heur</th>
+                            <th>Statut</th>
                             <th class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -69,12 +69,12 @@
                                             <form action="{{ route('DashAppointment.accept', $appointment->id) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-view" title="confirm" onclick="event.stopPropagation();">
-                                                    <i class="fas fa-check"></i> <span class="d-md-none">Accept</span>
+                                                    <i class="fas fa-check"></i> <span class="d-md-none">Accepter</span>
                                                 </button>
                                             </form>
                                         @endif
                                         <a href="{{ route('DashAppointment.show', $appointment->id) }}" class="btn btn-sm btn-view" title="View Details" onclick="event.stopPropagation();">
-                                            <i class="fas fa-eye"></i> <span class="d-md-none">View</span>
+                                            <i class="fas fa-eye"></i> <span class="d-md-none">Voir</span>
                                         </a>
                                         @if($appointment->status === 'canceled')
                                             <form action="{{ route('DashAppointment.destroy', $appointment->id) }}" method="POST" class="d-inline">
@@ -82,7 +82,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-delete" title="Delete"
                                                     onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this appointment?')">
-                                                    <i class="fas fa-trash-alt"></i> <span class="d-md-none">Delete</span>
+                                                    <i class="fas fa-trash-alt"></i> <span class="d-md-none">Supprimer</span>
                                                 </button>
                                             </form>
                                         @endif
@@ -94,8 +94,8 @@
                                 <td colspan="9" class="text-center py-4">
                                     <div class="empty-state-content">
                                         <i class="fas fa-calendar-check fa-3x mb-3" style="color: var(--primary);"></i>
-                                        <h4 class="service-title" style="color: var(--primary);">No Appointments Found</h4>
-                                        <p class="text-light">There are no appointments yet.</p>
+                                        <h4 class="service-title" style="color: var(--primary);">Aucune Prestation trouvé</h4>
+                                        <p class="text-light">Pas de prestation pour le moment</p>
                                     </div>
                                 </td>
                             </tr>

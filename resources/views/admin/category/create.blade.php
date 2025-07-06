@@ -5,10 +5,10 @@
         <div class="categories-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-plus-circle me-3"></i> Create New Category
+                    <i class="fas fa-plus-circle me-3"></i> Créer une nouvelle Category
                 </h2>
                 <a href="{{ route('categories.index') }}" class="btn btn-booking">
-                    <i class="fas fa-arrow-left me-2"></i> Back to Categories
+                    <i class="fas fa-arrow-left me-2"></i> Retour au Categories
                 </a>
             </div>
 
@@ -19,7 +19,7 @@
                     <div class="row g-4">
                         <!-- Category Name -->
                         <div class="col-12 col-md-6">
-                            <label for="name" class="form-label-custom mb-2">Category Name <span class="text-danger">*</span></label>
+                            <label for="name" class="form-label-custom mb-2">Nom de la Category <span class="text-danger">*</span></label>
                             <input type="text" class="form-control-custom @error('name') is-invalid @enderror" 
                                    id="name" name="name" value="{{ old('name') }}" required>
                             @error('name')
@@ -29,7 +29,7 @@
 
                         <!-- Image Upload with Preview -->
                         <div class="col-12 col-md-6">
-                            <label for="image" class="form-label-custom mb-2">Category Image</label>
+                            <label for="image" class="form-label-custom mb-2">Image de la Category</label>
                             <div class="image-upload-wrapper">
                                 <input type="file" class="form-control-file-custom @error('image') is-invalid @enderror" 
                                        id="image" name="image" accept="image/*" onchange="previewImage(this)">
@@ -58,7 +58,7 @@
                         <!-- Submit Button -->
                         <div class="col-12 text-center mt-4">
                             <button type="submit" class="btn btn-booking btn-lg">
-                                <i class="fas fa-save me-2"></i> Create Category
+                                <i class="fas fa-save me-2"></i> Créer la Category
                             </button>
                         </div>
                     </div>

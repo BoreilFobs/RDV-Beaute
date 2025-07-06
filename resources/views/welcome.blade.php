@@ -4,7 +4,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="banner-content text-center">
                         <h1 class="h1-title wow zoomIn" data-wow-duration="800ms ">
                             <span class="text-wrapper">
@@ -14,11 +13,11 @@
                         <div class="action-btn d-flex  align-items-center justify-content-center flex-wrap"
                             style="gap: 15px;">
                             <div class="d-flex align-items-center justify-content-center flex-wrap" style="gap: 15px;">
-                                <a href={{route("prestations")}} class="sec-btn wow slideInRight" data-wow-duration="800ms">Book an
-                                    Appointment</a>
+                                <a href={{route("prestations")}} class="sec-btn wow slideInRight" data-wow-duration="800ms">Réserver un
+                                    Rendez-vous</a>
                                 @guest
                                     <a href="{{ route('login') }}" class="sec-btn wow slideInRight"
-                                        data-wow-duration="800ms">Login</a>
+                                        data-wow-duration="800ms">Connexion</a>
                                 @endguest
                             </div>
                         </div>
@@ -34,24 +33,16 @@
             <div class="row">
                 <div class="col-lg-6 order-lg-1 order-2">
                     <div class="about-content wow fadeInLeftBig">
-                        <h2 class="h2-title" data-wow-duration="1000ms">about us</h2>
-                        <h3 class="h3-title">our history</h3>
+                        <h2 class="h2-title" data-wow-duration="1000ms">À propos</h2>
+                        <h3 class="h3-title">notre histoire</h3>
                         <div class="overflow-text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum quis sem sed pharetra.
-                                Morbi tempus lobortis nunc non commodo. Pellentesque habitant morbi tristique senectus
-                                et netus et malesuada fames ac turpis egestas.
-                                Morbi enim orci, commodo quis lacinia ac, scelerisque at dui. Aliquam at augue et nulla
-                                euismod aliquet ut a nisi. Phasellus a neque eleifend, lacinia felis ut, vestibulum mi.
-                                Aliquam interdum, velit non elementum pulvinar,
-                                metus neque lobortis eros, sed sodales magna justo quis lectus. Sed consequat leo.</p>
+                            <p>Glow & Chic Eden Garden est bien plus qu'un simple institut de beauté. Installé au cœur de Douala, notre centre allie expertise, luxe et bien-être pour vous offrir une expérience unique. Depuis notre création, nous nous engageons à sublimer votre beauté naturelle grâce à des soins personnalisés et des produits haut de gamme. Notre équipe de professionnels passionnés met tout son savoir-faire à votre service dans un cadre élégant et apaisant.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-2 order-1">
                     <div class="about-frame wow fadeInRightBig">
-                        {{-- dint forget to add back an image link --}}
-                        <div class="about-image" style="background-image: url(./ssets/images/about.jpg);">
-
+                        <div class="about-image" style="background-image: url(./assets/images/about.jpg);">
                         </div>
                     </div>
                 </div>
@@ -64,15 +55,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-
                 </div>
                 <div class="col-lg-6 text-center">
                     <div class="discount-text">
-                        <!-- <h2></h2> -->
                         <h2 class="ml4">
-                            <span class="letters letters-1">Skin Care</span>
+                            <span class="letters letters-1">Soins Visage</span>
                             <span class="letters letters-2">50%</span>
-                            <span class="letters letters-3">Off!</span>
+                            <span class="letters letters-3">Réduction!</span>
                         </h2>
                     </div>
                 </div>
@@ -87,17 +76,16 @@
                 <div class="col-lg-6">
                     <div class="title">
                         <h2 class="h2-title wow fadeInLeftBig" data-wow-duration="800ms">Services</h2>
-                        <h3 class="h3-title">Explore Our Services</h3>
+                        <h3 class="h3-title">Découvrez nos prestations</h3>
                     </div>
                 </div>
-
             </div>
             <div class="for-desk">
                 <div class="row d-flex flex-wrap" style="gap: 24px;">
                     @if($categories->isEmpty())
                         <div class="col-12 text-center">
                             <div class="alert alert-warning" role="alert">
-                                No categories registered yet.
+                                Aucune catégorie enregistrée pour le moment.
                             </div>
                         </div>
                     @endif
@@ -111,7 +99,7 @@
                                     </div>
                                     <div class="service-btn">
                                         <a href="{{ url('/prestations?category=' . $category->id) }}" class="service-tag">{{ $category->name }}</a>
-                                        <a href="{{ url('/prestations?category=' . $category->id) }}" class="explore">explore
+                                        <a href="{{ url('/prestations?category=' . $category->id) }}" class="explore">découvrir
                                             <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                         </a>
                                     </div>
@@ -128,7 +116,7 @@
                         @if($categories->isEmpty())
                         <div class="col-12 text-center">
                             <div class="alert alert-warning" role="alert">
-                                No categories registered yet.
+                                Aucune catégorie enregistrée pour le moment.
                             </div>
                         </div>
                     @endif
@@ -142,7 +130,7 @@
                                     </div>
                                     <div class="service-btn">
                                         <a href="{{ url('/prestations?category=' . $category->id) }}" class="service-tag">{{ $category->name }}</a>
-                                        <a href="{{ url('/prestations?category=' . $category->id) }}" class="explore">explore
+                                        <a href="{{ url('/prestations?category=' . $category->id) }}" class="explore">découvrir
                                             <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                         </a>
                                     </div>
@@ -163,36 +151,30 @@
                 <div class="col-lg-4">
                     <div class="service-provide-box wow fadeInLeftBig">
                         <div class="service-img" style="background-image: url(./assets/images/icons/highlights.png);">
-
                         </div>
-                        <h3>Highlights</h3>
+                        <h3>Mèches & Colorations</h3>
                         <div class="overflow-text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt
-                                labore</p>
+                            <p>Transformez votre look avec nos services de mèches et colorations professionnelles, réalisés avec des produits de qualité.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="service-provide-box wow zoomIn">
                         <div class="service-img" style="background-image: url(./assets/images/icons/hair-care.png);">
-
                         </div>
-                        <h3>Hair Care</h3>
+                        <h3>Soins Capillaires</h3>
                         <div class="overflow-text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt
-                                labore</p>
+                            <p>Redonnez vie à vos cheveux avec nos soins nutritifs et traitements revitalisants adaptés à chaque type de cheveu.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="service-provide-box wow fadeInRightBig">
                         <div class="service-img" style="background-image: url(./assets/images/icons/haircute.png);">
-
                         </div>
-                        <h3>Haircut</h3>
+                        <h3>Coupes Stylées</h3>
                         <div class="overflow-text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt
-                                labore</p>
+                            <p>Des coupes modernes et personnalisées réalisées par nos coiffeurs experts pour sublimer votre style.</p>
                         </div>
                     </div>
                 </div>
@@ -208,50 +190,49 @@
                     <div class="price-frame wow fadeInLeftBig">
                         <div class="price-img"
                             style="background-image: url(./assets/images/element5-digital-ooPx1bxmTc4-unsplash.jpg);">
-
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-2 order-1">
                     <div class="title">
-                        <h2 class="h2-title wow fadeInRightBig" data-wow-duration="800ms">Prices</h2>
-                        <h3 class="h3-title">Haircut Prices</h3>
+                        <h2 class="h2-title wow fadeInRightBig" data-wow-duration="800ms">Tarifs</h2>
+                        <h3 class="h3-title">Nos prix coiffure</h3>
                     </div>
                     <div class="for-desk">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="price-box wow zoomIn" data-wow-duration="500ms">
-                                    <img src="./assets/images/icons/hair-cut&blow-dry.png" alt="Hair Cut">
-                                    <h3>Hair Cut With Blow Dry</h3>
+                                    <img src="./assets/images/icons/hair-cut&blow-dry.png" alt="Coupe de cheveux">
+                                    <h3>Coupe avec brushing</h3>
                                     <div class="hover">
-                                        <a href="#" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">25 000 FCFA</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="price-box wow zoomIn" data-wow-duration="800ms">
-                                    <img src="./assets/images/icons/blow-dry.png" alt="Blow Dry">
-                                    <h3>Blow Dry & Curl</h3>
+                                    <img src="./assets/images/icons/blow-dry.png" alt="Brushing">
+                                    <h3>Brushing & Mise en plis</h3>
                                     <div class="hover">
-                                        <a href="#" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">18 000 FCFA</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="price-box wow zoomIn" data-wow-duration="1100ms">
-                                    <img src="./assets/images/icons/color-highlights.png" alt="Color Highlights">
-                                    <h3>Color & Highlights</h3>
+                                    <img src="./assets/images/icons/color-highlights.png" alt="Couleur">
+                                    <h3>Couleur & Mèches</h3>
                                     <div class="hover">
-                                        <a href="#" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">45 000 FCFA</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="price-box wow zoomIn" data-wow-duration="1400ms">
-                                    <img src="./assets/images/icons/shampoo.png" alt="Shampoo">
-                                    <h3>Shampoo & Set</h3>
+                                    <img src="./assets/images/icons/shampoo.png" alt="Shampooing">
+                                    <h3>Shampooing & Soin</h3>
                                     <div class="hover">
-                                        <a href="#" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">15 000 FCFA</a>
                                     </div>
                                 </div>
                             </div>
@@ -261,10 +242,10 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="price-box wow fadeInLeftBig">
-                                    <img src="./assets/images/icons/hair-cut&blow-dry.png" alt="Hair Cut">
-                                    <h3>Hair Cut With Blow Dry</h3>
+                                    <img src="./assets/images/icons/hair-cut&blow-dry.png" alt="Coupe de cheveux">
+                                    <h3>Coupe avec brushing</h3>
                                     <div class="hover">
-                                        <a href="#" class="price-tag">$18.9</a>
+                                        <a href="#" class="price-tag">25 000 FCFA</a>
                                     </div>
                                 </div>
                             </div>
@@ -281,8 +262,8 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="title">
-                        <h2 class="h2-title wow zoomIn" data-wow-duration="800ms">They said</h2>
-                        <h3 class="h3-title">testimonials</h3>
+                        <h2 class="h2-title wow zoomIn" data-wow-duration="800ms">Témoignages</h2>
+                        <h3 class="h3-title">nos clients parlent de nous</h3>
                     </div>
                 </div>
             </div>
@@ -297,16 +278,10 @@
 
                             <div class="testimonials-before"></div>
 
-
                             <div class="overflow-text">
-
-                                <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat
-                                    massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                                    In enim justo, rhoncus ut, imperdiet a, venenatis
-                                    vitae, justo. Curabitur ullamcorper ultricies nisi eget dui. </p>
-
+                                <p>Je suis fidèle à Glow & Chic depuis 2 ans et je ne pourrais plus m'en passer ! Leur expertise en coloration est tout simplement incroyable. J'ai enfin trouvé des professionnels qui comprennent parfaitement mes cheveux crépus.</p>
                             </div>
-                            <h3>- Kevin Weaver</h3>
+                            <h3>- Aïssatou Diallo</h3>
 
                         </div>
 
@@ -318,14 +293,9 @@
 
                             <div class="testimonials-before"></div>
                             <div class="overflow-text">
-
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris aliquip. Commodo
-                                    consequat. Duis aute irure dolor in reprehenderit. In voluptate velit esse cillum
-                                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                    cupidatat. Aenean commodo ligula eget dolor. </p>
-
+                                <p>Une véritable oasis de bien-être au cœur de Douala. Le massage visage que j'ai reçu était divin, et l'accueil chaleureux. Je recommande vivement ce centre à toutes les femmes soucieuses de leur beauté et de leur bien-être.</p>
                             </div>
-                            <h3>- Michelle Ortiz</h3>
+                            <h3>- Stéphanie Mbarga</h3>
 
                         </div>
 
@@ -343,8 +313,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="title">
-                        <h2 class="h2-title wow fadeInLeftBig" data-wow-duration="800ms">Working</h2>
-                        <h3 class="h3-title">Working Hours</h3>
+                        <h2 class="h2-title wow fadeInLeftBig" data-wow-duration="800ms">Horaires</h2>
+                        <h3 class="h3-title">d'ouverture</h3>
                     </div>
                 </div>
             </div>
@@ -352,29 +322,28 @@
                 <div class="row">
                     <div class="col-lg-6 order-lg-1 order-2 wow fadeInLeftBig">
                         <div class="time-schedule">
-                            <span class="day">Working Days</span>
+                            <span class="day">Lundi - Vendredi</span>
                             <span class="line"></span>
-                            <span class="time">9am-9pm</span>
+                            <span class="time">9h - 21h</span>
                         </div>
                         <div class="time-schedule">
-                            <span class="day">saturday</span>
+                            <span class="day">Samedi</span>
                             <span class="line"></span>
-                            <span class="time">10am-8pm</span>
+                            <span class="time">10h - 20h</span>
                         </div>
                         <div class="time-schedule">
-                            <span class="day">Sunday</span>
+                            <span class="day">Dimanche</span>
                             <span class="line"></span>
-                            <span class="time">Closed</span>
+                            <span class="time">Fermé</span>
                         </div>
                         <div class="small-text">
                             <span>*</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna.</p>
+                            <p>Pour des rendez-vous en dehors des horaires d'ouverture, veuillez nous contacter directement.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 order-lg-2 order-1 wow fadeInRightBig">
                         <div id="timedate">
-                            <a id="mon">January</a>
+                            <a id="mon">Janvier</a>
                             <a id="d">1</a>,
                             <a id="y">0</a><br />
                             <a id="h">12</a> :
@@ -394,15 +363,15 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="title">
-                        <h2 class="h2-title wow zoomIn" data-wow-duration="800ms">Beauty</h2>
-                        <h3 class="h3-title ">gallery</h3>
+                        <h2 class="h2-title wow zoomIn" data-wow-duration="800ms">Galerie</h2>
+                        <h3 class="h3-title ">Beauté</h3>
                     </div>
                 </div>
             </div>
             @if($images->isEmpty())
                 <div class="col-12 text-center">
                     <div class="alert alert-warning" role="alert">
-                        No gallery images available.
+                        Aucune image disponible dans la galerie.
                     </div>
                 </div>
             @else
@@ -440,16 +409,13 @@
     <div class="brands wow fadeInRightBig" id="brands">
         <div class="container">
             <div class="for-desk">
-
                 <div class="row">
                     <div class="col-lg-3">
                         <a href="#">
                             <div class="brand-img brand-hover"
                                 style="background-image: url(./assets/images/brands/brand-4.png);">
-
                             </div>
                             <div class="brand-img" style="background-image: url(./assets/images/brands/brand-4.png);">
-
                             </div>
                         </a>
                     </div>
@@ -457,10 +423,8 @@
                         <a href="#">
                             <div class="brand-img brand-hover"
                                 style="background-image: url(./assets/images/brands/brand-3.png);">
-
                             </div>
                             <div class="brand-img" style="background-image: url(./assets/images/brands/brand-3.png);">
-
                             </div>
                         </a>
                     </div>
@@ -468,10 +432,8 @@
                         <a href="#">
                             <div class="brand-img brand-hover"
                                 style="background-image: url(./assets/images/brands/brand-2.png);">
-
                             </div>
                             <div class="brand-img" style="background-image: url(./assets/images/brands/brand-2.png);">
-
                             </div>
                         </a>
                     </div>
@@ -479,10 +441,8 @@
                         <a href="#">
                             <div class="brand-img brand-hover"
                                 style="background-image: url(./assets/images/brands/brand-1.png);">
-
                             </div>
                             <div class="brand-img" style="background-image: url(./assets/images/brands/brand-1.png);">
-
                             </div>
                         </a>
                     </div>
@@ -493,7 +453,6 @@
                     <div class="col-lg-3">
                         <a href="#">
                             <div class="brand-img" style="background-image: url(./assets/images/brands/brand-4.png);">
-
                             </div>
                         </a>
                     </div>

@@ -31,13 +31,13 @@ class AppointmentsController extends Controller
         $validatedData = $request->validate([
             'date' => 'required|date',
             'time' => 'required',
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
             'special_requests' => 'nullable|string|max:500',
         ]);
 
         // Create the appointment logic here
         $validatedData['user_id'] = Auth::user()->id;
+        $validatedData['name'] = Auth::user()->name;
+        $validatedData['phone'] = Auth::user()->phone;
         $validatedData['offer_id'] = $request->route('offer');
         Appointments::create($validatedData);
 
