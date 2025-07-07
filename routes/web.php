@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name('home');
 Route::get('/prestations', [\App\Http\Controllers\PresentationController::class, 'index'])->name('prestations');
+Route::post('/messages/send', [\App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
 
 
 
@@ -56,6 +57,7 @@ Route::middleware([RoleMiddleware::class . ':admin', 'auth'])->group(function ()
     // messages routes
     Route::get('/messages', [\App\Http\Controllers\MessageController::class, 'index'])->name('messages.index');
     Route::delete('/messages/{message}', [\App\Http\Controllers\MessageController::class, 'destroy'])->name('messages.destroy');
+    Route::post('/messages/{message}', [\App\Http\Controllers\MessageController::class, 'markAsRead'])->name('messages.markAsRead');
 
     // gallery routes
     Route::get('/gallery', [\App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');

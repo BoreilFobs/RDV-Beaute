@@ -21,7 +21,7 @@ class AdminDashboardController extends Controller
         $appointmentsChange = $this->calculatePercentageChange($appointmentsCount, $lastMonthAppointments);
         
         // Users Stats
-        $usersCount = User::count() - 1;
+        $usersCount = User::count();
         $lastMonthUsers = User::where('created_at', '>=', now()->subMonth())->count() - 1;
         $usersChange = $this->calculatePercentageChange($usersCount, $lastMonthUsers);
         

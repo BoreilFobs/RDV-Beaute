@@ -247,13 +247,13 @@
                     <span>Accueil</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}"
                     href="{{ route('users.index') }}">
                     <i class="fas fa-users"></i>
                     <span>Utilisateur</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('DashAppointment.*') ? 'active' : '' }}"
                     href="{{ route('DashAppointment.index') }}">
@@ -269,22 +269,22 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
-                    href="{{ route('favourite.index') }}">
+                <a class="nav-link {{ request()->routeIs('stock.*') ? 'active' : '' }}"
+                    href="{{ route('stock.index') }}">
                     <i class="fas fa-boxes"></i>
                     <span>Stock</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
-                    href="{{ route('favourite.index') }}">
+                <a class="nav-link {{ request()->routeIs('maessages.*') ? 'active' : '' }}"
+                    href="{{ route('messages.index') }}">
                     <i class="fas fa-comments"></i>
-                    <span>Message</span>
+                    <span>Messages</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('favourite.*') ? 'active' : '' }}"
-                    href="{{ route('favourite.index') }}">
+                <a class="nav-link {{ request()->routeIs('gallery.*') ? 'active' : '' }}"
+                    href="{{ route('gallery.index') }}">
                     <i class="fas fa-photo-video"></i>
                     <span>Gallery</span>
                 </a>

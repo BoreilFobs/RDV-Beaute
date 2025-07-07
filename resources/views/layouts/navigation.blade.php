@@ -34,6 +34,83 @@
 
     <!-- Fancybox CSS Link -->
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}">
+    <style>
+                /* Notification Styles */
+        .notification {
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: slideIn 0.3s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notification::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: rgba(255,255,255,0.3);
+            animation: progress 5s linear forwards;
+        }
+
+        .notification.success {
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border-left: 4px solid var(--success);
+        }
+
+        .notification.error {
+            background-color: var(--error-bg);
+            color: var(--error-text);
+            border-left: 4px solid var(--error);
+        }
+
+        .notification-close {
+            background: transparent;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            margin-left: 1rem;
+            opacity: 0.7;
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+
+        /* Add these to your CSS variables */
+        :root {
+            --success: #28a745;
+            --success-bg: rgba(40, 167, 69, 0.15);
+            --success-text: #e8f5e9;
+            --error: #dc3545;
+            --error-bg: rgba(220, 53, 69, 0.15);
+            --error-text: #ffebee;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes progress {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+    </style>
 </head>
 
 <body onLoad="initClock();">
@@ -90,6 +167,19 @@
                 </div>
             </div>
         </div>
+        @if(session('success'))
+            <div class="notification success mb-4">
+                <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
+                <button class="notification-close"><i class="fas fa-times"></i></button>
+            </div>
+            @endif
+
+            @if($errors->any())
+            <div class="notification error mb-4">
+                <i class="fas fa-exclamation-circle me-2"></i> une erreur c'est produit essayer encore... entrez un numero valide
+                <button class="notification-close"><i class="fas fa-times"></i></button>
+            </div>
+        @endif
     </header>
     <!-- End header -->
     <!-- Main Banner -->
@@ -114,20 +204,14 @@
                                     <h2 class="h2-title">Contact</h2>
                                     <h3 class="h3-title">Un Mot...</h3>
                                 </div>
-                                <div role="form" class="wpcf7" id="wpcf7-f22-o1" lang="en-US" dir="ltr">
+                                <form method="post" action={{route("messages.store")}} dir="ltr">
+                                    @csrf
                                     <div class="screen-reader-response"></div>
                                     <form method="post" class="wpcf7-form" novalidate="novalidate">
-                                        <div style="display: none;">
-                                            <input type="hidden" name="_wpcf7" value="22">
-                                            <input type="hidden" name="_wpcf7_version" value="5.1.7">
-                                            <input type="hidden" name="_wpcf7_locale" value="en_US">
-                                            <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f22-o1">
-                                            <input type="hidden" name="_wpcf7_container_post" value="0">
-                                        </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="wpcf7-form-control-wrap full-name">
-                                                    <input type="text" name="full-name" value="" size="40"
+                                                    <input type="text" name="name" value="" size="40"
                                                         class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-input"
                                                         aria-required="true" aria-invalid="false"
                                                         placeholder="Your Name*">
@@ -137,17 +221,17 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="wpcf7-form-control-wrap your-email">
-                                                    <input type="email" name="your-email" value=""
+                                                    <input type="text" name="phone" value=""
                                                         size="40"
                                                         class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-input"
                                                         aria-required="true" aria-invalid="false"
-                                                        placeholder="Your Email*">
+                                                        placeholder="Votre Numero*">
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12"><span class="wpcf7-form-control-wrap your-message">
-                                                    <textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea form-input"
+                                                    <textarea name="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea form-input"
                                                         aria-invalid="false" placeholder="Your Message"></textarea>
                                                 </span></div>
                                         </div>
@@ -160,7 +244,7 @@
                                         </div>
                                         <div class="wpcf7-response-output wpcf7-display-none"></div>
                                     </form>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -179,6 +263,28 @@
         </div>
     </footer>
     <!-- Footer End -->
+    {{-- alert display script --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-hide notifications after 5 seconds
+            const notifications = document.querySelectorAll('.notification');
+            notifications.forEach(notification => {
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => notification.remove(), 300);
+                }, 5000);
+            });
+
+            // Close button functionality
+            document.querySelectorAll('.notification-close').forEach(button => {
+                button.addEventListener('click', function() {
+                    const notification = this.closest('.notification');
+                    notification.style.opacity = '0';
+                    setTimeout(() => notification.remove(), 300);
+                });
+            });
+        });
+    </script>
     <!-- Scroll To Top Start -->
     <a id="scrollToTop" class="scrolltop" title="Back To Top" style="display: block;"><i class="fa fa-angle-up"
             aria-hidden="true"></i></a>

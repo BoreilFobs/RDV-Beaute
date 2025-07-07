@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     protected $fillable = [
-        "user_id",
         "message",
-        "status",
+        "email",
+        "name",
+        "read_at",
     ];
 }
