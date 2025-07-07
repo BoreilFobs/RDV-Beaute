@@ -245,14 +245,13 @@
         <div class="container">
             <!-- Section Header -->
             <div class="section-header">
-                <h1 class="section-title">Premium Hair Services</h1>
-                <p class="section-subtitle">Experience luxury hair treatments with our expert stylists using top-quality
-                    products</p>
+                <h1 class="section-title">Services Premium</h1>
+                <p class="section-subtitle">Ecperimence de qualite dans notre gardin</p>
             </div>
 
             <!-- Filter Controls -->
             <div class="filter-controls">
-                <button class="filter-btn active" data-category="all">All Services</button>
+                <button class="filter-btn active" data-category="all">Tout les Services</button>
                 @foreach($categories as $category)
                     <button class="filter-btn" data-category="{{ $category->id }}">{{ $category->name }}</button>
                 @endforeach
@@ -265,7 +264,7 @@
                     <div class="col-12">
                         <div class="alert alert-warning text-center" role="alert" style="background:rgba(225,187,135,0.1);color:var(--primary);border:none;">
                             <i class="fas fa-exclamation-circle me-2"></i>
-                            No offers available at the moment. Please check back later!
+                            Aucune prestation disponible pour le moment. Revebez plus tard!
                         </div>
                     </div>
                 @endif
@@ -292,7 +291,7 @@
                                 <p class="service-description">{{ $offer->description }}</p>
                                 <div class="action-buttons">
                                     <a href="{{ url('/appointments/create', ['offer' => $offer->id]) }}" class="btn btn-primary-accent">
-                                        <i class="fas fa-calendar-plus me-2"></i> Book Now
+                                        <i class="fas fa-calendar-plus me-2"></i> Prendre Rendez-vous
                                     </a>
                                     {{-- <button class="btn btn-outline-accent">
                                         <i class="fa-solid fa-heart me-2"></i> Save

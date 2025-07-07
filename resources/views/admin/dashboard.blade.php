@@ -6,7 +6,7 @@
         <!-- Dashboard Header -->
         <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
             <h2 class="service-title dashboard-section-title">
-                <i class="fas fa-tachometer-alt me-3"></i> Admin Dashboard
+                <i class="fas fa-tachometer-alt me-3"></i> Tableau de board Administrateur
             </h2>
             <div class="text-muted-custom">
                 Last updated: {{ now()->format('F j, Y g:i A') }}
@@ -23,11 +23,11 @@
                     </div>
                     <div class="stats-info">
                         <h3>{{ $appointmentsCount }}</h3>
-                        <p>Completed Appointments
+                        <p>Rendez-vous Termine
                         </p>
                         <div class="stats-change {{ $appointmentsChange >= 0 ? 'positive' : 'negative' }}">
                             <i class="fas fa-arrow-{{ $appointmentsChange >= 0 ? 'up' : 'down' }} me-1"></i>
-                            {{ abs($appointmentsChange) }}% from last month
+                            {{ abs($appointmentsChange) }}% Au mois passe
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                         <p>Registered Users</p>
                         <div class="stats-change {{ $usersChange >= 0 ? 'positive' : 'negative' }}">
                             <i class="fas fa-arrow-{{ $usersChange >= 0 ? 'up' : 'down' }} me-1"></i>
-                            {{ abs($usersChange) }}% from last month
+                            {{ abs($usersChange) }}% au mois passe
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <p>Stock On Sale Value</p>
                         <div class="stats-change {{ $stockOnSaleChange >= 0 ? 'positive' : 'negative' }}">
                             <i class="fas fa-arrow-{{ $stockOnSaleChange >= 0 ? 'up' : 'down' }} me-1"></i>
-                            {{ abs($stockOnSaleChange) }}% from last month
+                            {{ abs($stockOnSaleChange) }}% au mois passe
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                         <p>prestations</p>
                         <div class="stats-change {{ $productsChange >= 0 ? 'positive' : 'negative' }}">
                             <i class="fas fa-arrow-{{ $productsChange >= 0 ? 'up' : 'down' }} me-1"></i>
-                            {{ abs($productsChange) }}% from last month
+                            {{ abs($productsChange) }}% au mois passe
                         </div>
                     </div>
                 </div>
@@ -92,16 +92,16 @@
                 <div class="form-card-wrapper">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h3 class="dashboard-section-title">
-                            <i class="fas fa-clock me-2"></i> Recent Appointments
+                            <i class="fas fa-clock me-2"></i> Rendez-voi\us recent
                         </h3>
-                        <a href="{{ route('appointments.index') }}" class="btn btn-sm btn-booking">View All</a>
+                        <a href="{{ route('appointments.index') }}" class="btn btn-sm btn-booking">Tout voir</a>
                     </div>
                     <div class="table-responsive">
                         @if($recentAppointments->isEmpty())
                             <div class="text-center py-5" style="background-color: #181818; border-radius: 1rem; color: #bbb;">
                                 <i class="far fa-calendar-check fa-3x mb-3" style="color: var(--primary);"></i>
-                                <h4 class="service-title" style="color: var(--primary);">No Recent Appointments</h4>
-                                <p class="mb-0">No appointments have been made recently.</p>
+                                <h4 class="service-title" style="color: var(--primary);">Aucun rendez-vous recent</h4>
+                                <p class="mb-0">aucun rendez-vous n'as ete pris recement.</p>
                             </div>
                         @else
                         <table class="table table-dashboard modern-table">
@@ -109,8 +109,8 @@
                                 <tr>
                                     <th>Client</th>
                                     <th>Service</th>
-                                    <th>Date/Time</th>
-                                    <th>Status</th>
+                                    <th>jours/heur</th>
+                                    <th>Statut</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -140,12 +140,12 @@
             <div class="col-12 col-lg-4">
                 <div class="form-card-wrapper">
                     <h3 class="dashboard-section-title mb-3">
-                        <i class="fas fa-chart-pie me-2"></i> Quick Stats
+                        <i class="fas fa-chart-pie me-2"></i> Stats Rapid
                     </h3>
                     
                     <!-- Status Distribution -->
                     <div class="quick-stat mb-4">
-                        <h4>Appointment Status</h4>
+                        <h4>Status des Rendez-vous</h4>
                         <div class="progress-stats">
                             @foreach($appointmentStatuses as $status)
                             <div class="progress-item">
@@ -167,7 +167,7 @@
                     
                     <!-- Popular Services -->
                     <div class="quick-stat">
-                        <h4>Popular Services</h4>
+                        <h4>Services Populaire</h4>
                         <div class="service-stats">
                             @foreach($popularServices as $service)
                             <div class="service-item">
@@ -188,25 +188,25 @@
                 <div class="form-card-wrapper">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h3 class="dashboard-section-title">
-                            <i class="fas fa-user-plus me-2"></i> Recent Users
+                            <i class="fas fa-user-plus me-2"></i> Utilisateur recent
                         </h3>
-                        <a href="{{ route('users.index') }}" class="btn btn-sm btn-booking">View All</a>
+                        <a href="{{ route('users.index') }}" class="btn btn-sm btn-booking">Tout voir</a>
                     </div>
                     <div class="table-responsive">
                         @if($recentUsers->isEmpty())
                             <div class="text-center py-5" style="background-color: #181818; border-radius: 1rem; color: #bbb;">
                                 <i class="fas fa-user-friends fa-3x mb-3" style="color: var(--primary);"></i>
-                                <h4 class="service-title" style="color: var(--primary);">No Recent Users</h4>
-                                <p class="mb-0">No users have registered recently.</p>
+                                <h4 class="service-title" style="color: var(--primary);">Aucun utilisateur recent</h4>
+                                <p class="mb-0">Aucun utilisateur ne c'est enregistrer recement.</p>
                             </div>
                         @else
                         <table class="table table-dashboard modern-table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Nom</th>
                                     <th>Email</th>
-                                    <th>Joined</th>
-                                    <th>Appointments</th>
+                                    <th>A rejoin</th>
+                                    <th>Terminee</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -230,16 +230,16 @@
                 <div class="form-card-wrapper">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h3 class="dashboard-section-title">
-                            <i class="fas fa-images me-2"></i> Recent Gallery Uploads
+                            <i class="fas fa-images me-2"></i> Media Gallery recent
                         </h3>
-                        <a href="{{ route('gallery.index') }}" class="btn btn-sm btn-booking">View All</a>
+                        <a href="{{ route('gallery.index') }}" class="btn btn-sm btn-booking">Tout voir</a>
                     </div>
                     <div class="gallery-preview">
                         @if($recentGalleryItems->isEmpty())
                             <div class="text-center py-5" style="background-color: #181818; border-radius: 1rem; color: #bbb;">
                                 <i class="fas fa-image fa-3x mb-3" style="color: var(--primary);"></i>
-                                <h4 class="service-title" style="color: var(--primary);">No Gallery Uploads</h4>
-                                <p class="mb-0">No images have been uploaded recently.</p>
+                                <h4 class="service-title" style="color: var(--primary);">Aucun televersement</h4>
+                                <p class="mb-0">Aucune image n'as ete televersee recement .</p>
                             </div>
                         @else
                         <div class="row g-2">

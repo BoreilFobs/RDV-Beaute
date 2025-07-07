@@ -48,7 +48,7 @@
     <div class="container-fluid" style="padding:0 ;margin: 0;">
         <h2 class="dashboard-section-title mb-5"
             style="font-size: 2rem; font-weight: 700; color: var(--primary); letter-spacing: 1px; text-shadow: 0 0 8px rgba(225, 187, 135, 0.5);">
-            <i class="fas fa-grip-horizontal me-3"></i> Your Dashboard
+            <i class="fas fa-grip-horizontal me-3"></i> Votre Tableau De Board
         </h2>
 
         <div class="row row-cols-2 row-cols-md-4 g-3 mb-0">
@@ -65,7 +65,7 @@
                             {{ $upcomingAppointments }}
                         </h5>
                         <span class="small text-uppercase fw-semibold" style="color: #6c757d; letter-spacing: 0.5px;">
-                            Upcoming
+                            A Venire
                         </span>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                             {{ $pendingAppointment }}
                         </h5>
                         <span class="small text-uppercase fw-semibold" style="color: #6c757d; letter-spacing: 0.5px;">
-                            Pending
+                            En Attente
                         </span>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                             {{ $completedAppointments }}
                         </h5>
                         <span class="small text-uppercase fw-semibold" style="color: #6c757d; letter-spacing: 0.5px;">
-                            Completed
+                            Terminer
                         </span>
                     </div>
                 </div>
@@ -119,17 +119,17 @@
                             {{ $canceledAppointments }}
                         </h5>
                         <span class="small text-uppercase fw-semibold" style="color: #6c757d; letter-spacing: 0.5px;">
-                            Cancelled
+                            Annule
                         </span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-center mt-2 mb-5 pt-4">
-            <h3 class="text-light mb-4 dashboard-cta-title">Ready for your next pampering session?</h3>
+            <h3 class="text-light mb-4 dashboard-cta-title">Pret pour votre prochaine sceance?</h3>
             <a href="{{ url('/prestations') }}" class="btn btn-booking btn-lg dashboard-cta-btn"
             style="background: var(--primary); color: var(--dark) !important; border: none; border-radius: 50px; padding: 0.8rem 2.5rem; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">
-            <i class="fas fa-scissors me-2"></i> Explore All Services
+            <i class="fas fa-scissors me-2"></i> Explorer tout nos Services
             </a>
         </div>
 

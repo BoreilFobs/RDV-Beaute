@@ -238,7 +238,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="submit-btn">
-                                                    <button type="submit" class="sec-btn sm-btn">Send Message</button>
+                                                    <button type="submit" class="sec-btn sm-btn">Envoyer</button>
                                                 </div>
                                             </div>
                                         </div>
