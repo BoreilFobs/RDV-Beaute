@@ -5,7 +5,7 @@
         <div class="users-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-users me-3"></i> Users
+                    <i class="fas fa-users me-3"></i> Users ({{ $users->count() }})
                 </h2>
             </div>
 

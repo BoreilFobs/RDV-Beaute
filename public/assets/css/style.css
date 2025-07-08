@@ -290,7 +290,7 @@ p {
 }
 
 h1.h1-title {
-    font-size: 50px !important;
+    font-size: 100px;
     line-height: 175px;
     margin-bottom: 80px;
     color: #fff;
@@ -1596,7 +1596,7 @@ span.line {
         /*background-position: 920px center;*/
     }
     h1.h1-title {
-        font-size: 110px;
+        font-size: 50px;
     }
     /*		h1.h1-title {
               font-size: 80px;
@@ -1790,7 +1790,7 @@ span.line {
 
 @media (max-width: 575px) {
     h1.h1-title {
-        font-size: 17vw;
+        font-size: 50px;
         line-height: 19vw;
     }
     .services-box.box-1 {

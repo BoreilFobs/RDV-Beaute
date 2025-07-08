@@ -246,7 +246,7 @@
             <!-- Section Header -->
             <div class="section-header">
                 <h1 class="section-title">Services Premium</h1>
-                <p class="section-subtitle">Ecperimence de qualite dans notre gardin</p>
+                <p class="section-subtitle">Experience de qualite dans notre gardin</p>
             </div>
 
             <!-- Filter Controls -->

@@ -5,7 +5,7 @@
         <div class="gallery-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-images me-3"></i> Media Gallery
+                    <i class="fas fa-images me-3"></i> Media Gallery ({{ $images->count() }})
                 </h2>
                 <a href="{{ route('gallery.create') }}" class="btn btn-booking">
                     <i class="fas fa-plus-circle me-2"></i> Upload New

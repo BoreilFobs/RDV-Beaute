@@ -41,7 +41,7 @@
                         </div>
 
                         <!-- Usage Type -->
-                        <div class="col-12 col-md-6">
+                        {{-- <div class="col-12 col-md-6">
                             <label for="usage_type" class="form-label-custom mb-2">Type d'usage <span class="text-danger">*</span></label>
                             <select class="form-select-custom @error('usage_type') is-invalid @enderror" 
                                     id="usage_type" name="usage_type" required>
@@ -52,7 +52,7 @@
                             @error('usage_type')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <!-- Unit Price (Conditional) -->
                         <div class="col-12 col-md-6" id="unit_price_container">

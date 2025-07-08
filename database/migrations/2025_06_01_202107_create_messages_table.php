@@ -16,7 +16,7 @@ return new class extends Migration
             // $table->foreignId("user_id")->on("users");
             $table->string("name");
             $table->text("message");
-            $table->string("email")->nullable();
+            $table->string("phone")->nullable();
             $table->timestamp("read_at")->nullable();
             $table->timestamps();
         });

@@ -5,7 +5,7 @@
         <div class="offers-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-tags me-3"></i> Prestation offert
+                    <i class="fas fa-tags me-3"></i> Prestation offert ({{ $offers->count() }})
                 </h2>
                 <a href="{{ route('offers.create') }}" class="btn btn-booking">
                     <i class="fas fa-plus me-1"></i> Nouvelle Prestation

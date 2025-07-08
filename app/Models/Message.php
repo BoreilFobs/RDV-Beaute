@@ -8,7 +8,7 @@ class Message extends Model
 {
     protected $fillable = [
         "message",
-        "email",
+        "phone",
         "name",
         "read_at",
     ];

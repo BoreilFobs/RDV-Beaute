@@ -5,7 +5,7 @@
         <div class="offers-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-calendar-check me-3"></i> Rendez-Vous
+                    <i class="fas fa-calendar-check me-3"></i> Rendez-Vous ({{ $appointments->count() }})
                 </h2>
                 <div class="mb-4 w-50">
                     <form method="GET" action="{{ route('DashAppointment.index') }}" class="d-flex flex- gap-2 align-items-center">

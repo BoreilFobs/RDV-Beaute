@@ -8,7 +8,7 @@
                     <i class="fas fa-envelope me-3"></i> Contact Messages
                 </h2>
                 <div class="unread-count">
-                    <span class="badge bg-primary">{{ $unreadCount }} Unread</span>
+                    <span class="badge bg-primary">{{ $unreadCount }} Non-lus</span>
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                             <tr>
                                 <th>Status</th>
                                 <th>Name</th>
-                                <th>Email</th>
+                                <th>Telephone</th>
                                 <th>Message</th>
                                 <th>Date</th>
                                 <th>Actions</th>
@@ -41,7 +41,7 @@
                                 </td>
                                 <td>{{ $message->name }}</td>
                                 <td>
-                                    <a href="mailto:{{ $message->email }}">{{ $message->email }}</a>
+                                    <a href="tel:{{ $message->phone }}">{{ $message->phone }}</a>
                                 </td>
                                 <td class="message-preview">
                                     {{ Str::limit($message->message, 80) }}
@@ -76,7 +76,7 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Message from {{ $message->name }}</h5>
+                                            <h5 class="modal-title">Message de {{ $message->name }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -89,12 +89,12 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
                                             @if(!$message->read_at)
                                             <form action="{{ route('messages.markAsRead', $message->id) }}" method="POST">
                                                 @csrf
                                                 <button type="submit" class="btn btn-booking">
-                                                    <i class="fas fa-envelope-open-text me-1"></i> Mark as Read
+                                                    <i class="fas fa-envelope-open-text me-1"></i> Marquer comme lu
                                                 </button>
                                             </form>
                                             @endif

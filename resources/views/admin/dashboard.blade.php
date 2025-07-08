@@ -41,7 +41,7 @@
                     </div>
                     <div class="stats-info">
                         <h3>{{ $usersCount }}</h3>
-                        <p>Registered Users</p>
+                        <p>Utilisateur inscrit</p>
                         <div class="stats-change {{ $usersChange >= 0 ? 'positive' : 'negative' }}">
                             <i class="fas fa-arrow-{{ $usersChange >= 0 ? 'up' : 'down' }} me-1"></i>
                             {{ abs($usersChange) }}% au mois passe
@@ -58,7 +58,7 @@
                     </div>
                     <div class="stats-info">
                         <h3>{{ number_format($stockOnSaleValue, 0, '.', ' ') }} FCFA</h3>
-                        <p>Stock On Sale Value</p>
+                        <p>Valeur du stock</p>
                         <div class="stats-change {{ $stockOnSaleChange >= 0 ? 'positive' : 'negative' }}">
                             <i class="fas fa-arrow-{{ $stockOnSaleChange >= 0 ? 'up' : 'down' }} me-1"></i>
                             {{ abs($stockOnSaleChange) }}% au mois passe
@@ -74,10 +74,10 @@
                         <i class="fas fa-box-open"></i>
                     </div>
                     <div class="stats-info">
-                        <h3>{{ $productsCount }}</h3>
+                        <h3>{{ $prestationsCount }}</h3>
                         <p>prestations</p>
-                        <div class="stats-change {{ $productsChange >= 0 ? 'positive' : 'negative' }}">
-                            <i class="fas fa-arrow-{{ $productsChange >= 0 ? 'up' : 'down' }} me-1"></i>
+                        <div class="stats-change {{ $prestationsChange >= 0 ? 'positive' : 'negative' }}">
+                            <i class="fas fa-arrow-{{ $prestationsChange >= 0 ? 'up' : 'down' }} me-1"></i>
                             {{ abs($productsChange) }}% au mois passe
                         </div>
                     </div>
@@ -92,9 +92,9 @@
                 <div class="form-card-wrapper">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h3 class="dashboard-section-title">
-                            <i class="fas fa-clock me-2"></i> Rendez-voi\us recent
+                            <i class="fas fa-clock me-2"></i> Rendez-vous recent
                         </h3>
-                        <a href="{{ route('appointments.index') }}" class="btn btn-sm btn-booking">Tout voir</a>
+                        <a href="{{ route('DashAppointment.index') }}" class="btn btn-sm btn-booking">Tout voir</a>
                     </div>
                     <div class="table-responsive">
                         @if($recentAppointments->isEmpty())

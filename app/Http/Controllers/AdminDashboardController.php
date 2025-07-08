@@ -44,6 +44,11 @@ class AdminDashboardController extends Controller
         $productsCount = Stock::count();
         $lastMonthProducts = Stock::where('created_at', '>=', now()->subMonth())->count();
         $productsChange = $this->calculatePercentageChange($productsCount, $lastMonthProducts);
+
+        // prestation Stats
+        $prestationsCount = Offers::count();
+        $lastMonthPrestations = Offers::where('created_at', '>=', now()->subMonth())->count();
+        $prestationsChange = $this->calculatePercentageChange($productsCount, $lastMonthProducts);
         
         // Recent Data
         $recentAppointments = Appointments::with('offer')
@@ -79,6 +84,7 @@ class AdminDashboardController extends Controller
             'appointmentsCount', 'appointmentsChange',
             'usersCount', 'usersChange',
             'stockOnSaleValue', 'stockOnSaleChange',
+            'prestationsCount', 'prestationsChange',
             'productsCount', 'productsChange',
             'recentAppointments', 'recentUsers', 'recentGalleryItems',
             'appointmentStatuses', 'popularServices'

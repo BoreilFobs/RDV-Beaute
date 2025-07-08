@@ -43,7 +43,7 @@ class StockController extends Controller
             'name' => 'required|string|max:255',
             'quantity' => 'required|integer|min:0',
             'unit_price' => 'required|numeric|min:0',
-            'usage_type' => 'required|string',
+            // 'usage_type' => 'required|string',
         ]);
 
         $stock = new Stock();
@@ -72,7 +72,7 @@ class StockController extends Controller
             'name' => 'required|string|max:255',
             'quantity' => 'required|integer|min:0',
             'unit_price' => 'required|numeric|min:0',
-            'usage_type' => 'required|string',
+            // 'usage_type' => 'required|string',
         ]);
 
         $stock = Stock::findOrFail($id);

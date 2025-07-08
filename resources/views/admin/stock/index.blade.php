@@ -5,7 +5,7 @@
         <div class="products-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
                 <h2 class="service-title dashboard-section-title">
-                    <i class="fas fa-boxes me-3"></i> Inventair de produit
+                    <i class="fas fa-boxes me-3"></i> Inventair de produit ({{ $stocks->count() }})
                 </h2>
                 <a href="{{ route('stock.create') }}" class="btn btn-booking">
                     <i class="fas fa-plus-circle me-2"></i> Ajouter un produit
@@ -15,7 +15,7 @@
             <!-- Filter Form -->
             <form method="GET" action="{{ route('stock.index') }}" class="row g-3 mb-4">
                 <div class="col-md-4">
-                    <input type="text" name="search" class="form-control custom-input" placeholder="Search by product name" value="{{ request('search') }}">
+                    <input type="text" name="search" class="form-control custom-input" placeholder="Recherche par nom" value="{{ request('search') }}">
                 </div>
                 <div class="col-md-4">
                     <select name="quantity_filter" class="form-select custom-select">
@@ -40,7 +40,7 @@
                                 <th>Nom du Produit</th>
                                 <th>Quantite</th>
                                 <th>Unit Price</th>
-                                <th> Type D'usage</th>
+                                {{-- <th> Type D'usage</th> --}}
                                 <th>Valeur Total</th>
                                 <th>Actions</th>
                             </tr>
@@ -74,11 +74,11 @@
                                         <span class="text-muted-custom">N/A</span>
                                     @endif
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <span class="usage-badge usage-{{ $stock->usage_type }}">
                                         {{ ucfirst($stock->usage_type) }}
                                     </span>
-                                </td>
+                                </td> --}}
                                 <td>
                                     @if($stock->unit_price && $stock->quantity)
                                         {{ number_format(($stock->unit_price * $stock->quantity)) }} FCFA

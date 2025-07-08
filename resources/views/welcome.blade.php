@@ -29,7 +29,7 @@
     <!-- End Main Banner -->
     <!-- About Us -->
     <section class="about-us" id="about-us">
-        <div class="container">
+        <article class="container">
             <div class="row">
                 <div class="col-lg-6 order-lg-1 order-2">
                     <div class="about-content wow fadeInLeftBig">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
     </section>
     <!-- End About Us -->
     <!-- Discount -->
@@ -324,12 +324,12 @@
                         <div class="time-schedule">
                             <span class="day">Lundi - Vendredi</span>
                             <span class="line"></span>
-                            <span class="time">9h - 21h</span>
+                            <span class="time">8h - 18h</span>
                         </div>
                         <div class="time-schedule">
                             <span class="day">Samedi</span>
                             <span class="line"></span>
-                            <span class="time">10h - 20h</span>
+                            <span class="time">8hh - 18h</span>
                         </div>
                         <div class="time-schedule">
                             <span class="day">Dimanche</span>
@@ -368,14 +368,18 @@
                     </div>
                 </div>
             </div>
+            <a href="{{ asset("assets/images/flier.jpg") }}" data-fancybox="gallery">
+                <img src="{{asset("assets/images/flier.jpg")}}" alt="Gallery Icon" />
+            </a>
+
             @if($images->isEmpty())
-                <div class="col-12 text-center">
+                {{-- <div class="col-12 text-center">
                     <div class="alert alert-warning" role="alert">
                         Aucune image disponible dans la galerie.
                     </div>
-                </div>
+                </div> --}}
             @else
-                <div class="gallery-slider for-desk wow zoomIn">
+            <div class="gallery-slider for-desk wow zoomIn">
                     <div class="row">
                         @foreach($images as $image)
                             <div class="col-lg-4">

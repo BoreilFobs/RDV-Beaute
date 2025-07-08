@@ -4,10 +4,53 @@
 <head>
     <title>Glow & Chic</title>
     <meta charset="utf-8">
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="GeekBuzz, HTML5 Template" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="Institut beauté expert à Douala. Soins personnalisés, produits luxe et ambiance exclusive. Votre éclat naturel, notre passion." />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:image" content="{{ asset('assets/images/icons/preview.jpg') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:title" content="Glow & Chic">
+    <meta property="og:description" content="Nous sommes un institut de référence dans le bien-être et la beauté naturelle, reconnu pour son expertise, son accueil chaleureux et son engagement envers des soins respectueux de la peau et de l'environnement, où chaque client(e) se sent unique " />
+    <meta property="og:url" content="https://glowchicgarden.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ asset('assets/images/icons/preview.jpg') }}">
+    <meta name="twitter:title" content="Your Website Title">
+    <meta name="twitter:description" content="Nous sommes un institut de référence dans le bien-être et la beauté naturelle, reconnu pour son expertise, son accueil chaleureux et son engagement envers des soins respectueux de la peau et de l'environnement, où chaque client(e) se sent unique" />
+
+    <!-- Fallback for SEO -->
+    <meta name="image" content="{{ asset('assets/images/icons/preview.jpg') }}">
+    <link rel="image_src" href="{{ asset('assets/images/icons/preview.jpg') }}">
+    <meta name="keywords" content="institut beauté Douala,glow, chic, glow and chic,glow and chic garden , glow and chic eden garden   garden, eden,  soins visage, coiffure, épilation, massage, rendez-vous beauté">
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "GlowChic",
+        "name": "Glow & Chic Eden Garden",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Carrefour Express, Cité des Palmiers",
+            "addressLocality": "Douala",
+            "addressCountry": "CM"
+        },
+        "telephone": "+237 679 363 348",
+        "openingHours": "Mo-Fr 08:00-18:00, Sa 08:00-18:00",
+        "image": "{{ asset('assets/images/icons/preview.jpg') }}",
+        "priceRange": "$$"
+        }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/images/icons/favicon.png') }}">
 
@@ -21,7 +64,7 @@
 
     <!-- Font Awesome CSS Link -->
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Slick Slider CSS Link -->
     <link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
@@ -85,6 +128,110 @@
             opacity: 1;
         }
 
+         .footer-social-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .social-section-title {
+            color: #e1bb87;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .social-card {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .social-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .fb-bg { background: #3b5998; }
+        .tiktok-bg { background: #000000; }
+        .ig-bg { background: #e1306c; }
+        .email-bg { background: #d44638; }
+        .wa-bg { background: #25D366; }
+        .phone-bg { background: #e1bb87; }
+        
+        .social-details {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .social-platform {
+            color: #e1bb87;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        
+        .social-handle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+         .location-card {
+        grid-column: 1 / -1; /* Makes the card span all columns */
+        background: rgba(25, 25, 25, 0.7) !important;
+        border: 1px solid rgba(225, 184, 135, 0.3) !important;
+        }
+        
+        .location {
+            background: #e1bb87 !important;
+        }
+        
+        .social-icon-wrapper.location i {
+            color: #181818 !important;
+        }
+        
+        /* Adjust spacing for the location card */
+        .location-card .social-info {
+            flex: 1;
+        }
+        
+        .location-card .social-username {
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 767px) {
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
         /* Add these to your CSS variables */
         :root {
             --success: #28a745;
@@ -122,8 +269,8 @@
                     <div class="site-branding">
                         <a href="{{url("/")}}">
                             <img class="desktop-logo" src="{{ asset('assets/images/icons/logo.png') }}" alt="logo">
-                            <img class="mobile-logo" src="{{ asset('assets/images/icons/mobile-logo.png') }}"
-                                alt="mobile logo">
+                            <img class="mobile-logo" src="{{ asset('assets/images/icons/logo.png') }}" alt="logo">
+                            {{-- <h2 class="mobile-logo fw-bolder" style="font-size: 27px; align-items:center">Glow & Chic</h2> --}}
 
                         </a>
                     </div>
@@ -160,7 +307,7 @@
                     </nav>
 
                     <div class="mobile-call-icon">
-                        <a href="tel:1234567890" title="CALL (123) 456-7890">
+                        <a href="tel:237679363348" title="CALL 237-679-363-348">
                             <img src="{{ asset('assets/images/icons/mobile-call.png') }}" alt="mobile call">
                         </a>
                     </div>
@@ -193,10 +340,81 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="map wow fadeInLeftBig" style="background-image: url(./assets/images/map.png);">
-
+                            <div class="footer-social-container wow fadeInLeftBig">
+                                <h3 class="social-section-title">Connect With Us</h3>
+                                <div class="social-grid">
+                                    <a href="https://web.facebook.com/profile.php?id=61577007401567" target="_blank" class="social-card">
+                                        <div class="social-icon fb-bg">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </div>
+                                        <div class="social-details">
+                                            <span class="social-platform">Facebook</span>
+                                            <span class="social-handle">Glow & Chic gerden</span>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="https://tiktok.com/@your-tiktok-username" target="_blank" class="social-card">
+                                        <div class="social-icon tiktok-bg">
+                                            <i class="fab fa-tiktok"></i>
+                                        </div>
+                                        <div class="social-details">
+                                            <span class="social-platform">TikTok</span>
+                                            <span class="social-handle">@glowandchic</span>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="https://www.instagram.com/glow.chic237/?igsh=MXgyeWhrN3dyaHIyNA%3D%3D#" target="_blank" class="social-card">
+                                        <div class="social-icon ig-bg">
+                                            <i class="fab fa-instagram"></i>
+                                        </div>
+                                        <div class="social-details">
+                                            <span class="social-platform">Instagram</span>
+                                            <span class="social-handle">@glow.chic237</span>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="mailto:glowchic237@gmail.com" class="social-card">
+                                        <div class="social-icon email-bg">
+                                            <i class="far fa-envelope"></i>
+                                        </div>
+                                        <div class="social-details">
+                                            <span class="social-platform">Email</span>
+                                            <span class="social-handle">glowchic237@gmail.com</span>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="https://wa.me/237679363348" target="_blank" class="social-card">
+                                        <div class="social-icon wa-bg">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </div>
+                                        <div class="social-details">
+                                            <span class="social-platform">WhatsApp</span>
+                                            <span class="social-handle">+237-679-363-348</span>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="tel:+237679363348" class="social-card">
+                                        <div class="social-icon phone-bg">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                        <div class="social-details">
+                                            <span class="social-platform">Phone</span>
+                                            <span class="social-handle">+237-679-363-348</span>
+                                        </div>
+                                    </a>
+                                     <a href="https://maps.google.com" class="social-card location-card">
+                                        <div class="social-icon-wrapper social-icon location">
+                                            <i class="fas fa-map-marker-alt social-details"></i>
+                                        </div>
+                                        <div class="social-info">
+                                            <span class="social-label social-platform">Situe</span>
+                                            <span class="social-username social-handle">Carrefour Express, Cité des Palmiers, Douala</span>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                           
                         <div class="col-lg-6">
 
                             <div class="contact-form wow fadeInRightBig" id="contact">
@@ -249,8 +467,8 @@
                         </div>
                     </div>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
 
         <div class="footer-bottom">
             <div class="container">
