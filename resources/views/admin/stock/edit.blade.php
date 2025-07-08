@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('assets/css/views/admin/stock/create.css') }}">
+
     <div class="container-fluid">
         <div class="products-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
@@ -41,7 +43,7 @@
                         </div>
 
                         <!-- Usage Type -->
-                        <div class="col-12 col-md-6">
+                        {{-- <div class="col-12 col-md-6">
                             <label for="usage_type" class="form-label-custom mb-2">Type d'usage <span class="text-danger">*</span></label>
                             <select class="form-select-custom @error('usage_type') is-invalid @enderror" 
                                     id="usage_type" name="usage_type" required>
@@ -52,7 +54,7 @@
                             @error('usage_type')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <!-- Unit Price (Conditional) -->
                         <div class="col-12 col-md-6" id="unit_price_container">
@@ -79,50 +81,6 @@
             </div>
         </div>
     </div>
-
-    <style>
-        /* Conditional Field Styling */
-        #unit_price_container.hidden {
-            display: none;
-        }
-        
-        #unit_price_container.disabled {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-        
-        /* Form Specific Styles (consistent with previous forms) */
-        .form-card-wrapper {
-            background-color: var(--gray);
-            border-radius: 1rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        .form-label-custom {
-            color: var(--text-light);
-            font-weight: 500;
-            display: block;
-        }
-        
-        .form-control-custom,
-        .form-select-custom {
-            background-color: var(--dark);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: var(--text-light);
-            padding: 0.75rem 1.25rem;
-            border-radius: 0.75rem;
-            transition: all 0.2s ease-in-out;
-            width: 100%;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 767.98px) {
-            .form-card-wrapper {
-                padding: 1.5rem !important;
-            }
-        }
-    </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

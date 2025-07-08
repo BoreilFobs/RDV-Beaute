@@ -1,0 +1,217 @@
+/* Table Styling */
+        .table-users {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 0.75rem;
+            color: var(--text-light);
+        }
+
+        .table-users thead th {
+            background-color: var(--dark);
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            padding: 1rem 1.5rem;
+            border: none;
+        }
+
+        .table-users tbody tr {
+            background-color: #18171c !important; /* deep black */
+            color: #fff !important;
+            transition: all 0.3s ease;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .table-users tbody td {
+            color: #fff !important;
+            background: transparent !important;
+            padding: 1.25rem 1.5rem;
+            vertical-align: middle;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .table-users tbody td strong {
+            color: #fff !important;
+        }
+
+        .table-users tbody td:first-child {
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0.75rem 0 0 0.75rem;
+        }
+
+        .table-users tbody td:last-child {
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0 0.75rem 0.75rem 0;
+        }
+
+        /* Avatar */
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Appointment Count */
+        .appointment-count {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .has-appointments {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            gap: 0.5rem;
+        }
+
+        .btn-action {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .btn-view {
+            background-color: rgba(74, 144, 226, 0.2);
+            color: #4a90e2;
+        }
+
+        .btn-edit {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .btn-delete {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.1);
+        }
+
+        /* Pagination */
+        .pagination {
+            --bs-pagination-color: var(--text-light);
+            --bs-pagination-bg: var(--gray);
+            --bs-pagination-border-color: rgba(255, 255, 255, 0.1);
+            --bs-pagination-hover-color: var(--primary);
+            --bs-pagination-hover-bg: var(--dark);
+            --bs-pagination-hover-border-color: rgba(255, 255, 255, 0.1);
+            --bs-pagination-active-bg: var(--primary);
+            --bs-pagination-active-border-color: var(--primary);
+            --bs-pagination-disabled-bg: var(--gray);
+            --bs-pagination-disabled-color: var(--text-muted);
+        }
+
+        /* Search Bar and Button */
+        .search-bar {
+            background: #18171c;
+            color: #fff;
+            border: 1.5px solid var(--primary);
+            border-radius: 30px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 12px 0 rgba(225, 187, 135, 0.07);
+        }
+
+        .search-bar:focus {
+            border-color: var(--accent, #e75480);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(231, 84, 128, 0.15);
+            background: #232026;
+            color: #fff;
+        }
+
+        .search-btn {
+            background: linear-gradient(90deg, var(--primary), var(--accent, #e75480));
+            color: var(--dark);
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px 0 rgba(231, 84, 128, 0.08);
+        }
+
+        .search-btn:hover, .search-btn:focus {
+            background: linear-gradient(90deg, var(--accent, #e75480), var(--primary));
+            color: #fff;
+        }
+          
+        .search-bar::placeholder {
+            color: #fff !important;
+            opacity: 1;
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 767.98px) {
+            .table-users thead {
+                display: none;
+            }
+
+            .table-users tbody tr {
+                display: block;
+                margin-bottom: 1rem;
+                border-radius: 0.75rem;
+            }
+
+            .table-users tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.75rem 1rem;
+                border: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .table-users tbody td:before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--primary);
+                margin-right: 1rem;
+                flex: 0 0 120px;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+            }
+
+            .table-users tbody td:first-child,
+            .table-users tbody td:last-child {
+                border-radius: 0;
+            }
+
+            .table-users tbody td:first-child {
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .action-buttons {
+                justify-content: flex-end;
+            }
+        }

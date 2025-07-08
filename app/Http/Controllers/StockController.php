@@ -62,8 +62,8 @@ class StockController extends Controller
 
     public function edit($id)
     {
-        $stock = Stock::findOrFail($id);
-        return view("admin.stock.edit", compact('stock'));
+        $product = Stock::findOrFail($id);
+        return view("admin.stock.edit", compact('product'));
     }
 
     public function update(Request $request, $id)

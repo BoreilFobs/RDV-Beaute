@@ -1,50 +1,7 @@
 @extends('layouts.app') {{-- Make sure this extends your base layout file --}}
 
 @section('content')
-<style>
-    
-    @media (max-width: 767.98px) {
-            .action-btn {
-                flex: 0 0 auto;
-                max-width: none;
-                min-width: 70px;
-                padding: 0.7rem 0.5rem !important;
-                font-size: 0.95rem !important;
-                justify-content: center;
-                width: auto;
-            }
-
-            .action-btn .action-text {
-                display: none !important;
-            }
-
-            .d-flex.flex-wrap.justify-content-start.justify-content-md-end.gap-2 {
-                gap: 0.5rem !important;
-            }
-            .dashboard-cta-title {
-                font-size: 1.1rem !important;
-            }
-            .dashboard-cta-btn {
-                font-size: 0.95rem !important;
-                padding: 0.7rem 1.2rem !important;
-            }
-            .card-service .service-title {
-                    font-size: 1.3rem !important;
-                }
-                .card-service .rounded-circle {
-                    width: 36px !important;
-                    height: 36px !important;
-                }
-                .card-service .small {
-                    font-size: 0.85rem !important;
-                }
-                .card-service.p-3.py-4 {
-                    padding: 1rem !important;
-                    padding-top: 1.2rem !important;
-                    padding-bottom: 1.2rem !important;
-                }
-        }
-</style>
+<link rel="stylesheet" href="{{ asset('assets/css/views/userDashboard.css') }}">
     <div class="container-fluid" style="padding:0 ;margin: 0;">
         <h2 class="dashboard-section-title mb-5"
             style="font-size: 2rem; font-weight: 700; color: var(--primary); letter-spacing: 1px; text-shadow: 0 0 8px rgba(225, 187, 135, 0.5);">

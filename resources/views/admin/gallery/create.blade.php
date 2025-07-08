@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('assets/css/views/admin/gallery/form.css') }}">
+
     <div class="container-fluid">
         <div class="gallery-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
@@ -55,86 +57,6 @@
             </div>
         </div>
     </div>
-
-    <style>
-        /* Dropzone Styling */
-        .dropzone {
-            border: 2px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 1rem;
-            padding: 3rem 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            background-color: var(--dark);
-            cursor: pointer;
-        }
-
-        .dropzone:hover {
-            border-color: var(--primary);
-            background-color: rgba(225, 187, 135, 0.05);
-        }
-
-        .dropzone-content {
-            color: var(--text-light);
-        }
-
-        .dropzone-content i {
-            color: var(--primary);
-        }
-
-        /* Preview Styling */
-        .preview-container {
-            text-align: center;
-        }
-
-        .image-preview-wrapper {
-            position: relative;
-            display: inline-block;
-            max-width: 100%;
-        }
-
-        #imagePreview {
-            max-height: 300px;
-            max-width: 100%;
-            border-radius: 0.75rem;
-            display: block;
-            margin: 0 auto;
-        }
-
-        #removeImage {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: rgba(220, 53, 69, 0.9);
-            color: white;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        #removeImage:hover {
-            background-color: rgba(220, 53, 69, 1);
-        }
-
-        .file-info {
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 767.98px) {
-            .dropzone {
-                padding: 2rem 1rem;
-            }
-            
-            .dropzone-content h4 {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

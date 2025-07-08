@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('assets/css/views/admin/stock/create.css') }}">
+
     <div class="container-fluid">
         <div class="products-container">
             <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
@@ -81,47 +83,7 @@
     </div>
 
     <style>
-        /* Conditional Field Styling */
-        #unit_price_container.hidden {
-            display: none;
-        }
         
-        #unit_price_container.disabled {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-        
-        /* Form Specific Styles (consistent with previous forms) */
-        .form-card-wrapper {
-            background-color: var(--gray);
-            border-radius: 1rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        .form-label-custom {
-            color: var(--text-light);
-            font-weight: 500;
-            display: block;
-        }
-        
-        .form-control-custom,
-        .form-select-custom {
-            background-color: var(--dark);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: var(--text-light);
-            padding: 0.75rem 1.25rem;
-            border-radius: 0.75rem;
-            transition: all 0.2s ease-in-out;
-            width: 100%;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 767.98px) {
-            .form-card-wrapper {
-                padding: 1.5rem !important;
-            }
-        }
     </style>
 
     <script>

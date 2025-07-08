@@ -1,0 +1,179 @@
+       /* Notification Styles */
+        .notification {
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: slideIn 0.3s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notification::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: rgba(255,255,255,0.3);
+            animation: progress 5s linear forwards;
+        }
+
+        .notification.success {
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border-left: 4px solid var(--success);
+        }
+
+        .notification.error {
+            background-color: var(--error-bg);
+            color: var(--error-text);
+            border-left: 4px solid var(--error);
+        }
+
+        .notification-close {
+            background: transparent;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            margin-left: 1rem;
+            opacity: 0.7;
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+
+         .footer-social-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .social-section-title {
+            color: #e1bb87;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .social-card {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .social-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .fb-bg { background: #3b5998; }
+        .tiktok-bg { background: #000000; }
+        .ig-bg { background: #e1306c; }
+        .email-bg { background: #d44638; }
+        .wa-bg { background: #25D366; }
+        .phone-bg { background: #e1bb87; }
+        
+        .social-details {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .social-platform {
+            color: #e1bb87;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        
+        .social-handle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+         .location-card {
+        grid-column: 1 / -1; /* Makes the card span all columns */
+        background: rgba(25, 25, 25, 0.7) !important;
+        border: 1px solid rgba(225, 184, 135, 0.3) !important;
+        }
+        
+        .location {
+            background: #e1bb87 !important;
+        }
+        
+        .social-icon-wrapper.location i {
+            color: #181818 !important;
+        }
+        
+        /* Adjust spacing for the location card */
+        .location-card .social-info {
+            flex: 1;
+        }
+        
+        .location-card .social-username {
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 767px) {
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Add these to your CSS variables */
+        :root {
+            --success: #28a745;
+            --success-bg: rgba(40, 167, 69, 0.15);
+            --success-text: #e8f5e9;
+            --error: #dc3545;
+            --error-bg: rgba(220, 53, 69, 0.15);
+            --error-text: #ffebee;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes progress {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
