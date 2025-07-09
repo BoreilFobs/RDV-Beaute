@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Glow & Chic')</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -181,6 +182,110 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     {{-- <script> if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js', {
+            type: 'module'
+        })
+        .then(reg => console.log('Service Worker registered:', reg))
+        .catch(err => console.error('Service Worker registration failed:', err));
+    }
+    </script> --}}
+    {{-- <script type="module" src={{asset("service-worker.js")}}></script> --}}
+
+    <script type="module">
+        import "https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js";
+        import 'https://www.gstatic.com/firebasejs/10.3.0/firebase-messaging-compat.js';
+        const firebaseConfig = {
+            apiKey: "AIzaSyBw_0MnK82NiYCwIphSzFShoMVFDNwfgEI",
+            authDomain: "glow-and-chic.firebaseapp.com",
+            projectId: "glow-and-chic",
+            storageBucket: "glow-and-chic.firebasestorage.app",
+            messagingSenderId: "1364631713",
+            appId: "1:1364631713:web:f8bd3db73cec67b76b50e0",
+            measurementId: "G-3B6N2DS03Y"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const messaging = firebase.messaging();
+        async function requestPermissionAndGetToken() {
+            try {
+            // Check if browser supports notifications
+            if (!("Notification" in window)) {
+                console.warn("This browser does not support desktop notification.");
+                return;
+            }
+
+            // Check current permission status
+            if (Notification.permission === "granted") {
+                console.log("Notification permission already granted.");
+            } else if (Notification.permission === "denied") {
+                console.warn("Notification permission explicitly denied by the user.");
+                return;
+            } else { // 'default' or not yet asked
+                const permission = await Notification.requestPermission();
+                if (permission !== 'granted') {
+                console.warn('Notification permission not granted by the user.');
+                return;
+                }
+            }
+
+            const token = await messaging.getToken({ vapidKey: 'BFa-RUn46d5nfESUlVj__OfNoYCZyeGVo9lLDhTOtRjpVYv8qt9s72oXmX96-qDG8j0gQ1qPj_WRHIy4jblmTpA' });
+            console.log('FCM Token:', token);
+            // Send this token to your Laravel backend via AJAX
+            sendTokenToServer(token);
+
+            } catch (error) {
+            console.error('Error getting FCM token:', error);
+            // Handle cases where token retrieval might fail, e.g., missing service worker
+            }
+        }
+
+        // Function to send token to your Laravel backend
+        function sendTokenToServer(token) {
+            fetch('/save-fcm-token', { // Create this API endpoint in Laravel
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // If using CSRF token
+            },
+            body: JSON.stringify({ fcm_token: token })
+            })
+            .then(response => response.json())
+            .then(data => {
+            console.log('Token saved:', data);
+            })
+            .catch(error => {
+            console.error('Error saving token:', error);
+            });
+        }
+
+        // Register the service worker and then request token
+            navigator.serviceWorker.register('/firebase-messaging-sw.js')
+            .then((registration) => {
+            console.log('Service Worker registered with scope:', registration.scope);
+            requestPermissionAndGetToken(); // Call this AFTER service worker registration
+            })
+            .catch((error) => {
+            console.error('Service Worker registration failed:', error);
+            });
+
+
+        // Handle incoming messages while in the foreground (optional, but good for UX)
+        messaging.onMessage((payload) => {
+            console.log('Foreground message received. ', payload);
+            // Customize notification display for foreground messages if you want
+            // Browsers often don't show native notifications for foreground messages,
+            // so you might display an in-app toast or banner instead.
+            const notificationTitle = payload.notification.title;
+            const notificationOptions = {
+            body: payload.notification.body,
+            icon: payload.notification.icon || '/assets/images/icons/preview.jpg' // Use icon from payload or default
+            };
+            // Display as a regular Notification API notification in foreground
+            new Notification(notificationTitle, notificationOptions);
+        });
+    </script>
 </body>
 
 </html>

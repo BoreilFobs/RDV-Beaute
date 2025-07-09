@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointments;
+use App\Models\User;
+use App\Notifications\SendNotification;
 use Illuminate\Http\Request;
 
 class DashAppointmentController extends Controller
@@ -33,13 +35,36 @@ class DashAppointmentController extends Controller
         $appointment->status = 'confirmed';
         $appointment->save();
 
+        // notify 
+        $user = User::find($appointment->user_id);
+         if ($user->fcm_token) {    
+            $user->notify(new SendNotification(
+                name: $user->name,
+                title: 'Rendez-vous confirmer!',
+                body: ' Votre rendez-vous du ' . $appointment->date . ' à ' . $appointment->time . ' a ete confirmer!',
+                url: '/appointment' // optional click action
+            ));
+         }
+
         return redirect()->route('DashAppointment.index')->with('success', 'Appointment accepted successfully.');
     }
+
     public function reject($id)
     {
         $appointment = Appointments::findOrFail($id);
         $appointment->status = 'rejected';
         $appointment->save();
+
+        // notify 
+        $user = User::find($appointment->user_id);
+         if ($user->fcm_token) {    
+            $user->notify(new SendNotification(
+                name: $user->name,
+                title: 'Rendez-vous rejeter!',
+                body: ' Votre rendez-vous du ' . $appointment->date . ' à ' . $appointment->time . ' a ete rejeter!',
+                url: '/appointment' // optional click action
+            ));
+         }
 
         return redirect()->route('DashAppointment.index')->with('success', 'Appointment rejected successfully.');
     }public function complete($id)
@@ -48,6 +73,16 @@ class DashAppointmentController extends Controller
         $appointment->status = 'completed';
         $appointment->save();
 
+        // notify 
+        $user = User::find($appointment->user_id);
+         if ($user->fcm_token) {    
+            $user->notify(new SendNotification(
+                name: $user->name,
+                title: 'Rendez-vous terminer!',
+                body: ' Votre rendez-vous du ' . $appointment->date . ' à ' . $appointment->time . ' a ete terminer!',
+                url: '/appointment' // optional click action
+            ));
+         }
         return redirect()->route('DashAppointment.index')->with('success', 'Appointment completed successfully.');
     }
 }

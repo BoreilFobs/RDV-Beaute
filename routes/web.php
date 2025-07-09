@@ -91,4 +91,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/favourites', [\App\Http\Controllers\FavouriteController::class, 'index'])->name('favourite.index');
 });
 
+Route::middleware('auth')->post('/save-fcm-token', [\App\Http\Controllers\FcmTokenController::class, 'store']);
+
 require __DIR__ . '/auth.php';

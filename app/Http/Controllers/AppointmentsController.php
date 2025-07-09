@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointments;
+use App\Notifications\SendNotification;
 use App\Models\Offers;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -41,6 +43,17 @@ class AppointmentsController extends Controller
         $validatedData['offer_id'] = $request->route('offer');
         Appointments::create($validatedData);
 
+        // notify
+        $user = User::find(1);
+         if ($user->fcm_token) {    
+            $user->notify(new SendNotification(
+                name: $user->name,
+                title: 'Nouveau Rendez-vous!',
+                body: Auth::user()->name . ' vien de passer un rendez-vous pour ' . $validatedData['date'] . ' à ' . $validatedData['time'] . '!',
+                url: '/dashboard/appointment' // optional click action
+            ));
+         }
+         
         return redirect()->route('appointments.index')->with('success', 'Appointment created successfully!');
     }
     public function reschedule(Request $request, $id)
@@ -55,6 +68,18 @@ class AppointmentsController extends Controller
         $appointment->date = $validatedData['new_date'];
         $appointment->time = $validatedData['new_time'];
         $appointment->save();
+
+        // notify
+        $user = User::find(1);
+         if ($user->fcm_token) {    
+            $user->notify(new SendNotification(
+                name: $user->name,
+                title: 'Rendez-vous Reprogrammer!',
+                body: Auth::user()->name . ' vien de reprogrammer son rendez-vous du ' . $appointment->date . ' à ' . $appointment->time . ' pour ' . $validatedData['new_date'] . ' à ' . $validatedData['new_time'] . '!',
+                url: '/dashboard/appointment' // optional click action
+            ));
+         }
+         
 
         return redirect()->route('appointments.index')->with('success', 'Appointment rescheduled successfully!');
     }
@@ -72,6 +97,16 @@ class AppointmentsController extends Controller
         $appointment->status = 'cancelled';
         $appointment->save();
 
+        // notify
+        $user = User::find(1);
+         if ($user->fcm_token) {    
+            $user->notify(new SendNotification(
+                name: $user->name,
+                title: 'Rendez-vous annulee!',
+                body: Auth::user()->name . ' vien d\'annuler son rendez-vous du ' . $appointment->date . ' à ' . $appointment->time  . '!',
+                url: '/dashboard/appointment' // optional click action
+            ));
+         }
         return redirect()->route('appointments.index')->with('success', 'Appointment cancelled successfully!');
     }
 }

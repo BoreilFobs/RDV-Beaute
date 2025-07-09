@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Notifications\SendNotification;
 use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -36,6 +38,17 @@ class MessageController extends Controller
         ]);
 
         Message::create($validated);
+
+        // notify
+        $user = User::find(1);
+         if ($user->fcm_token) {    
+            $user->notify(new SendNotification(
+                name: $user->name,
+                title: 'Nouveau Message!',
+                body: 'Vous avez recu un message de '. Auth::user()->name . '!',
+                url: '/messages' // optional click action
+            ));
+         }
 
         return redirect()
             ->route('home')
