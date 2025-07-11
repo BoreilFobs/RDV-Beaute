@@ -2,14 +2,29 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('assets/css/views/admin/dashboard.css') }}">
-
+<style>
+   .badge {
+    font-size: 0.7rem;
+    padding: 0.25em 0.4em;
+}
+</style>
 <div class="container-fluid">
     <div class="dashboard-container">
         <!-- Dashboard Header -->
         <div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
             <h2 class="service-title dashboard-section-title">
-                <i class="fas fa-tachometer-alt me-3"></i> Tableau de board Administrateur
+                <i class="fas fa-tachometer-alt me-3"></i> Tableau de board Administrateur 
             </h2>
+
+            <a class="position-relative" href="{{ route('notifications.index') }}" title="Notifications">
+                <i class="fas fa-bell fa-lg"></i>
+                @if($unreadNotificationCount > 0)
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ $unreadNotificationCount }}
+                    </span>
+                @endif
+            </a>
+
             <div class="text-muted-custom">
                 Last updated: {{ now()->format('F j, Y g:i A') }}
             </div>

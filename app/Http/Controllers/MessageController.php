@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Notifications\SendNotification;
 use App\Models\Message;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,11 +46,14 @@ class MessageController extends Controller
             $user->notify(new SendNotification(
                 name: $user->name,
                 title: 'Nouveau Message!',
-                body: 'Vous avez recu un message de '. Auth::user()->name . '!',
+                body: Auth::user()->name? 'Vous avez recu un message de '. Auth::user()->name . '!' : 'Vous avez recu un message!',
                 url: '/messages' // optional click action
             ));
          }
-
+        // store notif in database
+        Notification::create([
+            'content' => Auth::user()->name? 'Vous avez recu un message de '. Auth::user()->name . '!' : 'Vous avez recu un message!',
+        ]);
         return redirect()
             ->route('home')
             ->with('success', 'Votre message a ete envoye. ons vous revien bientot.');

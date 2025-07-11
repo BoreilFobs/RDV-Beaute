@@ -15,6 +15,10 @@ Route::middleware([RoleMiddleware::class . ':admin', 'auth'])->group(function ()
     // dashboard route
     Route::get('/dashboard', [\App\Http\Controllers\AdminDashboardController::class, 'index'])->name("dashboard");
 
+    //notification route
+    Route::get('/notifications', [\App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
+    Route::delete('/notifications/{notification}', [\App\Http\Controllers\NotificationController::class, 'destroy'])->name('notification.destroy');
+
     // Users route
     Route::get('/dashboard/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 

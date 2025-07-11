@@ -223,6 +223,7 @@
                 console.warn("Notification permission explicitly denied by the user.");
                 return;
             } else { // 'default' or not yet asked
+                alert(" Alert!!!: \n s'il vous plait, autorisez les notifications pour recevoir des alertes de rendez-vous. Cela vous aidera à ne pas manquer les mise a jours rendez-vous.");
                 const permission = await Notification.requestPermission();
                 if (permission !== 'granted') {
                 console.warn('Notification permission not granted by the user.');

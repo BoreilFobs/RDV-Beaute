@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointments;
+use App\Models\Notification;
 use App\Notifications\SendNotification;
 use App\Models\Offers;
 use App\Models\User;
@@ -53,7 +54,12 @@ class AppointmentsController extends Controller
                 url: '/dashboard/appointment' // optional click action
             ));
          }
-         
+        // store notif in database
+        Notification::create([
+            'content' => Auth::user()->name . ' a pris un rendez-vous pour ' . $validatedData['date'] . ' à ' . $validatedData['time'] . '.',
+        ]);
+        
+
         return redirect()->route('appointments.index')->with('success', 'Appointment created successfully!');
     }
     public function reschedule(Request $request, $id)
@@ -79,6 +85,11 @@ class AppointmentsController extends Controller
                 url: '/dashboard/appointment' // optional click action
             ));
          }
+        // store notif in database
+        Notification::create([
+            'content' => Auth::user()->name . ' a reprogrammer son rendez-vous du ' . $appointment->date . ' à ' . $appointment->time . ' pour ' . $validatedData['new_date'] . ' à ' . $validatedData['new_time'] . '.',
+        ]);
+
          
 
         return redirect()->route('appointments.index')->with('success', 'Appointment rescheduled successfully!');
@@ -107,6 +118,10 @@ class AppointmentsController extends Controller
                 url: '/dashboard/appointment' // optional click action
             ));
          }
+        // store notif in database
+        Notification::create([
+            'content' => Auth::user()->name . ' a annuler son rendez-vous du ' . $appointment->date . ' à ' . $appointment->time . '.',
+        ]);
         return redirect()->route('appointments.index')->with('success', 'Appointment cancelled successfully!');
     }
 }

@@ -11,12 +11,12 @@ use App\Services\OrangeSmsService;
 
 class DashAppointmentController extends Controller
 {
-    protected $orangeSmsService;
+    // protected $orangeSmsService;
 
-    public function __construct(OrangeSmsService $orangeSmsService)
-    {
-        $this->orangeSmsService = $orangeSmsService;
-    }
+    // public function __construct(OrangeSmsService $orangeSmsService)
+    // {
+    //     $this->orangeSmsService = $orangeSmsService;
+    // }
 
     public function index(Request $request){
         $query = Appointments::query();
@@ -46,25 +46,25 @@ class DashAppointmentController extends Controller
         $user = User::find($appointment->user_id);
 
 
-        // send sms
-        $recipientPhoneNumber = '+237658822337';
-        $message = 'Votre Rendez-vous chez Glow & Chic Eden Garden a vien detre confirme. A bientot';
-        $useAlphanumeric = false;
-        $smsResult = $this->orangeSmsService->sendSms($recipientPhoneNumber, $message, $useAlphanumeric);
-        if ($smsResult['success']) {
-            Log::info('Order confirmation SMS sent successfully.', ['recipient' => $recipientPhoneNumber, 'api_response' => $smsResult['data']]);
-            return response()->json([
-                'message' => 'Order confirmed and SMS sent successfully!',
-                'sms_status' => $smsResult['data']
-            ]);
-        } else {
-            Log::error('Failed to send order confirmation SMS.', ['recipient' => $recipientPhoneNumber, 'error' => $smsResult['message']]);
-            return response()->json([
-                'message' => 'Order confirmed, but failed to send SMS.',
-                'sms_error' => $smsResult['message'],
-                // 'api_errors' => $smsResult['response']
-            ], 500);
-        }
+        // // send sms
+        // $recipientPhoneNumber = '+237658822337';
+        // $message = 'Votre Rendez-vous chez Glow & Chic Eden Garden a vien detre confirme. A bientot';
+        // $useAlphanumeric = false;
+        // $smsResult = $this->orangeSmsService->sendSms($recipientPhoneNumber, $message, $useAlphanumeric);
+        // if ($smsResult['success']) {
+        //     Log::info('Order confirmation SMS sent successfully.', ['recipient' => $recipientPhoneNumber, 'api_response' => $smsResult['data']]);
+        //     return response()->json([
+        //         'message' => 'Order confirmed and SMS sent successfully!',
+        //         'sms_status' => $smsResult['data']
+        //     ]);
+        // } else {
+        //     Log::error('Failed to send order confirmation SMS.', ['recipient' => $recipientPhoneNumber, 'error' => $smsResult['message']]);
+        //     return response()->json([
+        //         'message' => 'Order confirmed, but failed to send SMS.',
+        //         'sms_error' => $smsResult['message'],
+        //         // 'api_errors' => $smsResult['response']
+        //     ], 500);
+        // }
 
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Appointments;
 use App\Models\Gallery;
 use App\Models\Offers;
+use App\Models\Notification;
 use App\Models\Stock;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -80,6 +81,9 @@ class AdminDashboardController extends Controller
             ->take(3)
             ->get();
 
+        // unread notification count
+        $unreadNotificationCount = Notification::where('status', 'unread')->count();
+
         return view('admin.dashboard', compact(
             'appointmentsCount', 'appointmentsChange',
             'usersCount', 'usersChange',
@@ -87,7 +91,7 @@ class AdminDashboardController extends Controller
             'prestationsCount', 'prestationsChange',
             'productsCount', 'productsChange',
             'recentAppointments', 'recentUsers', 'recentGalleryItems',
-            'appointmentStatuses', 'popularServices'
+            'appointmentStatuses', 'popularServices', 'unreadNotificationCount'
         ));
     }
 
