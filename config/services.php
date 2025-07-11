@@ -38,4 +38,10 @@ return [
     'fcm' => [
         'server_key' => env('FCM_SERVER_KEY'),
     ],
+
+    'orange' => [
+        'client_id' => env('ORANGE_SMS_CLIENT_ID'),
+        'client_secret' => env('ORANGE_SMS_CLIENT_SECRET'),
+        'sender_address' => env('ORANGE_SMS_SENDER_ADDRESS'), // Or 'sender_name' if using alphanumeric
+    ],
 ];
